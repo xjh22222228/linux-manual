@@ -34,7 +34,18 @@ tail -F README.md
 tail -c README.md
 ```
 
+## top
+实时查看系统执行中的程序
+```bash
+# 实时监听进程变化
+top
 
+# 显示2条
+top -n 2
+
+# 显示指定的进程信息
+top -pid 620
+```
 
 
 
