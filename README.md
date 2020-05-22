@@ -76,6 +76,20 @@ pwd
 ```
 
 
+## wc
+统计文件的行数、字数、字节数, 常见用于统计代码行数
+```bash
+# 统计字节数
+wc -c README.md
 
+# 统计行数
+wc -l README.md
+
+# 统计字数
+wc -w README.md
+
+# 统计字符数
+wc -m README.md
+```
 
 
