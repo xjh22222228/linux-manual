@@ -92,4 +92,11 @@ wc -w README.md
 wc -m README.md
 ```
 
+## whoami
+显示自身的用户名称, 此命令等价于 `id -un`
+```bash
+xiejiahe@192 golang % whoami
+xiejiahe  # 输出
+```
+
 
