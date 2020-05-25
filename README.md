@@ -115,3 +115,21 @@ alias ll='ls -l'
 ```
 
 
+## wget
+用于从网络下载文件到本地
+```bash
+# 下载某个文件
+wget https://www.xiejiahe.com/robots.txt
+
+# 指定下载后文件名
+wget -O ro.txt https://www.xiejiahe.com/robots.txt
+
+# 断开续传，一般用于大文件，防止重新下载
+wget -c https://www.xiejiahe.com/robots.txt
+
+# 使用后台下载, 对于大文件非常有用
+wget -c https://www.xiejiahe.com/robots.txt
+tail -f wget-log   # 查看后台下载进度
+```
+
+
