@@ -1,6 +1,8 @@
 # linux-manual
 
-Linux 常用命令入门手册, 每天学一个。
+Linux 常用命令入门手册, 跟着我每天学一个。
+
+截止目前，含有 `10+` 命令。
 
 
 
@@ -101,7 +103,7 @@ xiejiahe  # 输出
 
 
 
-## 命令别名
+## alias
 用于简化较长的命令
 ```bash
 # 列出所有已设置的别名
@@ -132,4 +134,17 @@ wget -c https://www.xiejiahe.com/robots.txt
 tail -f wget-log   # 查看后台下载进度
 ```
 
+
+## df
+显示磁盘信息
+```bash
+# 显示系统磁盘信息
+df
+
+# 格式化大小，以kb以上进行显示
+df -h
+
+# 查看全部文件系统信息
+df -a
+```
 
