@@ -2,7 +2,7 @@
 
 Linux 常用命令入门手册, 跟着我每天学一个。
 
-截止目前，含有 `10+` 命令。
+截止目前，含有 `11+` 命令。
 
 
 
@@ -148,3 +148,30 @@ df -h
 df -a
 ```
 
+## find
+指定某个目录下查找文件
+```bash
+# 在当前目录递归搜索文件名为 README.md 文件
+find . -name README.md
+
+# 通过通配符进行查找, 必须用引号括着, 这里查找所有后缀为 .md 文件
+find . -name "*.md"
+find . -iname "*.md"  # 忽略文件大小写
+
+# 排除文件，只要加 ! , 排除掉所有 .md 后缀的文件
+find . ! -name "*.md"
+
+# 根据类型进行过滤搜索
+# f 普通文件, l 符号连接
+# d 目录, c 字符设备
+# b 块设备, s 套接字, p Fifo
+find . -type f
+
+# 限定目录递归深度
+find . -maxdepth 3  # 最大为3个目录
+find . -mindepth 3  # 最小为3个目录
+
+# 可以利用find命令进行代码统计，如下
+# 统计所有后缀为 .js 文件，忽略掉 node_modules test dist 相关文件
+find . -path "*.js" ! -path "*node_modules*" ! -path "*test*" ! -path "*dist*" | xargs wc -l
+```
