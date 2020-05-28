@@ -2,7 +2,7 @@
 
 Linux 常用命令入门手册, 跟着我每天学一个。
 
-截止目前，含有 `11+` 命令。
+截止目前，含有 `12+` 命令。
 
 
 
@@ -175,3 +175,17 @@ find . -mindepth 3  # 最小为3个目录
 # 统计所有后缀为 .js 文件，忽略掉 node_modules test dist 相关文件
 find . -path "*.js" ! -path "*node_modules*" ! -path "*test*" ! -path "*dist*" | xargs wc -l
 ```
+
+## mkdir
+创建目录
+```bash
+# 在当前目录下创建 temp 目录
+mkdir temp
+
+# 创建多层目录
+mkdir -p temp/temp2/temp3
+
+# 基于权限创建
+mkdir -m 777 temp
+```
+
