@@ -1,8 +1,13 @@
 # linux-manual
 
+<center>
+  <img src="media/poster.svg" width="400" />
+</center>
+
+
 Linux 常用命令入门手册, 跟着我每天学一个。
 
-截止目前，含有 `15+` 命令。
+截止目前，含有 `16+` 命令。
 
 注：这里只是常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -222,5 +227,25 @@ nohup node main.js
 
 # 在当前目录会出现 nohup.out 文件，里面包含了 Hello World
 nohuo echo "Hello World"
+```
+
+
+## cd
+进入指定目录
+```bash
+# 进入当前 src 目录
+cd src
+
+# 回到上一次目录
+cd -
+
+# 返回上一级目录
+cd ..
+
+# 进入家目录
+cd ~
+
+# 将上一个命令的参数作为cd参数使用
+cd !$
 ```
 
