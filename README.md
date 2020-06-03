@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册, 跟着我每天学一个。
 
-截止目前，含有 `17+` 命令。
+截止目前，含有 `18+` 命令。
 
 注：这里只是常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -270,6 +270,15 @@ echo $say
 
 # 也可以将内容输出到指定文件
 echo Hello World > 1.txt
+```
+
+
+## time
+测试某条命令执行所需花费时间
+```bash
+# time 后面跟着要测试的命令
+# 输出:  0.02s user 0.01s system 0% cpu 6.233 total
+time curl https://github.com/xjh22222228/linux-manual
 ```
 
 
