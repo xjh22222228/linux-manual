@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册, 跟着我每天学一个。
 
-截止目前，含有 `22+` 命令。
+截止目前，含有 `23+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -326,5 +326,19 @@ watch -n 5 "tail README.md"
 
 # -d 高亮显示变化内容
 watch -n 5 -d "tail README.md"
+```
+
+## ping
+测试目标地址是否可连接、延迟度
+
+```bash
+# 测试 github.com 连通性, 按 ctrl + C 停止 
+ping github.com
+
+# ping 5次后断开
+ping -c 5 xiejiahe.com
+
+# 每5秒ping 一次
+ping -i 5 xiejiahe.com
 ```
 
