@@ -5,15 +5,30 @@
 </center>
 
 
-Linux 常用命令入门手册, 跟着我每天学一个。
+Linux 常用命令入门手册。
 
-截止目前，含有 `23+` 命令。
+截止目前，含有 `24+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
 
 
 ---
+
+# 目录
+- 文件管理
+  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp)
+- 系统管理
+  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping)
+- 系统设置
+  - [alias](#alias) | [time](#time) | [clear](#clear)
+- 网络
+  - [wget](#wget)
+- 磁盘
+  - [df](#df)
+- 其他
+  - [echo](#echo)
 
 
 ## head
@@ -341,4 +356,24 @@ ping -c 5 xiejiahe.com
 # 每5秒ping 一次
 ping -i 5 xiejiahe.com
 ```
+
+## cp
+拷贝文件或目录
+
+```bash
+# 将当前 README.md 文件拷贝到上一层
+cp ./README.md ../README.md
+
+# -a 将原文件属性一同拷贝
+cp -a ./README.md ../README.md
+
+# -r 拷贝目录
+cp -r home ../home
+
+# -i 如果目标文件存在会询问用户是否需要覆盖
+cp -i README.md README.md
+```
+
+
+
 
