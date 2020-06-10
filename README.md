@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `24+` 命令。
+截止目前，含有 `25+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -20,13 +20,15 @@ Linux 常用命令入门手册。
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp)
 - 系统管理
-  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping)
+  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 网络
   - [wget](#wget)
 - 磁盘
   - [df](#df)
+- 鸡助命令
+  - 
 - 其他
   - [echo](#echo)
 
@@ -375,5 +377,17 @@ cp -i README.md README.md
 ```
 
 
+
+## which
+查找某个命令存储在哪个位置, 输出绝对路径, `which` 会在环境变量 `$PATH` 设置的目录里去查找。
+
+注: 可以通过 `echo $PATH` 查看设置的目录. 
+
+```bash
+which top  # /usr/bin/top
+
+# 查找pwd发现会找不到，因为 pwd 是bash的内置命令
+which pwd
+```
 
 
