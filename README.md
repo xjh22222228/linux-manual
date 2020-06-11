@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `25+` 命令。
+截止目前，含有 `26+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -18,7 +18,7 @@ Linux 常用命令入门手册。
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which)
 - 系统设置
@@ -388,6 +388,19 @@ which top  # /usr/bin/top
 
 # 查找pwd发现会找不到，因为 pwd 是bash的内置命令
 which pwd
+```
+
+
+## cat
+查看指定文件内容
+
+```bash
+# 查看 README.md 文件所有内容
+cat README.md
+cat README.md README2.md  # 或者一次性显示多个文件
+
+# -n 指定显示行号
+cat -n README.md
 ```
 
 
