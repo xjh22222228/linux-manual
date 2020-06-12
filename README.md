@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `26+` 命令。
+截止目前，含有 `27+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -18,7 +18,7 @@ Linux 常用命令入门手册。
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which)
 - 系统设置
@@ -401,6 +401,24 @@ cat README.md README2.md  # 或者一次性显示多个文件
 
 # -n 指定显示行号
 cat -n README.md
+```
+
+
+## mv
+`mv` 有2个用途：
+- 将文件或目录移动到另一个位置
+- 将文件或目录重命名
+
+注：实际上 `mv` 是用来移动文件或目录，只不过有类似重命名的功能而已。
+```bash
+# 将 README.md 重命名为 README-2.md, 如果 README-2.md 存在会直接覆盖。
+mv README.md README-2.md
+
+# 将 README.md 移动到上一层目录
+mv README.md ../README.md
+
+# -i 交互式操作，如果目标文件存在则进行询问是否覆盖
+mv -i README.md ../README.md
 ```
 
 
