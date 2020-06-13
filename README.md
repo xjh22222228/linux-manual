@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `28+` 命令。
+截止目前，含有 `29+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -20,7 +20,7 @@ Linux 常用命令入门手册。
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
-  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which)
+  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 网络
@@ -439,6 +439,17 @@ Su Mo Tu We Th Fr Sa
 
 # 显示临近3个月, 只能是3个月
 cal -3
+```
+
+
+## last
+显示用户最近登录信息
+
+```bash
+last # root     pts/0        Sun Jun 14 00:12   still logged in    192.0.0.0
+
+# 指定显示条目数
+last -n 1
 ```
 
 
