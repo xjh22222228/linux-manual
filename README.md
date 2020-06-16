@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `30+` 命令。
+截止目前，含有 `31+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown)
+  - [shutdown](#shutdown) | [reboot](#reboot)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 网络
@@ -471,6 +471,23 @@ shutdown -h 05:33 &
 shutdown +5 "5分钟后关机" # 5分钟后关机，同时送出警告信息给登入用户：
 ```
 
+
+## reboot
+有点类似 `shutdown` 命令， 用于重新启动系统。
+
+```bash
+# 重启系统
+reboot
+
+# -f 强制重启
+reboot -f
+
+# 用于模拟重新启动系统，不会真实重启，数据会写入 /var/log/wtmp 
+reboot -w
+
+# 在重新启动之前关闭所有网络界面
+reboot -i
+```
 
 
 
