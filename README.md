@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `31+` 命令。
+截止目前，含有 `32+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown) | [reboot](#reboot)
+  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 网络
@@ -489,6 +489,27 @@ reboot -w
 reboot -i
 ```
 
+
+
+## uname
+打印系统信息
+
+```bash
+# 不带任何参数打印当前操作系统内核名称
+uname # Linux  等价于 uname -s
+
+# 打印系统所有信息
+uname -a
+
+# -r 打印系统版本 , 如果次版本号都是偶数，说明是一个稳定版
+uname -r # 3.10.0-514.26.2.el7.x86_64
+
+# 打印网络节点主机名称
+uname -n # Yin.local
+
+# 打印处理器名称
+uname -p # i386
+```
 
 
 
