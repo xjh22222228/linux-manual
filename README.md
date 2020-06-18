@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `32+` 命令。
+截止目前，含有 `33+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname)
+  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 网络
@@ -511,6 +511,19 @@ uname -n # Yin.local
 uname -p # i386
 ```
 
+
+
+
+## ifconfig
+配置或显示系统网卡的网络参数
+
+```bash
+# 显示所有网络参数信息
+ifconfig
+
+# 配置网卡IP地址
+ifconfig eth0 192.168.1.111
+```
 
 
 
