@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `33+` 命令。
+截止目前，含有 `34+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,9 +21,10 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig)
+  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
+- 压缩、解压
 - 网络
   - [wget](#wget)
 - 磁盘
@@ -524,6 +525,30 @@ ifconfig
 # 配置网卡IP地址
 ifconfig eth0 192.168.1.111
 ```
+
+
+
+
+## who
+显示当前所有用户登录信息
+
+```bash
+# 显示当前登录系统的用户
+who
+xiejiahe console  Jun 15 21:38
+xiejiahe ttys001  Jun 15 21:44
+xiejiahe ttys002  Jun 15 21:44
+xiejiahe ttys003  Jun 15 21:44
+xiejiahe ttys004  Jun 15 21:44
+xiejiahe ttys005  Jun 15 21:44
+
+# 显示登录账号名和总人数
+who -q
+
+# 显示上次系统启动时间
+who -b  # reboot   ~        Jun 15 21:38
+```
+
 
 
 
