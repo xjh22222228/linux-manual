@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `34+` 命令。
+截止目前，含有 `35+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who)
+  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -203,6 +203,12 @@ find . -mindepth 3  # 最小为3个目录
 # 可以利用find命令进行代码统计，如下
 # 统计所有后缀为 .js 文件，忽略掉 node_modules test dist 相关文件
 find . -path "*.js" ! -path "*node_modules*" ! -path "*test*" ! -path "*dist*" | xargs wc -l
+
+# 查找文件大小大于 25k 文件 
+find /root -size +25k
+
+# 查找10天前文件 -mtime 修改时间、 -ctime 创建时间、 -atime 访问时间
+find /root -mtime +10
 ```
 
 ## mkdir
@@ -548,6 +554,30 @@ who -q
 # 显示上次系统启动时间
 who -b  # reboot   ~        Jun 15 21:38
 ```
+
+
+
+## whereis
+用来定位指令的二进制程序、源代码文件和man手册页等相关文件的路径。
+
+注意：`whereis` 是从数据库里查找的，因此特别快，默认情况下一星期更新一次数据，所以有时会查找删除的数据或者刚建立的数据无法找到问题。
+```bash
+# 查找 nginx
+whereis nginx # nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/nginx.3pm.gz
+
+# -b 指定只查找二进制
+where -b nginx # nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx
+
+# -m 指定查找说明文件 man
+whereis -m nginx # nginx: /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/nginx.3pm.gz
+```
+
+
+---
+
+
+
+
 
 
 
