@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `36+` 命令。
+截止目前，含有 `37+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -25,7 +25,7 @@ Linux 常用命令入门手册。
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
-  - [zip](#zip)
+  - [zip](#zip) | [unzip](#unzip)
 - 网络
   - [wget](#wget)
 - 磁盘
@@ -590,6 +590,21 @@ zip -r -S temp.zip temp
 
 # 指定压缩效率 1-9
 zip -r -9 temp.zip temp 
+```
+
+
+## unzip
+解压 `.zip`
+
+```bash
+# 将 demo.zip 解压到当前目录
+unzip demo.zip
+
+# 查看 demo.zip 文件，但不解压
+unzip -v demo.zip
+
+# -d 指定将文件压缩到 src 目录下
+unzip demo.zip -d src
 ```
 
 
