@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `37+` 命令。
+截止目前，含有 `38+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -18,7 +18,7 @@ Linux 常用命令入门手册。
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
   - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis)
@@ -594,7 +594,7 @@ zip -r -9 temp.zip temp
 
 
 ## unzip
-解压 `.zip`
+解压由 `zip` 压缩的文件，通常是 `.zip`
 
 ```bash
 # 将 demo.zip 解压到当前目录
@@ -605,6 +605,19 @@ unzip -v demo.zip
 
 # -d 指定将文件压缩到 src 目录下
 unzip demo.zip -d src
+```
+
+
+
+## locate
+搜索文件，与 `find` 命令很像，但更快，因为是从数据库里查找, 通常每天会进行数据更新。
+
+```bash
+# 搜索 README.md 相关文件
+locate README.md
+
+# 忽略大小写
+locate -i README.md
 ```
 
 
