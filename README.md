@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `38+` 命令。
+截止目前，含有 `39+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis)
+  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -620,6 +620,27 @@ locate README.md
 locate -i README.md
 ```
 
+
+## kill
+杀死一个正在运行中的程序
+
+注：程序进程id可通过 `top` 等命令查看。
+```bash
+# 杀死 pid 为88 进程
+kill 88
+
+# 强制杀死
+kill -KILL 88
+
+# 彻底杀死进程
+kill -9 88
+
+# 显示信号
+kill -l
+
+# 杀死指定用户的所有进程
+kill -u nginx
+```
 
 
 
