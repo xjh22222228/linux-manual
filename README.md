@@ -1,7 +1,7 @@
 # linux-manual
 
 <center>
-  <img src="media/poster.svg" width="400" />
+  <img src="media/poster.jpg" width="400" />
 </center>
 
 
@@ -679,7 +679,7 @@ chmod 777 README.md # 等价于 chmod a=rwx README.md
 
 
 
-
+[⬆  回顶部](#)
 
 
 
