@@ -1,13 +1,13 @@
 # linux-manual
 
 <center>
-  <img src="media/poster.jpg" width="400" />
+  <img src="media/poster.jpg" width="210" />
 </center>
 
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `40+` 命令。
+截止目前，含有 `41+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last)
-  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod)
+  - [shutdown](#shutdown) | [reboot](#reboot) | [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -674,6 +674,25 @@ chmod a+r src/
 # r=4, w=2, x=1
 chmod 777 README.md # 等价于 chmod a=rwx README.md
 ```
+
+
+
+## lsof
+列出当前系统打开文件的工具
+
+```bash
+## 列表所有打开文件的的列表
+lsof
+
+# 查看指定端口被占用情况
+lsof -i:8080
+
+# -p 列出指定进程号所打开的文件
+lsof -p 6112
+```
+
+
+
 
 
 
