@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `42+` 命令。
+截止目前，含有 `43+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -18,7 +18,7 @@ Linux 常用命令入门手册。
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof)
@@ -711,6 +711,26 @@ ps aux
 ps -ef | grep nginx
 ```
 
+
+## open
+`open` 命令可在 `linux` / `mac` 具有可视化界面下进行文本编辑、打开应用程序等功能。
+
+```bash
+# 在mac下用Finder打开当前目录
+open .
+
+# 用默认应用程序打开文件
+open README.md
+
+# 用默认编辑器打开文件
+open -e README.md
+
+# 如果是一个URL用默认浏览器打开页面
+open https://github.com/xjh22222228/linux-manual.git
+
+# 指定某个应用程序打开某个文件, 如果不指定文件默认直接打开程序
+open -a /Applications/Google\ Chrome.app README.md
+```
 
 
 
