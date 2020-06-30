@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `43+` 命令。
+截止目前，含有 `44+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -27,7 +27,7 @@ Linux 常用命令入门手册。
 - 压缩、解压
   - [zip](#zip) | [unzip](#unzip)
 - 网络
-  - [wget](#wget)
+  - [wget](#wget) | [curl](#curl)
 - 磁盘
   - [df](#df)
 - 鸡助命令
@@ -731,6 +731,40 @@ open https://github.com/xjh22222228/linux-manual.git
 # 指定某个应用程序打开某个文件, 如果不指定文件默认直接打开程序
 open -a /Applications/Google\ Chrome.app README.md
 ```
+
+
+
+## curl
+`curl` 是一个非常强大的网络传输工具, 利用URL规则在命令行下工作的文件传输工具。
+
+```bash
+# 查看网页内容
+curl https://github.com/xjh22222228/linux-manual
+
+# 下载文件到本地
+curl https://github.com/xjh22222228/linux-manual -O
+curl https://github.com/xjh22222228/linux-manual -O --progress # 显示下载进度条
+
+# -I 或 -head 显示HTTP响应报文
+curl https://github.com/xjh22222228/linux-manual -I
+
+# -H 设置请求头
+curl -H 'Content-Type: application/json' -H 'Content-Type: application/json' https://github.com/xjh22222228/linux-manual
+
+# 通过POST请求发送JSON数据, -X 指明是否哪种HTTP请求, -d 实体内容
+curl -H "Content-type: application/json" -X POST -d '{"age":"18"}' https://github.com/xjh22222228/linux-manual
+
+# 发送时携带 cookie
+curl https://github.com/xjh22222228/linux-manual --cookie "age=18;name=xjh"
+
+# -v 查看整个传输过程
+curl https://github.com/xjh22222228/linux-manual -v
+
+# -F(--form) 利用POST上传文件, file 是字段名, =@ 必须存在
+curl https://example.com/upload -F "file=@/home/demo.png"
+``` 
+
+
 
 
 
