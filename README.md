@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `46+` 命令。
+截止目前，含有 `47+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat)
+  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -455,7 +455,7 @@ cal -3
 显示用户最近登录信息
 
 ```bash
-last # root     pts/0        Sun Jun 14 00:12   still logged in    192.0.0.0
+last # root     pts/0        183.58.247.64    Sun Jan  5 13:57 - 14:28  (00:30)
 
 # 指定显示条目数
 last -n 1
@@ -882,6 +882,20 @@ netstat -au
 # 配合grep命令查看某个端口被占用情况
 netstat -ap | grep 8080
 ```
+
+
+## w
+查看当前登入系统的用户信息, 有哪些用户正在登陆, 以及他们正在执行的程序。
+
+此命令与 `who` 相似，默认情况下比 `who` 命令输出内容更详细。
+```bash
+w
+# 输出
+ 22:44:33 up 748 days, 14:16,  1 user,  load average: 0.04, 0.03, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+root     pts/0    183.11.111.11    22:40    1.00s  0.03s  0.00s w
+```
+
 
 
 
