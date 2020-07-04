@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `47+` 命令。
+截止目前，含有 `48+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -21,7 +21,7 @@ Linux 常用命令入门手册。
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w)
+  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -681,7 +681,7 @@ chmod 777 README.md # 等价于 chmod a=rwx README.md
 列出当前系统打开文件的工具
 
 ```bash
-## 列表所有打开文件的的列表
+## 打印所有打开文件的的列表
 lsof
 
 # 查看指定端口被占用情况
@@ -894,6 +894,22 @@ w
  22:44:33 up 748 days, 14:16,  1 user,  load average: 0.04, 0.03, 0.05
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 root     pts/0    183.11.111.11    22:40    1.00s  0.03s  0.00s w
+```
+
+
+## chown
+用来变更文件或目录的拥有者或所属群组
+
+
+```bash
+# 将 README.md 文件拥有者设为 byroot
+chown byroot README.md
+
+# 使用-R递归处理文件
+chown -R byroot src/
+
+# 改变所属群组, 拥有者设为 byroot 群组设为 byrootgroup
+chown byroot:byrootgroup README.md
 ```
 
 
