@@ -7,7 +7,7 @@
 
 Linux 常用命令入门手册。
 
-截止目前，含有 `49+` 命令。
+截止目前，含有 `50+` 命令。
 
 注：这里只列出常用命令, 基本上能满足日常工作所需, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -17,7 +17,7 @@ Linux 常用命令入门手册。
 
 # 目录
 - 文件管理
-  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir)
+  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime)
@@ -923,6 +923,36 @@ chown byroot:byrootgroup README.md
 # 1 user 当前系统登录用户数
 # load average: 0.08, 0.07, 0.06    一分钟、5分钟、15分钟平均负载, 这3个值不能大于CPU个数，如果大于了说明系统负载高，性能低。
 uptime # 21:51:53 up 750 days, 13:24,  1 user,  load average: 0.08, 0.07, 0.06
+```
+
+
+
+## chattr
+用于修改文件属性
+
+参数:
+- a：让文件或目录仅供附加用途
+- b：不更新文件或目录的最后存取时间
+- c：将文件或目录压缩后存放
+- d：将文件或目录排除在倾倒操作之外
+- i：不得任意更动文件或目录
+- s：保密性删除文件或目录
+- S：即时更新文件或目录
+- u：预防意外删除
+
+- -R：递归处理，将指令目录下的所有文件及子目录一并处理
+- -v<版本编号>：设置文件或目录版本
+- -V：显示指令执行过程
+- +<属性>：开启文件或目录的该项属性
+- -<属性>：关闭文件或目录的该项属性
+- =<属性>：指定文件或目录的该项属性
+
+```bash
+# 锁定该文件, 防止文件被修改或删除
+chattr +i README.md  # chattr -i README.md  解锁
+
+# 可以使用 lsattr 查看赋予的属性
+lsattr README.md
 ```
 
 
