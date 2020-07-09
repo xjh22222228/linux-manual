@@ -7,7 +7,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `52+` 命令。
+截止目前，含有 `53+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -17,7 +17,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 
 # 目录
 - 文件管理
-  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr)
+  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime)
@@ -992,6 +992,25 @@ bzip2 -k README.md  # -k 保留源文件
 bzip2 -d README.md.bz2  # 源文件将被删除
 bzip2 -dk README.md.bz2  # -k 保留源文件
 bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个解压过程
+```
+
+## more
+分页查看文件内容, 每次查看一屏, 每屏能显示多少内容取决于终端大小。
+
+快捷键：
+- 空格 - 查看下一屏内容
+- 回车 - 查看下一行内容
+- B - 查看上一屏内容
+- Q - 退出
+
+```bash
+more README.md
+
+# 从第10行开始显示
+more +10 README.md
+
+# 显示查看进度
+more -d README.md # --More--(17%)[Press space to continue, 'q' to quit.]
 ```
 
 
