@@ -7,7 +7,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `53+` 命令。
+截止目前，含有 `54+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -20,7 +20,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open)
 - 系统管理
-  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime)
+  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
@@ -1014,6 +1014,42 @@ more -d README.md # --More--(17%)[Press space to continue, 'q' to quit.]
 ```
 
 
+
+## crontab
+周期性执行任务, 通常用于定时备份。
+
+`* * * * *` 分别含义：
+```bash
+*    *    *    *    *
+┬    ┬    ┬    ┬    ┬
+│    │    │    │    │
+│    │    │    │    │
+│    │    │    │    └───── 一周中的某一天 (0 - 7)  0或7代表是星期日
+│    │    │    └────────── 月份 (1 - 12)
+│    │    └─────────────── 一个月的某一天 (1 - 31)
+│    └──────────────────── 小时 (0 - 23)
+└───────────────────────── 分钟 (0 - 59)
+```
+
+```bash
+# 列出该用户设置
+crontab -l
+
+# 编辑该用户设置
+crontab -e
+
+# 删除该用户设置
+crontab -r
+```
+
+`* * * * * 命令`
+```bash
+# 每天18点18分执行 echo `date` > README.md
+18 18 * * * echo `date` > README.md
+
+# 每一分钟执行
+* * * * */1 echo `date` > README.md
+```
 
 
 
