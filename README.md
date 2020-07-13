@@ -7,7 +7,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `55+` 命令。
+截止目前，含有 `56+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -33,7 +33,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 - 鸡助命令
   - [cal](#cal)
 - 其他
-  - [echo](#echo) | [date](#date) | [man](#man)
+  - [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep)
 
 
 ## head
@@ -1087,7 +1087,29 @@ man -a ls
 ```
 
 
+## sleep
+将目前动作延迟一段时间, 通常用于脚本当中
 
+时间参数：
+- s 秒
+- m 分钟
+- h 小时
+- d 天
+
+
+```bash
+# 5秒后输出 Hello
+sleep 5s; echo Hello
+```
+
+下面是一段 Shell 脚本， 延迟10秒后再去请求
+```bash
+#!/bin/bash
+
+sleep 10s
+
+curl https://www.xiejiahe.com/
+```
 
 
 
