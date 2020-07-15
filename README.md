@@ -7,7 +7,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `57+` 命令。
+截止目前，含有 `58+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -17,7 +17,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 
 # 目录
 - 文件管理
-  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more)
+  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab)
@@ -1119,6 +1119,20 @@ curl https://www.xiejiahe.com/
 别名 `.` 点符号
 ```bash
 source ~/.bash_profile  # 等价 . ~/.bash_profile
+```
+
+
+
+
+## paste
+合并N个文件的列，相当于追加文件内容。
+
+```bash
+# 1.txt 和 2.txt 合并输出
+paste 1.txt 2.txt
+
+# 1.txt 2.txt 合并后保存为 3.txt
+paste 1.txt 2.txt > 3.txt
 ```
 
 
