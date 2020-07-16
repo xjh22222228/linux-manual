@@ -7,7 +7,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `58+` 命令。
+截止目前，含有 `59+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -17,7 +17,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 
 # 目录
 - 文件管理
-  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste)
+  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab)
@@ -1133,6 +1133,23 @@ paste 1.txt 2.txt
 
 # 1.txt 2.txt 合并后保存为 3.txt
 paste 1.txt 2.txt > 3.txt
+```
+
+
+
+## stat
+用于显示文件或目录的状态信息
+
+```bash
+stat logs
+# File: ‘logs/’
+# Size: 16384           Blocks: 32         IO Block: 4096   directory
+# Device: fd01h/64769d    Inode: 669067      Links: 5
+# Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+# Access: 2020-07-07 17:24:23.941816812 +0800
+# Modify: 2020-07-12 11:46:55.567707577 +0800
+# Change: 2020-07-12 11:46:55.567707577 +0800
+# Birth: -
 ```
 
 
