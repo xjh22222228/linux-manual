@@ -1,13 +1,22 @@
-# linux-manual
 
-<center>
+<p align="center">
   <img src="media/poster.jpg" width="210" />
-</center>
+  <br />
+  <b>Linux Manual</b>
+  <p align="center">
+    <img src="https://img.shields.io/github/package-json/v/xjh22222228/linux-manual" />
+    <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
+    <a href="https://hits.dwyl.com/xjh22222228/linux-manual">
+      <img src="https://hits.dwyl.com/xjh22222228/linux-manual.svg" />
+    </a>
+  </p>
+</p>
+<br /><br />
 
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `59+` 命令。
+截止目前，含有 `60+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -18,7 +27,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown)
@@ -490,8 +499,8 @@ last -n 1
 # 立即重启系统
 shutdown -r now
 
-# 关机系统
-shutdown -h  关机
+# 关闭系统并切断电源
+shutdown -h  关机  # 实际上是调用 init 0
 
 # 把前一个关机或重启取消掉
 shutdown -c 
@@ -1150,6 +1159,32 @@ stat logs
 # Modify: 2020-07-12 11:46:55.567707577 +0800
 # Change: 2020-07-12 11:46:55.567707577 +0800
 # Birth: -
+```
+
+
+
+## tree
+生成目录树结构, 通常用于描述项目结构。
+
+```bash
+# 递归当前目录下所有文件并生成目录树
+tree
+# .
+# ├── LICENSE
+# ├── README.md
+# ├── b.md
+# └── media
+#     └── poster.jpg
+
+
+# -I 忽略某些目录
+tree -I "node_modules|.git|.svn"
+
+# 只显示目录
+tree -d
+
+# 指定要递归的目录层级
+tree -L 3
 ```
 
 
