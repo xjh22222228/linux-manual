@@ -4,7 +4,6 @@
   <br />
   <b>Linux Manual</b>
   <p align="center">
-    <img src="https://img.shields.io/github/package-json/v/xjh22222228/linux-manual" />
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
     <a href="https://hits.dwyl.com/xjh22222228/linux-manual">
       <img src="https://hits.dwyl.com/xjh22222228/linux-manual.svg" />
@@ -16,7 +15,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `60+` 命令。
+截止目前，含有 `61+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -42,7 +41,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 - 鸡助命令
   - [cal](#cal)
 - 其他
-  - [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep)
+  - [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep) | [yum](#yum)
 
 
 ## head
@@ -1189,6 +1188,40 @@ tree -L 3
 
 
 
+## yum
+基于RPM的软件包管理器, 特点安装快捷，命令简洁好记。
+
+```bash
+# 安装nginx
+yum install nginx
+
+# 指定 -y 安装时自动全部 yes
+yum -y install nginx
+
+# 查找包
+yum search nginx
+
+# 显示所有已安装的包
+yum list
+
+# 升级包
+yum -y update nginx
+
+# 移除包
+yum -y remove nginx
+
+# 清除缓存
+yum clean all
+
+# 显示安装包信息
+yum info nginx
+
+# 检查可更新的包程序
+yum check-update
+```
+
+
+
 
 
 
@@ -1196,5 +1229,5 @@ tree -L 3
 
 [⬆  回顶部](#)
 
-
+[![HitCount](http://hits.dwyl.com/xjh22222228/linux-manual.svg)](http://hits.dwyl.com/xjh22222228/linux-manual)
 
