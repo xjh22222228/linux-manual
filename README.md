@@ -15,7 +15,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `62+` 命令。
+截止目前，含有 `63+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -26,7 +26,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [md5sum](#md5sum)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown)
@@ -118,6 +118,7 @@ pwd
 
 ## wc
 统计文件的行数、字数、字节数, 常见用于统计代码行数
+
 ```bash
 # 统计字节数
 wc -c README.md
@@ -130,6 +131,9 @@ wc -w README.md
 
 # 统计字符数
 wc -m README.md
+
+# 借助 find 和 xargs 实现代码统计
+find . ! -path "*node_modules*" -path "*.js*" | xargs wc -l
 ```
 
 ## whoami
@@ -230,10 +234,6 @@ find . -type f
 # 限定目录递归深度
 find . -maxdepth 3  # 最大为3个目录
 find . -mindepth 3  # 最小为3个目录
-
-# 可以利用find命令进行代码统计，如下
-# 统计所有后缀为 .js 文件，忽略掉 node_modules test dist 相关文件
-find . -path "*.js" ! -path "*node_modules*" ! -path "*test*" ! -path "*dist*" | xargs wc -l
 
 # 查找文件大小大于 25k 文件 
 find /root -size +25k
@@ -1028,10 +1028,10 @@ bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个�
 分页查看文件内容, 每次查看一屏, 每屏能显示多少内容取决于终端大小。
 
 快捷键：
-- 空格 - 查看下一屏内容
-- 回车 - 查看下一行内容
-- B - 查看上一屏内容
-- Q - 退出
+- `空格`或`PageUp` - 查看下一屏内容
+- `B`或`PageDown` - 查看上一屏内容
+- `回车` - 查看下一行内容
+- `Q` - 退出
 
 ```bash
 more README.md
@@ -1236,6 +1236,21 @@ history 50
 
 # 清空历史命令
 history -c
+```
+
+
+
+
+## md5sum
+计算和校验文件报文摘要
+
+```bash
+# 计算文件md5
+mmd5sum README.md # d41d8cd98f00b204e9800998ecf8427e  README.md
+
+# 校验文件, 查看文件是否被篡改过
+md5sum README.md > README.md5 # 计算文件md5并保存在 README.md5 , 保存的文件名和后缀可以随意命名
+md5sum -c README.md5 # -c 从指定的文件读取md5并校验, 会从当前目录寻找 README.md
 ```
 
 
