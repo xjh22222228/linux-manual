@@ -4,6 +4,7 @@
   <br />
   <b>Linux Manual</b>
   <p align="center">
+    <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
     <a href="https://hits.dwyl.com/xjh22222228/linux-manual">
       <img src="https://hits.dwyl.com/xjh22222228/linux-manual.svg" />
@@ -15,7 +16,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `63+` 命令。
+截止目前，含有 `64+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -28,7 +29,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat)
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [md5sum](#md5sum)
 - 系统管理
-  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab)
+  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
@@ -207,7 +208,7 @@ du -h src  # 20K    src
 
 # -s 只显示总大小，列出最后累计的值
 du -s src
-``` 
+```
 
 
 
@@ -792,7 +793,7 @@ curl https://github.com/xjh22222228/linux-manual -v
 
 # -F(--form) 利用POST上传文件, file 是字段名, =@ 必须存在
 curl https://example.com/upload -F "file=@/home/demo.png"
-``` 
+```
 
 
 ## date
@@ -1251,6 +1252,22 @@ mmd5sum README.md # d41d8cd98f00b204e9800998ecf8427e  README.md
 # 校验文件, 查看文件是否被篡改过
 md5sum README.md > README.md5 # 计算文件md5并保存在 README.md5 , 保存的文件名和后缀可以随意命名
 md5sum -c README.md5 # -c 从指定的文件读取md5并校验, 会从当前目录寻找 README.md
+```
+
+
+
+## su
+切换当前用户到其他用户身
+
+```bash
+# 切换到 admin 身份
+su admin
+
+# -c 执行完指令后切换回原身份
+su -c ls admin
+
+# 可以通过以下查找当前系统用户列表
+cat /etc/passwd
 ```
 
 
