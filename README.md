@@ -16,7 +16,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `64+` 命令。
+截止目前，含有 `65+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -42,7 +42,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 - 鸡助命令
   - [cal](#cal)
 - 其他
-  - [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep) | [yum](#yum) | [history](#history)
+  - [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep) | [yum](#yum) | [history](#history) | [xargs](#xargs)
 
 
 ## head
@@ -1271,7 +1271,18 @@ cat /etc/passwd
 ```
 
 
+## xargs
+给命令传递参数的一个过滤器，也是组合多个命令的一个工具, `将左侧的标准输出放进右侧标准输入`。
 
+此命令可以将多次操作简便为一次操作。
+
+```bash
+# 统计代码
+find -name "*.js" | xargs wc -l # 等价于 wc -l a.js b.js c.js ...
+
+# 批量下载文件
+cat download.txt | xargs wget
+```
 
 
 
