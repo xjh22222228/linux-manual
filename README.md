@@ -16,7 +16,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `67+` 命令。
+截止目前，含有 `68+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -30,7 +30,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [md5sum](#md5sum)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown)
+  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -1333,6 +1333,51 @@ grep -r "linux" ./src
 # 使用正则表达式搜索, 正则表达式语法与大部分编程语言基本上一致
 egrep "[0-9]" # 等价于 grep -E "[0-9]" README.md
 ```
+
+
+
+
+
+## systemctl
+
+系统服务管理器指令, 通常用来设置某个服务器默认开机启动或关闭。
+
+命令：`systemctl [command] [unit]`
+
+
+
+```bash
+# 立即启动服务
+systemctl start nginx.service
+
+# 立即停止服务
+systemctl stop nginx.service
+
+# 重启服务，stop 后 start
+systemctl restart nginx.service
+
+# 重新载入服务, 一般情况下重新载入新的配置
+systemctl reload nginx.service
+
+# 下次开机时默认启动服务
+systemctl enable nginx.service
+
+# 下次开机时不会启动服务
+systemctl disable nginx.service
+
+# 查看某个服务状态信息
+systemctl status nginx.service
+
+# 当前服务是否正在运行中
+systemctl is-active nginx.service
+
+# 查看服务开机有没有默认启动
+systemctl is-enable nginx.service
+```
+
+
+
+
 
 
 
