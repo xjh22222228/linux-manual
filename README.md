@@ -428,6 +428,9 @@ which top  # /usr/bin/top
 
 # 查找pwd发现会找不到，因为 pwd 是bash的内置命令
 which pwd
+
+# 打印多个命令
+which ls vi
 ```
 
 
