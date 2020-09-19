@@ -27,7 +27,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat) | [grep](#grep)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [md5sum](#md5sum)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl)
@@ -35,6 +35,8 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
   - [zip](#zip) | [unzip](#unzip) | [gzip](#gzip) | [bzip2](#bzip2)
+- 加解密
+  - [md5sum](#md5sum) | [base64](#base64)
 - 网络
   - [wget](#wget) | [curl](#curl) | [scp](#scp)
 - 磁盘
@@ -140,8 +142,7 @@ find . ! -path "*node_modules*" -path "*.js*" | xargs wc -l
 ## whoami
 显示自身的用户名称, 此命令等价于 `id -un`
 ```bash
-xiejiahe@192 golang % whoami
-xiejiahe  # 输出
+% whoami # xiejiahe
 ```
 
 
@@ -162,6 +163,7 @@ alias ll='ls -l'
 
 ## wget
 用于从网络下载文件到本地
+
 ```bash
 # 下载某个文件
 wget https://www.xiejiahe.com/robots.txt
@@ -215,6 +217,7 @@ du -s src
 
 ## find
 指定某个目录下查找文件
+
 ```bash
 # 在当前目录递归搜索文件名为 README.md 文件
 find . -name README.md
@@ -266,6 +269,7 @@ touch README.md
 
 ## ssh
 远程连接服务器工具
+
 ```bash
 # 简单的连接, 省略了端口号,默认为22
 ssh root@192.168.0.0
@@ -503,10 +507,10 @@ last -n 1
 shutdown -r now
 
 # 关闭系统并切断电源
-shutdown -h  关机  # 实际上是调用 init 0
+shutdown -h now # 立即关机, 实际上调用 init 0
 
 # 把前一个关机或重启取消掉
-shutdown -c 
+shutdown -c
 
 # 设定一个时间关机, 加 & 可以继续用终端命令
 shutdown -h 05:33 &
@@ -1294,6 +1298,7 @@ cat download.txt | xargs wget
 加密的方式在本地主机和远程主机之间复制文件
 
 注：需要有读写权限，否则会无法操作。
+
 ```bash
 # 从远程主机下载文件到本地
 scp root@192.168.0.100:/root/file.zip /home/file.zip
@@ -1380,7 +1385,22 @@ systemctl is-enable nginx.service
 
 
 
+## base64
+base64 编码/解码文件或标准输入输出
 
+```bash
+# 编码字符串
+printf "hello world"|base64 # aGVsbG8gd29ybGQ=
+
+# 解码字符串
+printf aGVsbG8gd29ybGQ=|base64 -d # hello world
+
+# 编码文件, 将结果保存在 decode.txt
+base64 README.md > decode.txt
+
+# 从标准输入中读取已经进行base64编码的内容进行解码
+base64 -d decode.txt
+```
 
 
 
