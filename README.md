@@ -27,7 +27,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat) | [grep](#grep)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [ln](#ln)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
   - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl)
@@ -175,7 +175,7 @@ wget -O ro.txt https://www.xiejiahe.com/robots.txt
 wget -c https://www.xiejiahe.com/robots.txt
 
 # 使用后台下载, 对于大文件非常有用
-wget -c https://www.xiejiahe.com/robots.txt
+wget -b https://www.xiejiahe.com/robots.txt
 tail -f wget-log   # 查看后台下载进度
 ```
 
@@ -779,9 +779,15 @@ open -a /Applications/Google\ Chrome.app README.md
 # 查看网页内容
 curl https://github.com/xjh22222228/linux-manual
 
-# 下载文件到本地
-curl https://github.com/xjh22222228/linux-manual -O
+# -o 指定文件名下载到本地，等价于 wget
+curl https://github.com/xjh22222228/linux-manual -o 1.txt # 1.txt
+
+# -O 下载文件到本地, 并将URL最后部分当做文件名
+curl https://github.com/xjh22222228/linux-manual -O # linux-manual
 curl https://github.com/xjh22222228/linux-manual -O --progress # 显示下载进度条
+
+# -L HTTP请求跟随服务器重定向
+curl -L https://github.com/xjh22222228/linux-manual
 
 # -I 或 -head 显示HTTP响应报文
 curl https://github.com/xjh22222228/linux-manual -I
@@ -789,7 +795,7 @@ curl https://github.com/xjh22222228/linux-manual -I
 # -H 设置请求头
 curl -H 'Content-Type: application/json' -H 'Content-Type: application/json' https://github.com/xjh22222228/linux-manual
 
-# 通过POST请求发送JSON数据, -X 指明是否哪种HTTP请求, -d 实体内容
+# 通过POST请求发送JSON数据, -X 指明HTTP请求方法, -d 实体内容
 curl -H "Content-type: application/json" -X POST -d '{"age":"18"}' https://github.com/xjh22222228/linux-manual
 
 # 发送时携带 cookie
@@ -800,6 +806,9 @@ curl https://github.com/xjh22222228/linux-manual -v
 
 # -F(--form) 利用POST上传文件, file 是字段名, =@ 必须存在
 curl https://example.com/upload -F "file=@/home/demo.png"
+
+# -u 指定提供用户名密码进行授权，通常Ftp等服务
+curl -u admin:123123 ftp://demo/README.md
 ```
 
 
@@ -1400,6 +1409,35 @@ base64 README.md > decode.txt
 
 # 从标准输入中读取已经进行base64编码的内容进行解码
 base64 -d decode.txt
+```
+
+
+
+
+## ln
+将某一个文件在另外一个位置建立并产生同步的链接。 当不同的2个目录需要同时引用某一个文件时此命令就派上用场了。
+
+软链接：
+- 软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式
+- 软链接可以 跨文件系统 ，硬链接不可以
+- 软链接可以对一个不存在的文件名进行链接
+- 软链接可以对目录进行链接
+
+硬链接：
+- 硬链接，以文件副本的形式存在。但不占用实际空间。
+- 不允许给目录创建硬链接
+- 硬链接只有在同一个文件系统中才能创建
+
+
+```bash
+# 默认创建硬链接，修改 README.md 内容， a.md 也会同步修改, 修改a.md  README.md 也会同步修改
+ln README.md a.md
+
+# -s 创建软链接
+ln -s README.md a.md # 如果删除了 README.md  a.md 将失效
+
+# -f 强制执行
+ln -f README.md ./src/a.md
 ```
 
 
