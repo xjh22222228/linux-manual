@@ -16,7 +16,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `68+` 命令。
+截止目前，含有 `71+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -30,7 +30,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [ln](#ln)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl)
+  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl) | [service](#service)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -1356,7 +1356,6 @@ egrep "[0-9]" # 等价于 grep -E "[0-9]" README.md
 
 
 ## systemctl
-
 系统服务管理器指令, 通常用来设置某个服务器默认开机启动或关闭。
 
 命令：`systemctl [command] [unit]`
@@ -1438,6 +1437,29 @@ ln -s README.md a.md # 如果删除了 README.md  a.md 将失效
 
 # -f 强制执行
 ln -f README.md ./src/a.md
+```
+
+
+
+
+## service
+管理操作系统服务的命令, 是Redhat Linux兼容的发行版中用来控制系统服务的实用工具，它以启动、停止、重新启动和关闭系统服务，还可以显示所有系统服务的当前状态。
+
+```bash
+# 启动 docker 服务
+service docker start
+
+# 查看 docker 状态
+service docker status
+
+# 停止 docker 服务
+service docker stop
+
+# 重新启动 docker 服务
+service docker restart
+
+# 查看所有服务状态
+service --status-all
 ```
 
 
