@@ -16,7 +16,7 @@
 
 Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `71+` 命令。
+截止目前，含有 `72+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -30,7 +30,7 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [ln](#ln)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl) | [service](#service)
+  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl) | [service](#service) | [free](#free)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
@@ -1461,6 +1461,44 @@ service docker restart
 # 查看所有服务状态
 service --status-all
 ```
+
+
+
+## free
+显示内存使用情况
+
+选项
+- b 字节单位显示
+- k KB单位显示
+- m MB单位显示
+- g GB单位显示
+- s<秒> 每S秒监控内存使用情况
+
+
+解释：
+- total 内存总数
+- used 已使用内存
+- free 空闲内存
+- shared 当前已废弃内存
+- buff/cache 缓存内存数
+- 1204660 可用内存数
+
+
+```bash
+free
+# 输出以下, 默认以字节为单位
+              total        used        free      shared  buff/cache   available
+Mem:        1882192      485312      448424         704      948456     1204660
+Swap:             0           0           0
+
+# MB单位显示
+free - m
+
+# 10秒执行一次查询
+free -s 10
+```
+
+
 
 
 
