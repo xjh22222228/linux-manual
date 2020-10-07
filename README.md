@@ -2,21 +2,18 @@
 <p align="center">
   <img src="media/poster.jpg" width="210" />
   <br />
-  <b>Linux Manual</b>
+  <b>Linux 常用命令参考手册</b>
+  <p align="center">日常运维的最佳拍档</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
-    <a href="https://hits.dwyl.com/xjh22222228/linux-manual">
-      <img src="https://hits.dwyl.com/xjh22222228/linux-manual.svg" />
-    </a>
   </p>
 </p>
 <br /><br />
 
 
-Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常使用。
 
-截止目前，含有 `73+` 命令。
+截止目前，含有 `76+` 命令。
 
 注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
@@ -27,14 +24,14 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
 # 目录
 - 文件管理
   - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat) | [grep](#grep)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [ln](#ln)
+  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [ln](#ln) | [file](#file)
 - 系统管理
   - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl) | [service](#service) | [free](#free)
+  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [killall](#killall) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl) | [service](#service) | [free](#free)
 - 系统设置
   - [alias](#alias) | [time](#time) | [clear](#clear)
 - 压缩、解压
-  - [zip](#zip) | [unzip](#unzip) | [gzip](#gzip) | [bzip2](#bzip2)
+  - [zip](#zip) | [unzip](#unzip) | [gzip](#gzip) | [bzip2](#bzip2) | [tar](#tar)
 - 加解密
   - [md5sum](#md5sum) | [base64](#base64)
 - 网络
@@ -43,19 +40,169 @@ Linux 常用命令参考手册, 非常适合入门, 基本能满足工作日常�
   - [df](#df) | [du](#du)
 - 包管理
   - [yum](#yum) | [apt-get](#apt-get)
-- 鸡助命令
-  - [cal](#cal)
 - 其他
-  - [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep) | [history](#history) | [xargs](#xargs)
+  - [目录名称含义](#目录名称含义) | [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep) | [history](#history) | [xargs](#xargs) | [cal](#cal)
+
+
+
+
+
+## 目录名称含义
+- / - 虚拟目录的根目录，通常不会在这里存储文件
+- bin - 二进制目录，存放许多用户级的GNU工具
+- /boot - 启动目录，存放启动文件
+- /dev - 设备目录，Linux在这里创建设备节点
+- /etc - 系统配置文件目录
+- /home - 主目录，Linux在这里创建用户目录
+- /lib - 库目录，存放系统和应用程序的库文件
+- /media - 媒体目录，可移动媒体设备的常用挂载点
+- /mnt - 挂载目录，另一个可移动媒体设备的常用挂载点
+- /opt - 可选目录，常用于存放第三方软件包和数据文件
+- /proc - 进程目录，存放现有硬件及当期进程的相关信息
+- /root - ROOT用户的主目录
+- /sbin - 系统二进制目录，存放许多GNU管理员级攻击
+- /run - 运行目录，存放系统运作时的运行时数据
+- /srv - 服务目录，存放本地服务的相关文件
+- /sys - 系统目录，存放系统硬件信息的相关文件
+- /tmp - 临时目录，可以在该目录中创建和删除临时工作文件
+- /usr - 用户二进制目录，大量用户级的GNU工具和数据文件都存储在这里
+- /var - 可变目录，用以存放经常变化的文件，比如日志文件
+
+
+
 
 
 ## head
 显示某个文件的前十行
+
 ```bash
 # 查看 README.md 前10行
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 head README.md
+
 # 或者指定多个文件
 head README.md package.json
+
 # 指定行数, 覆盖默认的10行
 head -n 100 README.md
 ```
@@ -63,10 +210,10 @@ head -n 100 README.md
 ## tail
 显示指定文件的末尾部分
 ```bash
-# 默认为显示末尾10行
+# 默认显示末尾10行
 tail README.md
 
-# 显示末尾20行
+# -n 指定显示末尾20行
 tail -n 20 README.md
 
 # 实时监听README.md文件变化
@@ -80,9 +227,27 @@ tail -c README.md
 ```
 
 ## top
-实时查看系统执行中的程序
+实时查看系统执行中的程序, top 命令跟 `ps` 命令相似，但它是实时的。
+
+- PID - 进程的ID
+- USER - 进程属主的名字
+- PR - 进程的优先级
+- NI - 进程的谦让度值
+- VIRT - 进程占用的虚拟内存总量
+- RES 进程占用的物理内存总量
+- SHR - 进程和其他进程共享的内存总量
+- S - 进程的状态（D=可中断的休眠状态，R在运行状态，S休眠状态，T跟踪状态或停止状态，Z=僵化状态）
+- %CPU - 进程使用的CPU时间比例
+- %MEM - 进程使用的内存占可用内存的比例
+- TIME+ - 自进程启动到目前为止的CPU时间总量
+- COMMAND - 进程所对应的命令行名称，也就是启动的程序名
+
+默认情况下 `top` 命令启动时会按照 %CPU 值对进程排序。
+
 ```bash
 # 实时监听进程变化
+#  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                               
+#    1 root      20   0  125124   3612   2428 S  0.0  0.2   0:04.88 systemd
 top
 
 # 显示2条
@@ -94,9 +259,10 @@ top -pid 620
 
 
 ## ls
-显示目录列表
+显示当前目录下的文件和目录，输出的列表是按字母排序 (某些发行版可能不一样)。
+
 ```bash
-# 只显示目录列表
+# 显示当前目录列表
 ls
 
 # 显示目录列表的详细信息
@@ -108,8 +274,17 @@ ls ./src
 # 显示目录列表详细信息和大小
 ls -lh
 
-# 列出所有文件包括隐藏
+# 列出所有文件包括隐藏文件
 ls -a
+
+# -F 可以显示类型，用以区分是文件还是目录
+ls -F # 后缀为 ”/“ 代表是目录，”*“ 为可执行文件
+
+# 过滤文件列表, * 代表0个或多个字符， ? 代表一个字符
+ls javasc*
+
+# -i 查看inode编号, 每一个文件或目录都有一个唯一的编号，这个数字由内核分配给文件系统中的每一个对象
+ls -i
 ```
 
 
@@ -183,10 +358,19 @@ tail -f wget-log   # 查看后台下载进度
 
 
 ## df
-显示系统磁盘信息
+查看已挂载的磁盘使用情况。
+
+
+描述
+- Filesystem - 设备的设备位置文件
+- Size - 能容纳多少个1024字节大小的块
+- Used - 已用了多少个1024字节大小的块
+- Avail - 还有多少个1024字节大小的块可用
+- Use% - 已用空间所占的比例
+- Mounted on - 设备挂载到了哪个挂载点上
 
 ```bash
-# 显示系统磁盘信息
+# 显示每个有数据的已挂载文件系统
 df
 
 # 格式化大小，以kb以上进行显示
@@ -201,6 +385,9 @@ df -a
 显示文件或目录所占用的磁盘空间
 
 ```bash
+# 默认显示当前目录的所有文件、目录、和子目录的磁盘使用情况
+du
+
 # 查看指定文件所占用磁盘空间
 du README.md
 
@@ -212,6 +399,9 @@ du -h src  # 20K    src
 
 # -s 只显示总大小，列出最后累计的值
 du -s src
+
+# 显示当前所有已列出文件总大小
+du -c
 ```
 
 
@@ -298,6 +488,7 @@ nohuo echo "Hello World"
 
 ## cd
 进入指定目录
+
 ```bash
 # 进入当前 src 目录
 cd src
@@ -315,6 +506,10 @@ cd  # 或者不带任何参数
 
 # 将上一个命令的参数作为cd参数使用
 cd !$
+
+# 模糊匹配目录，有时目录名很长一个一个敲效率就很低
+# * 代表0个或多个字符， ? 代表一个字符
+cd javasc*
 ```
 
 
@@ -363,6 +558,9 @@ clear
 # 删除当前 1.txt 文件
 rm 1.txt
 
+# -i 删除前询问是否真的要删除，因为一旦删除无法恢复
+rm -i README.md
+
 # 这条命令比较常用, 强制删除目录或文件
 # -r 如果是目录递归删除, -f 强制删除 不发出任何警告
 rm -rf ./src
@@ -378,6 +576,9 @@ rmdir temp
 
 # -p 参数可以删除多层空目录, 发现temp3是空目录删除掉，然后接着往父级找如果还是空目录继续删除...
 rmdir -p temp1/temp2/temp3
+
+# -i 删除前询问确认删除
+rmdir -i temp
 ```
 
 ## watch
@@ -441,15 +642,18 @@ which ls vi
 
 
 ## cat
-查看指定文件内容
+查看指定整个文件内容
 
 ```bash
 # 查看 README.md 文件所有内容
 cat README.md
 cat README.md README2.md  # 或者一次性显示多个文件
 
-# -n 指定显示行号
+# -n 每一行显示行号
 cat -n README.md
+
+# -b 只给有内容的行显示行号
+cat -b README.md
 ```
 
 
@@ -616,34 +820,34 @@ whereis -m nginx # nginx: /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/ngi
 
 
 ## zip
-将目录或文件压缩为 `.zip` 格式
+归档数据，将目录或文件归档为 `.zip` 格式， zip 不是Linux中的标准归档工具。
 
 ```bash
-# 压缩文件
+# 归档文件
 zip README.zip README.md
 
-# 压缩目录需要 -r 递归处理
+# 归档目录需要 -r 递归处理
 zip -r temp.zip temp
 
-# 包含系统隐藏文件
+# -S 包含系统隐藏文件
 zip -r -S temp.zip temp
 
-# 指定压缩效率 1-9
+# 指定归档效率 1-9
 zip -r -9 temp.zip temp 
 ```
 
 
 ## unzip
-解压由 `zip` 压缩的文件，通常是 `.zip`
+提取 `zip` 归档的文件或目录
 
 ```bash
-# 将 demo.zip 解压到当前目录
+# 将 demo.zip 提取到当前目录下
 unzip demo.zip
 
-# 查看 demo.zip 文件，但不解压
+# 列表 demo.zip 文件内容，但不提取
 unzip -v demo.zip
 
-# -d 指定将文件压缩到 src 目录下
+# -d 指定将文件提取到 src 目录下
 unzip demo.zip -d src
 ```
 
@@ -662,17 +866,31 @@ locate -i README.md
 
 
 ## kill
-杀死一个正在运行中的程序
+结束程序，kill 命令只支持 进程id杀死，不支持进程名称。
 
-注：程序进程id可通过 `top` 等命令查看。
+
+#### 进程信号
+| 信号        | 名称              | 描述              |
+| ---------- |------------------ |
+| 1      | HUP     | 挂起     |
+| 2      | INT     | 中断     |
+| 3      | QUIT     | 结束运行     |
+| 9      | KILL     | 无条件终止     |
+| 11      | SEGV     | 段错误     |
+| 15      | TERM     | 尽可能终止     |
+| 17      | STOP     | 无条件停止运行，但不终止     |
+| 18      | TSTP     | 停止或暂停，但继续在后台运行     |
+| 19      | CONT     | 在STOP或TSTP之后恢复执行     |
+
+
+注：程序进程 id 可通过 `top` 等命令查看。
+
 ```bash
-# 杀死 pid 为88 进程
+# 杀死 pid 为88 进程，不带参数默认等价 kill -15
 kill 88
 
-# 强制杀死
+# 无条件终止进程，以下是等价，可以用进程名称信号
 kill -KILL 88
-
-# 彻底杀死进程
 kill -9 88
 
 # 显示信号
@@ -681,6 +899,21 @@ kill -l
 # 杀死指定用户的所有进程
 kill -u nginx
 ```
+
+
+
+## killall
+杀死进程，可以杀死多个进程，比 `kill` 要强大, 支持通过进程名称杀死, 还支持通配符。
+
+```bash
+# 杀死以tcp进程名称开头的所有进程
+killall tcp*
+```
+
+
+
+
+
 
 
 ## chmod
@@ -732,7 +965,48 @@ lsof -p 6112
 ```
 
 ## ps
-查看当前系统进程状态
+查看当前系统进程状态。
+
+`ps` 命令非常复杂，且参数极多，由于 `ps` 历史问题，参数风格支持了三种 `UNIX`/`BSD`/``GNU` 这里不详细的介绍，感兴趣可以自行了解。
+
+
+- Unix 风格参数 - 前面加单破折线
+- BSD 风格的参数 - 前面不加破折线
+- GNU 风格长参数 - 前面加双破折线
+
+
+#### Unix 风格参数
+| 参数        | 描述              |
+| ---------- |------------------ |
+| -A      | 显示所有进程     |
+| -N    | 显示与指定参数不符的所有进程       |
+| -a      | 显示除控制进程和无终端进程外的所有进程     |
+| -d      | 显示除控制进程外的所有进程     |
+| -e      | 显示所有进程       |
+| -C cmdlist      | 显示包含在cmdlist列表中的进程       |
+| -G grplist      | 显示组ID在grplist列表中的进程       |
+| -U userlist      | 显示属主的用户ID在userlist列表中的进程       |
+| -g grplist      | 显示会话或组ID在grplist列表中的进程       |
+| -p pidlist      | 显示PID在pidlist列表中的进程       |
+| -s sesslist      | 显示会话ID在sesslist列表中的进程       |
+| -t ttylist      | 显示终端ID在ttylist列表中的进程       |
+| -u userlist      | 显示有效用户ID在userlist列表中的进程       |
+| -F      | 显示更多额外输出（相对-f参数而言）       |
+| -O format      | 显示默认的输出列以及format列表指定的特定列       |
+| -M      | 显示进程的安全信息       |
+| -c      | 显示进程的额外条调度器信息       |
+| -l      | 显示长列表       |
+| -o format      | 仅显示由format指定的列表       |
+| -y      | 不要显示进程标记（process tag, 表明进程状态的标记）       |
+| -Z      | 显示安全标签（security context）信息       |
+| -H      | 用层级格式来显示进程（树状，用来显示父进程）       |
+| -n namelist      | 定义了WCHAN列显示的值       |
+| -w      | 采用宽输出模式，不限宽显示       |
+| -L      | 显示进程中的线程       |
+| -V      | 显示PS命令的版本号       |
+
+
+
 
 ```bash
 # 显示所有进程信息
@@ -744,7 +1018,7 @@ ps -u root
 # 显示所有进程信息包括命令行
 ps -ef  # -e 等价于 -A  , 即等价于 ps -Af
 
-# 列出所有正在内存中的进程
+# 这是 BSD 风格参数，列出所有正在内存中的进程
 ps aux
 
 # 配合 grep 查询指定进程
@@ -778,8 +1052,11 @@ open -a /Applications/Google\ Chrome.app README.md
 `curl` 是一个非常强大的网络传输工具, 利用URL规则在命令行下工作的文件传输工具。
 
 ```bash
-# 查看网页内容
+# 查看HTTP响应
 curl https://github.com/xjh22222228/linux-manual
+
+# -s 不输出错误和进度信息, 只显示正常结果
+curl -s https://github.com/xjh22222228/linux-manual
 
 # -o 指定文件名下载到本地，等价于 wget
 curl https://github.com/xjh22222228/linux-manual -o 1.txt # 1.txt
@@ -811,6 +1088,9 @@ curl https://example.com/upload -F "file=@/home/demo.png"
 
 # -u 指定提供用户名密码进行授权，通常Ftp等服务
 curl -u admin:123123 ftp://demo/README.md
+
+# 下载并执行脚本
+curl -fsSL https://deno.land/x/install/install.sh | sh
 ```
 
 
@@ -1006,9 +1286,10 @@ lsattr README.md
 
 
 ## gzip
-用来压缩文件, 也可以用来解压文件, 格式为 `.gz`, 压缩后原文件将被删除
+GNU 压缩/解压工具，用 Lempel-Ziv编码，格式为 `.gz`, 压缩后原文件将被删除
 
 注意：gzip 不能用于压缩整个目录, 只能用于压缩文件, 如果需要压缩整个目录可以考虑使用 [zip](#zip) 命令。
+
 ```bash
 # 压缩 README.md 文件, 压缩完成后 README.md 文件会被删除
 gzip README.md # README.md.gz
@@ -1029,7 +1310,7 @@ gzip -dr ./logs # 或者递归解压目录下的所有文件
 
 
 ## bzip2
-将文件压缩成 `bz2` 格式，也可用于解压 `.bz2`
+采用 Burrows-Wheeler块排序文本压缩算法和霍夫曼编码，将文件压缩成 `.bz2` 格式，也可用于解压 `.bz2`
 
 ```bash
 # 压缩 README.md 文件
@@ -1043,8 +1324,42 @@ bzip2 -dk README.md.bz2  # -k 保留源文件
 bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个解压过程
 ```
 
+
+
+
+## tar
+归档数据，是Linux中标准归档工具。
+
+
+参数：
+- -A - 将一个已有tar归档文件追加到另一个已有tar归档文件
+- -c 创建一个新的tar归档文件
+- -d 检查归档文件和文件系统的不同之处
+- -r 追加文件到已有tar归档文件结尾
+- -t 列出已有tar归档文件的内容
+- -u 将比tar归档文件中已有的同名文件新的文件追加到该tar归档文件中
+- -x 从已有的tar归档文件中提取文件
+- -f 输出结果到文件或设备file
+
+```bash
+# -c 创建一个归档文件
+tar -cvf demo.tar src/
+
+# -x 提取归档文件内容
+tar -xvf demo.tar
+```
+
+
+
+
+
+
+
+
 ## more
 分页查看文件内容, 每次查看一屏, 每屏能显示多少内容取决于终端大小。
+
+与 `cat` 命令不同，`cat` 只能一次显示全部内容，如果内容太多部分会被截取掉。
 
 快捷键：
 - `空格`或`PageUp` - 查看下一屏内容
@@ -1104,20 +1419,47 @@ crontab -r
 ## man
 查看指令帮助手册
 
+**man 信息说明**
+
+- NAME - 显示命令名和一段简短的描述
+- SYNOPSIS - 命令的语法
+- CONFI GURATION - 命令配置信息
+- DESCRIPTION - 命令的一般性描述
+- OPTIONS - 命令选项描述
+- EXIT STATUS - 命令的退出状态指示
+- RETURN VALUE - 命令的返回值
+- ERRORS - 命令的错误消息
+- ENVIRONMENT - 描述所使用的环境变量
+- FILES - 命令用到的文件
+- VERSIONS - 命令的版本信息
+- CONFORMING TO - 命令所遵从的标准
+- NOTES - 其他有帮助的资料
+- BUGS - 提供提交BUG的途径
+- EXAMPLE - 展示命令的用法
+- AUTHORS - 命令开发人员的信息
+- COPYRIGHT - 命令源代码的版权状况
+- SEE ALSO - 与该命令类型的其他命令
+
 
 ```bash
 # 查看 ls 指令帮助手册
 man ls
 
+# 可以通过数字来阅读某一部分内容, 比如阅读第一部分
+man 1 ls
+
 # -a 在所有手册中查找
 man -a ls
+
+# -k, 搜索关键字, 如果忘记了完整的命令可以通过关键字搜索出来，比如 nginx
+man -k ngi
 ```
 
 
 ## sleep
 将目前动作延迟一段时间, 通常用于脚本当中
 
-时间参数：
+时间参数, 这是可选的，默认s：
 - s 秒
 - m 分钟
 - h 小时
@@ -1341,7 +1683,7 @@ grep "linux" README.md --color
 grep -o "linux" README.md --color
 
 # -n 输出到匹配的行数
-grep -o "linux" README.md
+grep -n "linux" README.md
 
 # -c 输出到匹配次数
 grep -c "linux" README.md
@@ -1418,14 +1760,14 @@ base64 -d decode.txt
 ## ln
 将某一个文件在另外一个位置建立并产生同步的链接。 当不同的2个目录需要同时引用某一个文件时此命令就派上用场了。
 
-软链接：
+软链接也可以叫符号链接：
 - 软链接，以路径的形式存在。类似于Windows操作系统中的快捷方式
 - 软链接可以 跨文件系统 ，硬链接不可以
 - 软链接可以对一个不存在的文件名进行链接
 - 软链接可以对目录进行链接
 
 硬链接：
-- 硬链接，以文件副本的形式存在。但不占用实际空间。
+- 硬链接，以文件副本的形式存在。但不占用实际空间, 从根本上而言就是同一个文件。
 - 不允许给目录创建硬链接
 - 硬链接只有在同一个文件系统中才能创建
 
@@ -1524,11 +1866,25 @@ apt-get clean
 
 
 
+## file
+查看文件类型, 比如文件、目录、二进制、符号链接等
+
+```bash
+# 输出 README.md: ASCII text
+file README.md
+
+# index.html: HTML document, UTF-8 Unicode text, with very long lines, with no line terminators
+file index.html
+```
 
 
 
 
 
+
+
+## 致谢
+感谢 《Linux命令行与Shell脚本编程大全》 一书，以上命令基本从这本书进行整理出来， 如有错误，欢迎指正，谢谢！
 
 
 
