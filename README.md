@@ -3,7 +3,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档</p>
+  <p align="center">日常运维的最佳拍档 x 78</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -13,9 +13,7 @@
 
 
 
-截止目前，含有 `76+` 命令。
 
-注：这里只列出常用命令, 如果想要更系统的可能需要翻阅官方手册。
 
 
 
@@ -23,25 +21,93 @@
 
 # 目录
 - 文件管理
-  - [head](#head) | [tail](#tail) | [ls](#ls) | [pwd](#pwd) | [wc](#wc) | [find](#find) | [mkdir](#mkdir) | [chattr](#chattr) | [more](#more) | [paste](#paste) | [stat](#stat) | [grep](#grep)
-  - [touch](#touch) | [cd](#cd) | [rm](#rm) | [rmdir](#rmdir) | [cp](#cp) | [cat](#cat) | [mv](#mv) | [locate](#locate) | [open](#open) | [source](#source) | [tree](#tree) | [ln](#ln) | [file](#file)
+  - [head](#head)
+  - [tail](#tail)
+  - [ls](#ls)
+  - [pwd](#pwd)
+  - [wc](#wc)
+  - [find](#find)
+  - [mkdir](#mkdir)
+  - [chattr](#chattr)
+  - [more](#more)
+  - [paste](#paste)
+  - [stat](#stat)
+  - [grep](#grep)
+  - [touch](#touch)
+  - [cd](#cd)
+  - [rm](#rm)
+  - [rmdir](#rmdir)
+  - [cp](#cp)
+  - [cat](#cat)
+  - [mv](#mv)
+  - [locate](#locate)
+  - [open](#open)
+  - [source](#source)
+  - [tree](#tree)
+  - [ln](#ln)
+  - [file](#file)
 - 系统管理
-  - [top](#top) | [whoami](#whoami) | [nohup](#nohup) | [watch](#watch) | [ping](#ping) | [which](#which) | [last](#last) | [shutdown](#shutdown) | [reboot](#reboot) | [ps](#ps) | [uptime](#uptime) | [crontab](#crontab) | [su](#su)
-  - [uname](#uname) | [ifconfig](#ifconfig) | [who](#who) | [whereis](#whereis) | [kill](#kill) | [killall](#killall) | [chmod](#chmod) | [lsof](#lsof) | [netstat](#netstat) | [w](#w) | [chown](#chown) | [systemctl](#systemctl) | [service](#service) | [free](#free)
+  - [top](#top)
+  - [whoami](#whoami)
+  - [nohup](#nohup)
+  - [watch](#watch)
+  - [ping](#ping)
+  - [which](#which)
+  - [last](#last)
+  - [shutdown](#shutdown)
+  - [reboot](#reboot)
+  - [ps](#ps)
+  - [uptime](#uptime)
+  - [crontab](#crontab)
+  - [su](#su)
+  - [uname](#uname)
+  - [ifconfig](#ifconfig)
+  - [who](#who)
+  - [whereis](#whereis)
+  - [kill](#kill)
+  - [killall](#killall)
+  - [chmod](#chmod)
+  - [lsof](#lsof)
+  - [netstat](#netstat)
+  - [w](#w)
+  - [chown](#chown)
+  - [systemctl](#systemctl)
+  - [service](#service)
+  - [free](#free)
+  - [jobs](#jobs)
+  - [type](#type)
 - 系统设置
-  - [alias](#alias) | [time](#time) | [clear](#clear)
+  - [alias](#alias)
+  - [time](#time)
+  - [clear](#clear)
 - 压缩、解压
-  - [zip](#zip) | [unzip](#unzip) | [gzip](#gzip) | [bzip2](#bzip2) | [tar](#tar)
+  - [zip](#zip)
+  - [unzip](#unzip)
+  - [gzip](#gzip)
+  - [bzip2](#bzip2)
+  - [tar](#tar)
 - 加解密
-  - [md5sum](#md5sum) | [base64](#base64)
+  - [md5sum](#md5sum)
+  - [base64](#base64)
 - 网络
-  - [wget](#wget) | [curl](#curl) | [scp](#scp)
+  - [wget](#wget)
+  - [curl](#curl)
+  - [scp](#scp)
 - 磁盘
-  - [df](#df) | [du](#du)
+  - [df](#df)
+  - [du](#du)
 - 包管理
-  - [yum](#yum) | [apt-get](#apt-get)
+  - [yum](#yum)
+  - [apt-get](#apt-get)
 - 其他
-  - [目录名称含义](#目录名称含义) | [echo](#echo) | [date](#date) | [man](#man) | [sleep](#sleep) | [history](#history) | [xargs](#xargs) | [cal](#cal)
+  - [目录名称含义](#目录名称含义)
+  - [echo](#echo)
+  - [date](#date)
+  - [man](#man)
+  - [sleep](#sleep)
+  - [history](#history)
+  - [xargs](#xargs)
+  - [cal](#cal)
 
 
 
@@ -49,7 +115,7 @@
 
 ## 目录名称含义
 - / - 虚拟目录的根目录，通常不会在这里存储文件
-- bin - 二进制目录，存放许多用户级的GNU工具
+- /bin - 二进制目录，存放许多用户级的GNU工具
 - /boot - 启动目录，存放启动文件
 - /dev - 设备目录，Linux在这里创建设备节点
 - /etc - 系统配置文件目录
@@ -60,7 +126,7 @@
 - /opt - 可选目录，常用于存放第三方软件包和数据文件
 - /proc - 进程目录，存放现有硬件及当期进程的相关信息
 - /root - ROOT用户的主目录
-- /sbin - 系统二进制目录，存放许多GNU管理员级攻击
+- /sbin - 系统二进制目录，存放许多GNU管理员级工具
 - /run - 运行目录，存放系统运作时的运行时数据
 - /srv - 服务目录，存放本地服务的相关文件
 - /sys - 系统目录，存放系统硬件信息的相关文件
@@ -73,131 +139,10 @@
 
 
 ## head
-显示某个文件的前十行
+显示文件的头部内容
 
 ```bash
-# 查看 README.md 前10行
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 查看 README.md 默认前10行
 head README.md
 
 # 或者指定多个文件
@@ -206,6 +151,9 @@ head README.md package.json
 # 指定行数, 覆盖默认的10行
 head -n 100 README.md
 ```
+
+
+
 
 ## tail
 显示指定文件的末尾部分
@@ -225,6 +173,9 @@ tail -F README.md
 # 显示文件的最后10个字符
 tail -c README.md
 ```
+
+
+
 
 ## top
 实时查看系统执行中的程序, top 命令跟 `ps` 命令相似，但它是实时的。
@@ -325,7 +276,8 @@ find . ! -path "*node_modules*" -path "*.js*" | xargs wc -l
 
 
 ## alias
-用于简化较长的命令
+设置命令别名，用于简化较长的命令
+
 ```bash
 # 列出所有已设置的别名
 alias
@@ -480,6 +432,7 @@ ssh -p 23 root@192.168.0.0
 ```bash
 # 例如运行一个 node.js 程序
 nohup node main.js
+nohup node main.js & # 可以在最后加 & ，表示后台模式，让出CLI以供其他使用。
 
 # 在当前目录会出现 nohup.out 文件，里面包含了 Hello World
 nohuo echo "Hello World"
@@ -718,7 +671,7 @@ shutdown -h now # 立即关机, 实际上调用 init 0
 # 把前一个关机或重启取消掉
 shutdown -c
 
-# 设定一个时间关机, 加 & 可以继续用终端命令
+# 设定一个时间关机,  "&" 符号表示后台模式，让出CLI
 shutdown -h 05:33 &
 shutdown +5 "5分钟后关机" # 5分钟后关机，同时送出警告信息给登入用户：
 ```
@@ -1585,11 +1538,11 @@ yum check-update
 
 
 ## history
-列出当前系统使用过的命令，默认保存1000条
+列出当前系统使用过的命令，默认保存1000条, 通常保存在 `~/.bash_history` 文件中，注意的是只有在Shell退出时才写入到文件。
 
 
 ```bash
-# 列出当前使用过的命令,
+# 列出当前使用过的命令
 history
 
 # 指定要显示的条数
@@ -1597,6 +1550,9 @@ history 50
 
 # 清空历史命令
 history -c
+
+# -a 强制写入到 ~/.bash_history 文件中而不用等shell退出才写入
+history -a
 ```
 
 
@@ -1876,6 +1832,39 @@ file README.md
 # index.html: HTML document, UTF-8 Unicode text, with very long lines, with no line terminators
 file index.html
 ```
+
+
+
+## jobs
+显示当前运行在后台模式中的所有用户的进程（作业）
+
+```bash
+# 先来启一个后台进程, 比如启一个sleep命令进程， & 符号表示后台运行
+sleep 3 &
+# 查看后台进程
+jobs # 输出：[1]+  Running       sleep 3 &
+```
+
+
+
+## type
+`type` 命令有2个作用：
+
+- 用来查找命令的位置，类似 which 命令
+- 检测某个命令是内建命令还是外部命令
+
+
+普及：内建命令和外部命令的区别：内建命令不会衍生出子进程，而外部命令会衍生出一个子进程然后执行命令, 所以内建命令执行效率要高。
+
+```bash
+# cd is a shell builtin  表示这是shell内建命令
+type cd
+
+# ps is hashed (/usr/bin/ps)  表示这是一个外部命令
+type ps
+```
+
+
 
 
 
