@@ -3,7 +3,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 78</p>
+  <p align="center">日常运维的最佳拍档 x 82</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -76,7 +76,10 @@
   - [free](#free)
   - [jobs](#jobs)
   - [type](#type)
-- 系统设置
+  - [printenv](#printenv)
+  - [set](#set)
+  - [export](#export)
+  - [unset](#unset)
   - [alias](#alias)
   - [time](#time)
   - [clear](#clear)
@@ -1866,6 +1869,67 @@ type ps
 
 
 
+## printenv
+列出全局环境变量, 有个 `env` 命令很像，但 `printenv` 可以打印变量的值。
+
+普及：所有系统环境变量都是大写字母，用于区分普通用户的环境变量。
+
+```bash
+# 列出所有全局环境变量
+printenv
+
+# 也可以显示指定全局环境变量的值, 等价于 echo $HOME
+printenv HOME # /root
+```
+
+
+
+
+## set
+列出所有全局变量、局部变量和普通用户定义的变量，按照字母顺序对结果进行排序。
+
+注意：所有系统全局变量都是大写，用户定义的环境变量全部采用小写，这是标准规范。
+
+```bash
+set
+# OPTIND=1
+# OSTYPE=linux-gnu
+# PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+# PIPESTATUS=([0]="0")
+# ...
+```
+
+
+
+
+## export
+导出环境变量, 可以把一个局部变量导出成全局环境变量
+
+注意：export 只有在当前Shell有效，退出后将失效
+```bash
+# 先声明一个局部环境变量
+my_var='Hello'
+# 然后将其导出全局环境变量
+export my_var
+```
+
+
+
+
+## unset
+删除环境变量
+
+注意：unset 只在当前shell删除环境变量，假如环境变量设置在 `~/.bash_profile` 等文件中用户重新启动依然生效。如果是在子进程删除全局环境变量只在子进程有效，不会影响父进程。
+
+```bash
+# 删除 HOME 环境变量，前面不需要带 $ 符号
+unset HOME
+```
+
+
+
+
+
 
 
 
@@ -1873,7 +1937,7 @@ type ps
 
 
 ## 致谢
-感谢 《Linux命令行与Shell脚本编程大全》 一书，以上命令基本从这本书进行整理出来， 如有错误，欢迎指正，谢谢！
+感谢 《Linux命令行与Shell脚本编程大全》 一书，以上部分命令从这本书进行整理出来， 如有错误，欢迎指正，谢谢！
 
 
 
