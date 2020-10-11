@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 88</p>
+  <p align="center">日常运维的最佳拍档 x 92</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -110,6 +110,8 @@
   - [apt-get](#apt-get)
 - 其他
   - [目录名称含义](#目录名称含义)
+  - [重定向输入和输出](#重定向输入和输出)
+  - [管道](#管道)
   - [echo](#echo)
   - [date](#date)
   - [man](#man)
@@ -117,6 +119,9 @@
   - [history](#history)
   - [xargs](#xargs)
   - [cal](#cal)
+  - [expr](#expr)
+  - [bc](#bc)
+  
 
 
 
@@ -149,20 +154,100 @@
 
 
 
+## 重定向输入和输出
+
+#### 输出重定向
+
+将命令输出的内容发送到一个文件中叫做 `输出重定向` 。 使用 `>` 大于号。
+
+
+下面展示了几个例子
+```bash
+# 1、
+echo "Hello World" > log.txt
+
+# 2、
+ps -ef > ps.txt
+
+# 3、
+history > a.txt
+```
+
+有时不想覆盖文件而是追加内容，比如日志，可以使用 `>>` 2个大于号。
+
+```bash
+echo "H" >> log.txt
+```
+
+
+
+#### 输入重定向
+和输出重定向正好相反，将文件的内容定向到命令。
+
+```bash
+# 统计input.txt文本行数
+wc -l < input.txt # 等价于 wc -l input.txt
+```
+
+还有一种叫内联重定向，比较少见，但也挺有用。 使用2个 `<<` 小于号。然后跟着一个开头标记和结尾标记。
+
+```bash
+# 统计行数，输出2
+wc -l << EOF
+第一行
+第二行
+EOF
+```
+
+开头标记必须和结尾标记一致，标记名称可以是任何字符串。
+
+下面这个也是可以的。
+```bash
+# 输出2
+wc -l << Hello
+第一行
+第二行
+Hello
+```
+
+
+
+
+
+## 管道
+将一个命令的输出作为另一个命令的输入称为管道。 管道用 `|` 符号。
+
+
+```bash
+# 将 ls 输出内容作为 wc 输入
+ls | wc
+
+# 执行一个脚本，这没有什么意义，只是一个例子
+echo "./bash.sh" | bash
+```
+
+
+
+
+
+
+
+
+
 
 
 
 ## head
-显示文件的头部内容
+显示文件的头部内容，如果不指定参数默认显示10行
 
 ```bash
-# 查看 README.md 默认前10行
+# 显示前10行内容
 head README.md
 
-# 或者指定多个文件
+# 或者显示多个文件
 head README.md package.json
 
-# 指定行数, 覆盖默认的10行
+# -n 指定显示行数
 head -n 100 README.md
 ```
 
@@ -170,7 +255,8 @@ head -n 100 README.md
 
 
 ## tail
-显示指定文件的末尾部分
+显示文件的末尾部分
+
 ```bash
 # 默认显示末尾10行
 tail README.md
@@ -194,20 +280,23 @@ tail -c README.md
 ## top
 实时查看系统执行中的程序, top 命令跟 `ps` 命令相似，但它是实时的。
 
-- PID - 进程的ID
-- USER - 进程属主的名字
-- PR - 进程的优先级
-- NI - 进程的谦让度值
-- VIRT - 进程占用的虚拟内存总量
-- RES 进程占用的物理内存总量
-- SHR - 进程和其他进程共享的内存总量
-- S - 进程的状态（D=可中断的休眠状态，R在运行状态，S休眠状态，T跟踪状态或停止状态，Z=僵化状态）
-- %CPU - 进程使用的CPU时间比例
-- %MEM - 进程使用的内存占可用内存的比例
-- TIME+ - 自进程启动到目前为止的CPU时间总量
-- COMMAND - 进程所对应的命令行名称，也就是启动的程序名
+默认情况下 `top` 命令启动时会按照 `%CPU` 值对进程排序。
 
-默认情况下 `top` 命令启动时会按照 %CPU 值对进程排序。
+| 名称        | 描述              |
+| ---------- |------------------ |
+|  PID    |  进程的ID    |
+|  USER    | 进程的优先级     |
+|  PR    |  进程的优先级    |
+|  NI    |  进程的谦让度值    |
+|  VIRT    | 进程占用的虚拟内存总量     |
+|  RES    |  进程占用的物理内存总量    |
+|  SHR    |  进程和其他进程共享的内存总量    |
+|  S    |  进程的状态（D=可中断的休眠状态，R在运行状态，S休眠状态，T跟踪状态或停止状态，Z=僵化状态）    |
+|  %CPU    |  进程使用的CPU时间比例    |
+|  %MEM    | 进程使用的内存占可用内存的比例     |
+|  TIME+    |  自进程启动到目前为止的CPU时间总量    |
+|  COMMAND    |  进程所对应的命令行名称，也就是启动的程序名    |
+
 
 ```bash
 # 实时监听进程变化
@@ -255,8 +344,8 @@ ls -i
 
 ## pwd
 显示当前工作目录
+
 ```bash
-# 没有太多有用的参数，用法很简单
 pwd
 ```
 
@@ -276,13 +365,17 @@ wc -w README.md
 
 # 统计字符数
 wc -m README.md
-
-# 借助 find 和 xargs 实现代码统计
-find . ! -path "*node_modules*" -path "*.js*" | xargs wc -l
 ```
+
+
+
+
+
+
 
 ## whoami
 显示自身的用户名称, 此命令等价于 `id -un`
+
 ```bash
 % whoami # xiejiahe
 ```
@@ -327,7 +420,7 @@ tail -f wget-log   # 查看后台下载进度
 查看已挂载的磁盘使用情况。
 
 
-描述
+#### 描述
 | 名称        | 描述              |
 | ---------- |------------------ |
 | Filesystem      | 设备的设备位置文件     |
@@ -412,6 +505,7 @@ find /root -mtime +10
 
 ## mkdir
 创建目录
+
 ```bash
 # 在当前目录下创建 temp 目录
 mkdir temp
@@ -423,12 +517,20 @@ mkdir -p temp/temp2/temp3
 mkdir -m 777 temp
 ```
 
+
+
+
+
 ## touch
-创建新的文件
+创建一个空文件, 如果文件存在只会修改文件的创建时间
+
 ```bash
-# 创建一个空文件, 如果文件存在只会修改文件的创建时间
 touch README.md
 ```
+
+
+
+
 
 
 ## ssh
@@ -490,6 +592,7 @@ cd javasc*
 输出字符串或者变量
 
 注: 一般情况下字符串不必加双引号, 如果包含转义字符就必须要加
+
 ```bash
 # 在终端输出 Hello World
 echo "Hello World"
@@ -499,13 +602,17 @@ echo "Hello\nWorld" # 必须加双引号, 否则无法转义
 # 打印系统环境变量，如果变量不存在输出为空
 echo $PATH
 
-# 也可以将内容输出到指定文件
+# > 输出重定向，将内容输出到文件中
 echo Hello World > 1.txt
+
+# -n 不换行, 默认情况下echo 是占一整行
+echo -n Hello; echo World
 ```
 
 
 ## time
 测试某条命令执行所需花费时间
+
 ```bash
 # time 后面跟着要测试的命令
 # 输出:  0.02s user 0.01s system 0% cpu 6.233 total
@@ -636,6 +743,7 @@ cat -b README.md
 - 将文件或目录重命名
 
 注：实际上 `mv` 是用来移动文件或目录，只不过有类似重命名的功能而已。
+
 ```bash
 # 将 README.md 重命名为 README-2.md, 如果 README-2.md 存在会直接覆盖。
 mv README.md README-2.md
@@ -666,6 +774,78 @@ Su Mo Tu We Th Fr Sa
 # 显示临近3个月, 只能是3个月
 cal -3
 ```
+
+
+
+
+
+## expr
+执行数学运算，expr 命令比较鸡助，通常在 shell 脚本当中看到。但在shell脚本也不建议用。
+
+expr 后面每个表达式都要有一个空格，否则是不合法。
+
+注：expr 只支持整数运算，这是一个限制。
+
+```bash
+# 3
+expr 1 + 2
+expr 1+2 # 这样是不行的
+
+# 在浮点数计算时会丢失小数， 这里等于 2
+expr 5 / 2
+```
+
+
+
+
+## bc
+bash计算器，用来执行数学运算， 与 `expr` 不同，因为 `expr` 命令不支持浮点数运算，所以可以用 `bc` 命令替代。
+
+bash计算器实际上是一种编程语言，它允许在命令行中输入浮点表达式，然后解释并计算该表达式。最后返回结果。
+
+`bc` 大多数情况下是在 shell 脚本中使用。
+
+
+```bash
+# 敲 bc 然后回车进入交互式， 输入 quit 退出
+bc
+
+scale=2  # 保留几位小数，默认是0
+5 / 2
+# 输出 2.50
+```
+
+
+**在 shell 脚本使用**
+
+```bash
+#!/bin/bash
+
+# 配合管道
+n=$(echo "scale=2; 5 / 2" | bc)
+
+echo $n
+
+
+# 第二种, 内联重定向，解决第一种表达式过长问题
+n1=$(
+bc << EOF
+scale=2
+5 / 2
+EOF
+)
+
+echo $n1
+```
+
+
+
+
+
+
+
+
+
 
 
 ## last
@@ -839,7 +1019,7 @@ locate -i README.md
 
 
 ## kill
-结束程序，kill 命令只支持 进程id杀死，不支持进程名称。
+结束程序，kill 命令只支持进程id杀死，不支持进程名称。
 
 
 #### 进程信号
@@ -1640,6 +1820,8 @@ cat download.txt | xargs wget
 
 
 
+
+
 ## scp
 加密的方式在本地主机和远程主机之间复制文件
 
@@ -2028,13 +2210,19 @@ useradd -m test # 不指定-p，因为需要加密那样很麻烦
 passwd test # 通过passwd修改指定用户密码
 ```
 
+添加新用户后可以执行 `cat /etc/passwd` 查看用户列表。
+
+
+
+
+
 
 ## userdel
 删除用户
 
 
 ```bash
-# 删除用户，默认会从 /etc/passwd文件中删除用户信息，而不会删除系统中属于该账户的任何文件
+# 删除用户，默认会从 /etc/passwd 文件中删除用户信息，而不会删除系统中属于该账户的任何文件
 userdel 用户名
 
 # -r 用来删除用户目录， 之前创建的 /home/用户名 就不存在了, 使用-r参数需要小心，要检查是否有重要文件。
@@ -2067,7 +2255,7 @@ passwd test
 
 
 ```bash
-# 从文本中读取
+# 利用输入重定向从文本中读取
 chpasswd < users.txt
 
 # 从标准输入读取
@@ -2089,6 +2277,8 @@ admin:youyouyou00..11
 # 必须使用完整路径，不能使用shell名
 chsh -s /bin/sh
 ```
+
+
 
 
 
