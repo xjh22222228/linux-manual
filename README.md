@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 92</p>
+  <p align="center">日常运维的最佳拍档 x 93</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -121,6 +121,7 @@
   - [cal](#cal)
   - [expr](#expr)
   - [bc](#bc)
+  - [timeout](#timeout)
   
 
 
@@ -842,6 +843,26 @@ echo $n1
 
 
 
+## timeout
+在指定时长范围内执行命令，并在规定时间结束后停止进程。
+
+意思是在规定时间内必须完成，否则停止进程。
+
+
+
+```bash
+# 模拟超过3秒, 因为sleep阻塞5秒所以在3秒内无法完成，则停止进程
+time 3 sleep 5
+
+# 比如打包, 1分钟内要打包完成，否则停止进程
+time 60 npm run build
+```
+
+
+
+
+
+
 
 
 
@@ -1387,6 +1408,7 @@ netstat -ap | grep 8080
 查看当前登入系统的用户信息, 有哪些用户正在登陆, 以及他们正在执行的程序。
 
 此命令与 `who` 相似，默认情况下比 `who` 命令输出内容更详细。
+
 ```bash
 w
 # 输出
@@ -1591,24 +1613,27 @@ crontab -r
 
 **man 信息说明**
 
-- NAME - 显示命令名和一段简短的描述
-- SYNOPSIS - 命令的语法
-- CONFI GURATION - 命令配置信息
-- DESCRIPTION - 命令的一般性描述
-- OPTIONS - 命令选项描述
-- EXIT STATUS - 命令的退出状态指示
-- RETURN VALUE - 命令的返回值
-- ERRORS - 命令的错误消息
-- ENVIRONMENT - 描述所使用的环境变量
-- FILES - 命令用到的文件
-- VERSIONS - 命令的版本信息
-- CONFORMING TO - 命令所遵从的标准
-- NOTES - 其他有帮助的资料
-- BUGS - 提供提交BUG的途径
-- EXAMPLE - 展示命令的用法
-- AUTHORS - 命令开发人员的信息
-- COPYRIGHT - 命令源代码的版权状况
-- SEE ALSO - 与该命令类型的其他命令
+| 名称        | 描述              |
+| ---------- |------------------ |
+| NAME      | 显示命令名和一段简短的描述     |
+| SYNOPSIS      | 命令的语法     |
+| CONFI GURATION      | 命令配置信息     |
+| DESCRIPTION      |  命令的一般性描述    |
+| OPTIONS      |  命令选项描述    |
+| EXIT STATUS      | 命令的退出状态指示     |
+| RETURN VALUE      |  命令的返回值    |
+| ERRORS      |  命令的错误消息    |
+| ENVIRONMENT      |  描述所使用的环境变量    |
+| FILES      |  命令用到的文件    |
+| VERSIONS      | 命令的版本信息     |
+| CONFORMING TO      |  命令所遵从的标准    |
+|  NOTES     |  其他有帮助的资料    |
+|  BUGS     |  提供提交BUG的途径    |
+| EXAMPLE      |  展示命令的用法    |
+| AUTHORS      | 命令开发人员的信息     |
+| COPYRIGHT      | 命令源代码的版权状况     |
+| SEE ALSO      | 与该命令类型的其他命令     |
+
 
 
 ```bash
@@ -1866,7 +1891,7 @@ grep -c "linux" README.md
 # -r 递归目录文件搜索
 grep -r "linux" ./src
 
-# 使用正则表达式搜索, 正则表达式语法与大部分编程语言基本上一致
+# 使用 glob 风格表达式搜索
 egrep "[0-9]" # 等价于 grep -E "[0-9]" README.md
 ```
 
