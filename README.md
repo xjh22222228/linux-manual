@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 93</p>
+  <p align="center">日常运维的最佳拍档 x 95</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -89,6 +89,7 @@
   - [passwd](#passwd)
   - [chpasswd](#chpasswd)
   - [chsh](#chsh)
+  - [users](#users)
 - 压缩、解压
   - [zip](#zip)
   - [unzip](#unzip)
@@ -122,6 +123,7 @@
   - [expr](#expr)
   - [bc](#bc)
   - [timeout](#timeout)
+  - [exit](#exit)
   
 
 
@@ -130,26 +132,26 @@
 
 ## 目录名称含义
 | 目录名        | 描述              |
-| ---------- |------------------ |
-| /      | 虚拟目录的根目录，通常不会在这里存储文件     |
-| /bin    | 二进制目录，存放许多用户级的GNU工具       |
-| /boot      | 启动目录，存放启动文件     |
-| /dev      | 设备目录，Linux在这里创建设备节点     |
-| /etc      | 系统配置文件目录       |
-| /home      | 主目录，Linux在这里创建用户目录       |
-| /lib      | 库目录，存放系统和应用程序的库文件       |
-| /media      | 媒体目录，可移动媒体设备的常用挂载点       |
-| /mnt      | 挂载目录，另一个可移动媒体设备的常用挂载点       |
-| /opt      | 可选目录，常用于存放第三方软件包和数据文件       |
-| /proc      | 进程目录，存放现有硬件及当期进程的相关信息       |
-| /root      | ROOT用户的主目录       |
-| /sbin      | 系统二进制目录，存放许多GNU管理员级工具       |
-| /run      | 运行目录，存放系统运作时的运行时数据       |
-| /srv      | 服务目录，存放本地服务的相关文件       |
-| /sys      | 系统目录，存放系统硬件信息的相关文件       |
-| /tmp      | 临时目录，可以在该目录中创建和删除临时工作文件       |
-| /usr      | 用户二进制目录，大量用户级的GNU工具和数据文件都存储在这里       |
-| /var      | 可变目录，用以存放经常变化的文件，比如日志文件       |
+| ---------- |------------------- |
+| /      | 虚拟目录的根目录，通常不会在这里存储文件 |
+| /bin   | 二进制目录，存放许多用户级的GNU工具 |
+| /boot  | 启动目录，存放启动文件 |
+| /dev   | 设备目录，Linux在这里创建设备节点 |
+| /etc   | 系统配置文件目录 |
+| /home  | 主目录，Linux在这里创建用户目录 |
+| /lib   | 库目录，存放系统和应用程序的库文件 |
+| /media | 媒体目录，可移动媒体设备的常用挂载点 |
+| /mnt   | 挂载目录，另一个可移动媒体设备的常用挂载点 |
+| /opt   | 可选目录，常用于存放第三方软件包和数据文件 |
+| /proc  | 进程目录，存放现有硬件及当期进程的相关信息 |
+| /root  | ROOT用户的主目录 |
+| /sbin  | 系统二进制目录，存放许多GNU管理员级工具 |
+| /run   | 运行目录，存放系统运作时的运行时数据 |
+| /srv   | 服务目录，存放本地服务的相关文件 |
+| /sys   | 系统目录，存放系统硬件信息的相关文件 |
+| /tmp   | 临时目录，可以在该目录中创建和删除临时工作文件 |
+| /usr   | 用户二进制目录，大量用户级的GNU工具和数据文件都存储在这里 |
+| /var   | 可变目录，用以存放经常变化的文件，比如日志文件 |
 
 
 
@@ -864,6 +866,21 @@ time 60 npm run build
 
 
 
+## exit
+退出当前登录Shell, 可以使用快捷键退出 `Ctrl + D`。
+
+等价命令 `logout`
+
+```bash
+exit
+```
+
+
+
+
+
+
+
 
 
 
@@ -1359,32 +1376,33 @@ date -s "2020-07-01 00:00:00" # 设置全部时间
 ## netstat
 查看网络系统状态信息
 
-参数说明：
+**参数说明：**
 
-- a或--all 显示所有连线中的Socket。
-- A<网络类型>或--<网络类型> 列出该网络类型连线中的相关地址。
-- c或--continuous 持续列出网络状态。
-- C或--cache 显示路由器配置的快取信息。
-- e或--extend 显示网络其他相关信息。
-- F或--fib 显示FIB。
-- g或--groups 显示多重广播功能群组组员名单。
-- h或--help 在线帮助。
-- i或--interfaces 显示网络界面信息表单。
-- l或--listening 显示监控中的服务器的Socket。
-- M或--masquerade 显示伪装的网络连线。
-- n或--numeric 直接使用IP地址，而不通过域名服务器。
-- N或--netlink或--symbolic 显示网络硬件外围设备的符号连接名称。
-- o或--timers 显示计时器。
-- p或--programs 显示正在使用Socket的程序识别码和程序名称。
-- r或--route 显示Routing Table。
-- s或--statistics 显示网络工作信息统计表。
-- t或--tcp 显示TCP传输协议的连线状况。
-- u或--udp 显示UDP传输协议的连线状况。
-- v或--verbose 显示指令执行过程。
-- V或--version 显示版本信息。
-- w或--raw 显示RAW传输协议的连线状况。
-- x或--unix 此参数的效果和指定"-A unix"参数相同。
-- -ip或--inet 此参数的效果和指定"-A inet"参数相同。
+| a或--all                 | 显示所有连线中的Socket                |
+| A<网络类型>或--<网络类型>   | 列出该网络类型连线中的相关地址          |
+| c或--continuous          | 持续列出网络状态                      |
+| C或--cache               | 显示路由器配置的快取信息                |
+| e或--extend              | 显示网络其他相关信息                   |
+| F或--fib                 | 显示FIB                              |
+| g或--groups              | 显示多重广播功能群组组员名单             |
+| h或--help                | 在线帮助                              |
+| i或--interfaces          | 显示网络界面信息表单                    |
+| l或--listening           | 显示监控中的服务器的Socket              |
+| M或--masquerade          | 显示伪装的网络连线                      |
+| n或--numeric             | 直接使用IP地址，而不通过域名服务器        |
+| N或--netlink或--symbolic  | 显示网络硬件外围设备的符号连接名称       |
+| o或--timers              | 显示计时器                            |
+| p或--programs            | 显示正在使用Socket的程序识别码和程序名称  |
+| r或--route               |  显示Routing Table                   |
+| s或--statistics          | 显示网络工作信息统计表                  |
+| t或--tcp                 | 显示TCP传输协议的连线状况               |
+| u或--udp                 | 显示UDP传输协议的连线状况               |
+| v或--verbose             | 显示指令执行过程                       |
+| V或--version             | 显示版本信息                          |
+| w或--raw                 | 显示RAW传输协议的连线状况               |
+| x或--unix                | 此参数的效果和指定"-A unix"参数相同     |
+| -ip或--inet              | 此参数的效果和指定"-A inet"参数相同     |
+
 
 ```bash
 # 列出所有占用端口
@@ -1815,7 +1833,7 @@ md5sum -c README.md5 # -c 从指定的文件读取md5并校验, 会从当前目�
 
 
 ## su
-切换当前用户到其他用户身
+切换到其他用户。
 
 ```bash
 # 切换到 admin 身份
@@ -2308,11 +2326,31 @@ chsh -s /bin/sh
 
 
 
+## users
+显示当前登录系统的所有用户的用户列表
+
+```bash
+users
+# xiejiahe
+# root
+# admin
+```
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+---
 
 ## 致谢
 感谢 《Linux命令行与Shell脚本编程大全》 一书，以上部分命令从这本书进行整理出来， 如有错误，欢迎指正，谢谢！
