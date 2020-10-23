@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 96</p>
+  <p align="center">日常运维的最佳拍档 x 97</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -125,6 +125,7 @@
   - [timeout](#timeout)
   - [exit](#exit)
   - [vim](#vim)
+  - [basename](#basename)
   
 
 
@@ -997,6 +998,24 @@ vim 1.txt 2.txt
 | :set hlsearch   | 高亮搜索结果 |
 | :set number   | 显示行号 |
 | :set nonumber   | 不显示行号 |
+
+
+
+
+
+## basename
+打印目录或者文件的基本名称。
+
+```bash
+# 输出：index.html
+basename /www/index.html
+
+# 输出 www
+basename /www/
+```
+
+
+
 
 
 
