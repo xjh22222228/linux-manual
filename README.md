@@ -126,6 +126,7 @@
   - [exit](#exit)
   - [vim](#vim)
   - [basename](#basename)
+  - [read](#read)
   
 
 
@@ -1017,6 +1018,26 @@ basename /www/
 
 
 
+## read
+`read` 命令从标准输入（键盘）或另一个文件描述符中接收输入。 通常用在Shell脚本, 在收到输入后，read命令会将数据存放进一个变量。
+
+```bash
+# 最简单用法, data 是自定义变量名，用户输入内容并回车后结束
+read data # echo $data  会打印用户输入的内容
+
+# -p 指定提示符
+read -p 确认要删除吗？ data
+
+# -t 指定超时（秒）
+read -t 5 -p 确认要删除吗？ data
+
+# —s 隐藏用户输入，比如密码，实际上是将文本颜色设置成背景颜色一样
+read -s -p "请输入您的密码：" data
+```
+
+
+
+
 
 
 
@@ -1075,7 +1096,7 @@ reboot -i
 
 ```bash
 # 不带任何参数打印当前操作系统内核名称
-uname # Linux  等价于 uname -s
+uname # Linux , 等价于 uname -s
 
 # 打印系统所有信息
 uname -a
@@ -1088,6 +1109,9 @@ uname -n # Yin.local
 
 # 打印处理器名称
 uname -p # i386
+
+# 打印主机的硬件架构名称
+uname -m # x86_64
 ```
 
 
