@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 98</p>
+  <p align="center">日常运维的最佳拍档 x 99</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -49,28 +49,23 @@
   - [file](#file)
 - 系统管理
   - [top](#top)
-  - [whoami](#whoami)
   - [nohup](#nohup)
   - [watch](#watch)
   - [ping](#ping)
   - [which](#which)
-  - [last](#last)
   - [shutdown](#shutdown)
   - [reboot](#reboot)
   - [ps](#ps)
   - [uptime](#uptime)
   - [crontab](#crontab)
-  - [su](#su)
   - [uname](#uname)
   - [ifconfig](#ifconfig)
-  - [who](#who)
   - [whereis](#whereis)
   - [kill](#kill)
   - [killall](#killall)
   - [chmod](#chmod)
   - [lsof](#lsof)
   - [netstat](#netstat)
-  - [w](#w)
   - [chown](#chown)
   - [systemctl](#systemctl)
   - [service](#service)
@@ -91,6 +86,11 @@
   - [chpasswd](#chpasswd)
   - [chsh](#chsh)
   - [users](#users)
+  - [who](#who)
+  - [w](#w)
+  - [last](#last)
+  - [su](#su)
+  - [whoami](#whoami)
 - 压缩、解压
   - [zip](#zip)
   - [unzip](#unzip)
@@ -128,6 +128,7 @@
   - [vim](#vim)
   - [basename](#basename)
   - [read](#read)
+  - [tee](#tee)
   
 
 
@@ -917,7 +918,9 @@ exit
 
 
 ## vim
-`vim` 是 `vi` 的升级版，所以只需要知道 `vim` 即可， 是一个非强大的文本编辑器，学习成本不低，需要长期使用才能记牢每一个指令操作。
+vi 编辑器是Unix系统最初的编辑器，在GNU项目将vi编辑器移植到开源世界时，他们决定对其做一些改进，开发人员也就将它重命名为 `vi improved`。
+
+`vim`(vi improved) 是 `vi` 的升级版，所以只需要知道 `vim` 即可， 是一个非强大的文本编辑器，学习成本不低，需要长期使用才能记牢每一个指令操作。
 
 这是一份速查表，使用的时候注意区分大小写。
 
@@ -928,7 +931,7 @@ vim 的快捷键指令非常多，只列出一些实用性便于记忆。
 **打开文件**
 
 ```bash
-# 最简单的打开文件方式
+# 最简单的打开文件方式, 如果文件不存在会开辟一段新的缓冲区域来编辑。
 vim README.md
 
 # 打开文件并定位到最后一行
@@ -1003,6 +1006,18 @@ vim 1.txt 2.txt
 
 
 
+**替换**
+
+| 快捷键      | 描述              |
+| ---------- |----------------- |
+| :s/old/new   | 找到old第一次出现的地方并用new来替换 |
+| :s/old/new/g   | 找到所有old出现的地方并用new来替换(当前屏幕) |
+| :%s/old/new/g   | 替换整个文件中的所有old |
+| :%s/old/new/gc   | 替换整个文件中的所有old，但在每次出现时提示 |
+| :n,ms/old/new/g   | 替换行号n和m之间的所有old |
+
+
+
 
 
 **退出**
@@ -1065,6 +1080,44 @@ read -t 5 -p 确认要删除吗？ data
 # —s 隐藏用户输入，比如密码，实际上是将文本颜色设置成背景颜色一样
 read -s -p "请输入您的密码：" data
 ```
+
+
+
+
+
+
+
+
+
+## tee
+tee命令相当于管道的一个T型接头，它将从`STDIN标准输入`过来的数据同时发往两处，一处是`STDOUT`，另一处是tee命令指定的文件名。
+
+tee 命令通常用于 shell 脚本当中。
+
+```bash
+# date内容打印到屏幕上并且重定向输出到 date.txt 文件中
+date | tee date.txt
+
+# -a 以追加方式，默认情况下会覆盖输出文件内容
+date | tee -a date.txt
+```
+
+`tee` 命令只是一个语法糖，如果不用 `tee` 可以这样做：
+
+```bash
+# 1、将date结果保存到 var 变量中
+var=$(date)
+# 2、将结果打印到屏幕上 STDOUT
+echo $var
+# 3、将结果重定向到文件
+echo $var > date.txt
+```
+
+
+
+
+
+
 
 
 
