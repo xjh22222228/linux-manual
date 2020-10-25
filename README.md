@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 97</p>
+  <p align="center">日常运维的最佳拍档 x 98</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -20,7 +20,7 @@
 ---
 
 # 目录
-- 文件管理
+- 文件操作
   - [head](#head)
   - [tail](#tail)
   - [ls](#ls)
@@ -28,6 +28,7 @@
   - [wc](#wc)
   - [find](#find)
   - [mkdir](#mkdir)
+  - [mktemp](#mktemp)
   - [chattr](#chattr)
   - [more](#more)
   - [paste](#paste)
@@ -525,6 +526,35 @@ mkdir -m 777 temp
 
 
 
+## mktemp
+创建临时目录或文件，Linux使用 `/tmp` 目录来存放不需要永久保留的文件，大多数Linux发行版配置了系统在启动时自动删除 `/tmp` 目录的所有文件。
+
+默认情况下， `mktemp` 会在本地目录中创建一个文件，只要指定一个文件名模板就行，模板可以包含任意文本文件名，在文件名末尾加上**6**个X就行了。
+
+```bash
+# 创建本地临时文件, 会在当前目录下创建一个叫 log.XXXXXX, XXXXXX是一个随机字符码，保证文件名在目录中是唯一的。
+mktemp log.XXXXXX  # log.J3awfb
+
+# -t, 在 /tmp 目录创建临时文件, 返回绝对路径地址
+mktemp -t log.XXXXXX # /tmp/log.G5g9dX
+
+# -d 创建临时目录, 这样就能用该目录进行任何需要的操作了，比如创建其他的临时文件
+mktemp -d dir.XXXXXX
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## touch
@@ -554,9 +584,10 @@ ssh -p 23 root@192.168.0.0
 
 
 ## nohup
-程序以挂起方式运行, 不会影响终端交互
+程序以挂起方式运行, 不会影响终端交互。
 
-因为程序会以后台的方式运行，所以终端不会输出, 默认情况下会在当前目录生成一个叫 `nohup.out` 文件，里面包含了终端内容。
+因为程序会以后台的方式运行，所以标准输出不会显示在屏幕上, 默认情况下会在当前目录生成一个叫 `nohup.out` 文件，里面包含了标准输出内容。
+
 ```bash
 # 例如运行一个 node.js 程序
 nohup node main.js
