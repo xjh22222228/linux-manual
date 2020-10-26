@@ -316,10 +316,10 @@ top
 top -n 2
 
 # 显示指定的进程信息
-top -pid 620
+top -pid <pid>
 
 # 查看进程所有的线程
-top -H -p pid
+top -H -p <pid>
 ```
 
 
@@ -1625,6 +1625,9 @@ date -s "2020-07-01 00:00:00" # 设置全部时间
 
 **参数说明：**
 
+
+| 参数        | 描述              |
+| ---------- |------------------- |
 | a或--all                 | 显示所有连线中的Socket                |
 | A<网络类型>或--<网络类型>   | 列出该网络类型连线中的相关地址          |
 | c或--continuous          | 持续列出网络状态                      |
@@ -1637,7 +1640,7 @@ date -s "2020-07-01 00:00:00" # 设置全部时间
 | l或--listening           | 显示监控中的服务器的Socket              |
 | M或--masquerade          | 显示伪装的网络连线                      |
 | n或--numeric             | 直接使用IP地址，而不通过域名服务器        |
-| N或--netlink或--symbolic  | 显示网络硬件外围设备的符号连接名称       |
+| N或--netlink或--symbolic | 显示网络硬件外围设备的符号连接名称       |
 | o或--timers              | 显示计时器                            |
 | p或--programs            | 显示正在使用Socket的程序识别码和程序名称  |
 | r或--route               |  显示Routing Table                   |
