@@ -73,10 +73,6 @@
   - [free](#free)
   - [jobs](#jobs)
   - [type](#type)
-  - [printenv](#printenv)
-  - [set](#set)
-  - [export](#export)
-  - [unset](#unset)
   - [alias](#alias)
   - [time](#time)
   - [clear](#clear)
@@ -92,6 +88,11 @@
   - [last](#last)
   - [su](#su)
   - [whoami](#whoami)
+- [环境变量](#环境变量)
+  - [printenv](#printenv)
+  - [set](#set)
+  - [export](#export)
+  - [unset](#unset)
 - [压缩、解压](#压缩、解压)
   - [zip](#zip)
   - [unzip](#unzip)
@@ -540,10 +541,10 @@ rmdir -i temp
 # 将当前 README.md 文件拷贝到上一层
 cp ./README.md ../README.md
 
-# -a 将原文件属性一同拷贝
+# -a 将原文件属性一同拷贝, 修改时间、创建时间等
 cp -a ./README.md ../README.md
 
-# -r 拷贝目录
+# -r 用于递归拷贝目录
 cp -r home ../home
 
 # -i 如果目标文件存在会询问用户是否需要覆盖
@@ -1399,68 +1400,6 @@ type ps
 
 
 
-## printenv
-列出全局环境变量, 有个 `env` 命令很像，但 `printenv` 可以打印变量的值。
-
-普及：所有系统环境变量都是大写字母，用于区分普通用户的环境变量。
-
-```bash
-# 列出所有全局环境变量
-printenv
-
-# 也可以显示指定全局环境变量的值, 等价于 echo $HOME
-printenv HOME # /root
-```
-
-
-
-
-
-
-
-## set
-列出所有全局变量、局部变量和普通用户定义的变量，按照字母顺序对结果进行排序。
-
-注意：所有系统全局变量都是大写，用户定义的环境变量全部采用小写，这是标准规范。
-
-```bash
-set
-# OPTIND=1
-# OSTYPE=linux-gnu
-# PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
-# PIPESTATUS=([0]="0")
-# ...
-```
-
-
-
-
-
-## export
-导出环境变量, 可以把一个局部变量导出成全局环境变量
-
-注意：export 只有在当前Shell有效，退出后将失效
-```bash
-# 先声明一个局部环境变量
-my_var='Hello'
-# 然后将其导出全局环境变量
-export my_var
-```
-
-
-
-
-## unset
-删除环境变量
-
-注意：unset 只在当前shell删除环境变量，假如环境变量设置在 `~/.bash_profile` 等文件中用户重新启动依然生效。如果是在子进程删除全局环境变量只在子进程有效，不会影响父进程。
-
-```bash
-# 删除 HOME 环境变量，前面不需要带 $ 符号
-unset HOME
-```
-
-
 
 
 
@@ -1760,6 +1699,83 @@ cat /etc/passwd
 
 
 
+---
+
+
+
+
+
+
+
+# 环境变量
+
+## printenv
+列出全局环境变量, 有个 `env` 命令很像，但 `printenv` 可以打印变量的值。
+
+普及：所有系统环境变量都是大写字母，用于区分普通用户的环境变量。
+
+```bash
+# 列出所有全局环境变量
+printenv
+
+# 也可以显示指定全局环境变量的值, 等价于 echo $HOME
+printenv HOME # /root
+```
+
+
+
+
+
+
+## set
+列出所有全局变量、局部变量和普通用户定义的变量，按照字母顺序对结果进行排序。
+
+注意：所有系统全局变量都是大写，用户定义的环境变量全部采用小写，这是标准规范。
+
+```bash
+set
+# OPTIND=1
+# OSTYPE=linux-gnu
+# PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+# PIPESTATUS=([0]="0")
+# ...
+```
+
+
+
+
+
+## export
+导出环境变量, 可以把一个局部变量导出成全局环境变量
+
+注意：export 只有在当前Shell有效，退出后将失效
+```bash
+# 先声明一个局部环境变量
+my_var='Hello'
+# 然后将其导出全局环境变量
+export my_var
+```
+
+
+
+
+## unset
+删除环境变量
+
+注意：unset 只在当前shell删除环境变量，假如环境变量设置在 `~/.bash_profile` 等文件中用户重新启动依然生效。如果是在子进程删除全局环境变量只在子进程有效，不会影响父进程。
+
+```bash
+# 删除 HOME 环境变量，前面不需要带 $ 符号
+unset HOME
+```
+
+
+
+
+
+
+
+
 
 
 ---
@@ -2047,6 +2063,17 @@ scp /home/file.zip root@192.168.0.100:/root/file.zip
 # # 从本地主机上传目录到远程主机，需要 -r 递归
 scp -r /home/dir root@192.168.0.100:/root/dir
 ```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2615,10 +2642,10 @@ scale=2  # 保留几位小数，默认是0
 
 ```bash
 # 模拟超过3秒, 因为sleep阻塞5秒所以在3秒内无法完成，则停止进程
-time 3 sleep 5
+timeout 3 sleep 5
 
 # 比如打包, 1分钟内要打包完成，否则停止进程
-time 60 npm run build
+timeout 60 npm run build
 ```
 
 
