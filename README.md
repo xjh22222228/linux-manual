@@ -1819,7 +1819,7 @@ GNU 压缩/解压工具，用 Lempel-Ziv编码，格式为 `.gz`, 压缩后原�
 # 压缩 README.md 文件, 压缩完成后 README.md 文件会被删除
 gzip README.md # README.md.gz
 
-# 递归压缩目录下的所有文件
+# 递归压缩目录下的所有文件, 每个文件都会被压缩为 .gz 然后删除
 gzip -r ./logs
 
 # 加 -v 显示压缩执行过程
@@ -1828,9 +1828,9 @@ gzip -rv ./logs
 # 压缩 .tar 后缀文件
 gzip -r src.tar  # 压缩后为 src.tar.gz
 
-# -d 解压之前gzip压缩后的文件
-gzip -d README.md
-gzip -dr ./logs # 或者递归解压目录下的所有文件
+# -d 解压gzip压缩后的文件，解压后 .gz 文件会被删除
+gzip -d README.md.gz
+gzip -dr ./logs # 或者递归解压目录下所有 .gz
 ```
 
 
@@ -1856,15 +1856,16 @@ bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个�
 归档数据，是Linux中标准归档工具。
 
 
-参数：
-- -A - 将一个已有tar归档文件追加到另一个已有tar归档文件
-- -c 创建一个新的tar归档文件
-- -d 检查归档文件和文件系统的不同之处
-- -r 追加文件到已有tar归档文件结尾
-- -t 列出已有tar归档文件的内容
-- -u 将比tar归档文件中已有的同名文件新的文件追加到该tar归档文件中
-- -x 从已有的tar归档文件中提取文件
-- -f 输出结果到文件或设备file
+| 参数  | 描述              |
+| ---- |------------------ |
+| -A   | 将一个已有tar归档文件追加到另一个已有tar归档文件     |
+| -c   | 创建一个新的tar归档文件     |
+| -d   | 检查归档文件和文件系统的不同之处     |
+| -r   | 追加文件到已有tar归档文件结尾     |
+| -t   | 列出已有tar归档文件的内容     |
+| -u   | 将比tar归档文件中已有的同名文件新的文件追加到该tar归档文件中     |
+| -x   | 从已有的tar归档文件中提取文件     |
+| -f   | 输出结果到文件或设备file     |
 
 ```bash
 # -c 创建一个归档文件
@@ -1872,6 +1873,7 @@ tar -cvf demo.tar src/
 
 # -x 提取归档文件内容
 tar -xvf demo.tar
+tar -xvf demo.tar.gz # tar命令是可以提取 gzip 压缩后的文件
 ```
 
 
@@ -1981,6 +1983,10 @@ tail -f wget-log   # 查看后台下载进度
 
 ## curl
 `curl` 是一个非常强大的网络传输工具, 利用URL规则在命令行下工作的文件传输工具。
+
+
+
+
 
 ```bash
 # 查看HTTP响应
