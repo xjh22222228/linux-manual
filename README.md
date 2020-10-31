@@ -4,7 +4,9 @@
   <b>Linux 常用命令参考手册</b>
   <p align="center">日常运维的最佳拍档 x 102</p>
   <p align="center">
-    <a href="https://github.com/xjh22222228/linux-manual/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/></a>
+    <a href="https://github.com/xjh22222228/linux-manual/stargazers">
+      <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
+    </a>
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
   </p>
 </p>
@@ -625,7 +627,8 @@ open -a /Applications/Google\ Chrome.app README.md
 
 别名 `.` 点符号
 ```bash
-source ~/.bash_profile  # 等价 . ~/.bash_profile
+# 等价 . ~/.bash_profile
+source ~/.bash_profile
 ```
 
 
@@ -642,7 +645,6 @@ tree
 # .
 # ├── LICENSE
 # ├── README.md
-# ├── b.md
 # └── media
 #     └── poster.jpg
 
@@ -1574,11 +1576,28 @@ admin:youyouyou00..11
 
 
 ## chsh
-修改默认用户登录 shell 
+`chsh` 命令用于修改默认用户登录 shell。
 
 ```bash
 # 必须使用完整路径，不能使用shell名
 chsh -s /bin/sh
+```
+
+查看当前 `Shell`
+```bash
+echo $SHELL # /bin/bash
+```
+
+列出当前所有已安装的Shell
+```bash
+cat /etc/shells
+# /bin/bash
+# /bin/csh
+# /bin/dash
+# /bin/ksh
+# /bin/sh
+# /bin/tcsh
+# /bin/zsh
 ```
 
 
@@ -1753,6 +1772,7 @@ export my_var
 # 删除 HOME 环境变量，前面不需要带 $ 符号
 unset HOME
 ```
+
 
 
 
@@ -1985,50 +2005,107 @@ tail -f wget-log   # 查看后台下载进度
 `curl` 是一个非常强大的网络传输工具, 利用URL规则在命令行下工作的文件传输工具。
 
 
+| 参数                 | 描述              |
+| ------------------- |------------------- |
+| -s, --silent        | 不输出错误和进度信息, 只显示正常结果 |
+| -o, --output        | 将结果输出到文件中 |
+| -O, --remote-name   | 下载文件到本地，并将URL最后部分当做文件名 |
+| -L                  | HTTP请求跟随服务器重定向 |
+| -I, -head           | 显示HTTP响应报文 |
+| -H                  | 设置请求头 |
+| -X                  | 指定HTTP请求方法 |
+| -d                  | HTTP请求实体内容 |
+| --cookie            | 指定发送cookie |
+| -v                  | 打印整个传输过程 |
+| -F, --form          | 上传文件 |
+| -u                  | 指定用户名密码授权 |
+| --progress          | 显示进度条 |
 
 
+注意：参数不分前后
 
+#### 不传递任何参数只打印HTTP响应内容
 ```bash
-# 查看HTTP响应
 curl https://github.com/xjh22222228/linux-manual
-
-# -s 不输出错误和进度信息, 只显示正常结果
-curl -s https://github.com/xjh22222228/linux-manual
-
-# -o 指定文件名下载到本地，等价于 wget
-curl https://github.com/xjh22222228/linux-manual -o 1.txt # 1.txt
-
-# -O 下载文件到本地, 并将URL最后部分当做文件名
-curl https://github.com/xjh22222228/linux-manual -O # linux-manual
-curl https://github.com/xjh22222228/linux-manual -O --progress # 显示下载进度条
-
-# -L HTTP请求跟随服务器重定向
-curl -L https://github.com/xjh22222228/linux-manual
-
-# -I 或 -head 显示HTTP响应报文
-curl https://github.com/xjh22222228/linux-manual -I
-
-# -H 设置请求头
-curl -H 'Content-Type: application/json' -H 'Content-Type: application/json' https://github.com/xjh22222228/linux-manual
-
-# 通过POST请求发送JSON数据, -X 指明HTTP请求方法, -d 实体内容
-curl -H "Content-type: application/json" -X POST -d '{"age":"18"}' https://github.com/xjh22222228/linux-manual
-
-# 发送时携带 cookie
-curl https://github.com/xjh22222228/linux-manual --cookie "age=18;name=xjh"
-
-# -v 查看整个传输过程
-curl https://github.com/xjh22222228/linux-manual -v
-
-# -F(--form) 利用POST上传文件, file 是字段名, =@ 必须存在
-curl https://example.com/upload -F "file=@/home/demo.png"
-
-# -u 指定提供用户名密码进行授权，通常Ftp等服务
-curl -u admin:123123 ftp://demo/README.md
-
-# 下载并执行脚本
-curl -fsSL https://deno.land/x/install/install.sh | sh
 ```
+
+#### -s 不输出错误和进度信息, 只显示正常结果
+```bash
+curl -s https://github.com/xjh22222228/linux-manual
+```
+
+
+#### -o 指定文件名下载到本地，等价于 wget
+```bash
+# 将响应内容保存到 1.txt 文件
+curl https://github.com/xjh22222228/linux-manual -o 1.txt
+```
+
+
+#### -O 下载文件到本地, 并将URL最后部分当做文件名
+```bash
+# 文件名为 linux-manual
+curl https://github.com/xjh22222228/linux-manual -O
+```
+
+#### --progress 显示进度条
+```bash
+curl https://github.com/xjh22222228/linux-manual --progress
+```
+
+
+#### -L HTTP请求跟随服务器重定向
+```bash
+curl -L https://github.com/xjh22222228/linux-manual
+```
+
+
+#### -I 或 -head 显示HTTP响应报文, 不打印响应内容
+```bash
+curl -I https://github.com/xjh22222228/linux-manual
+```
+
+
+#### -H 设置请求头
+```bash
+curl -H 'Content-Type: application/json' -H 'Content-Type: application/json' https://github.com/xjh22222228/linux-manual
+```
+
+#### -X 指明HTTP请求方法
+```bash
+curl -X POST https://github.com/xjh22222228/linux-manual
+```
+
+#### -d 要发送的实体内容
+```bash
+curl -X POST -d '{"key":"value"}' https://github.com/xjh22222228/linux-manual
+```
+
+#### --cookie HTTP请求时携带的cookie信息
+```bash
+curl --cookie "age=18;name=xjh" https://github.com/xjh22222228/linux-manual
+```
+
+
+#### -v 打印整个传输过程
+```bash
+curl -v https://github.com/xjh22222228/linux-manual
+```
+
+
+#### -F 上传文件，默认以POST方法请求
+```bash
+# file 是字段名, =@ 必须存在
+curl https://example.com/upload -F "file=@/home/demo.png"
+```
+
+#### -u 请求授权
+```bash
+curl -u root:password ftp://demo/README.md
+```
+
+
+
 
 
 
@@ -2339,13 +2416,13 @@ apt-get clean
 
 下面展示了几个例子
 ```bash
-# 1、
+# 例子一：
 echo "Hello World" > log.txt
 
-# 2、
+# 例子二：
 ps -ef > ps.txt
 
-# 3、
+# 例子三：
 history > a.txt
 ```
 
