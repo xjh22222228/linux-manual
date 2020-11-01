@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 102</p>
+  <p align="center">日常运维的最佳拍档 x 104</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
@@ -51,24 +51,19 @@
   - [ln](#ln)
   - [file](#file)
 - [系统管理](#系统管理)
-  - [top](#top)
   - [nohup](#nohup)
   - [watch](#watch)
   - [ping](#ping)
   - [which](#which)
   - [shutdown](#shutdown)
   - [reboot](#reboot)
-  - [ps](#ps)
   - [uptime](#uptime)
   - [crontab](#crontab)
   - [uname](#uname)
   - [ifconfig](#ifconfig)
   - [whereis](#whereis)
-  - [kill](#kill)
-  - [killall](#killall)
   - [chmod](#chmod)
   - [lsof](#lsof)
-  - [netstat](#netstat)
   - [chown](#chown)
   - [systemctl](#systemctl)
   - [service](#service)
@@ -77,7 +72,14 @@
   - [type](#type)
   - [alias](#alias)
   - [time](#time)
-  - [clear](#clear)
+  - [&](#&)
+- [系统进程](#系统进程)
+  - [ps](#ps)
+  - [pstree](#pstree)
+  - [top](#top)
+  - [netstat](#netstat)
+  - [kill](#kill)
+  - [killall](#killall)
 - [用户管理](#用户管理)
   - [useradd](#useradd)
   - [userdel](#userdel)
@@ -135,6 +137,7 @@
   - [basename](#basename)
   - [read](#read)
   - [tee](#tee)
+  - [clear](#clear)
   
 
 
@@ -717,55 +720,19 @@ file index.html
 # 系统管理
 
 
-## top
-实时查看系统执行中的程序, top 命令跟 `ps` 命令相似，但它是实时的。
 
-默认情况下 `top` 命令启动时会按照 `%CPU` 值对进程排序。
-
-| 名称       | 描述              |
-| --------- |------------------ |
-|  PID      |  进程的ID    |
-|  USER     | 进程的优先级     |
-|  PR       |  进程的优先级    |
-|  NI       |  进程的谦让度值    |
-|  VIRT     | 进程占用的虚拟内存总量     |
-|  RES      |  进程占用的物理内存总量    |
-|  SHR      |  进程和其他进程共享的内存总量    |
-|  S        |  进程的状态（D=可中断的休眠状态，R在运行状态，S休眠状态，T跟踪状态或停止状态，Z=僵化状态）    |
-|  %CPU     |  进程使用的CPU时间比例    |
-|  %MEM     | 进程使用的内存占可用内存的比例     |
-|  TIME+    |  自进程启动到目前为止的CPU时间总量    |
-|  COMMAND  |  进程所对应的命令行名称，也就是启动的程序名    |
-
-
-```bash
-# 实时监听进程变化
-#  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                               
-#    1 root      20   0  125124   3612   2428 S  0.0  0.2   0:04.88 systemd
-top
-
-# 显示2条
-top -n 2
-
-# 显示指定的进程信息
-top -pid <pid>
-
-# 查看进程所有的线程
-top -H -p <pid>
-```
 
 
 
 
 ## nohup
-程序以挂起方式运行, 不会影响终端交互。
+程序以挂起方式运行。
 
-因为程序会以后台的方式运行，所以标准输出不会显示在屏幕上, 默认情况下会在当前目录生成一个叫 `nohup.out` 文件，里面包含了标准输出内容。
+`nohup` 命令会自动将 STDOUT(标准输出)和STDERR(标准错误)的消息重定向到一个名为 `nohup.out` 文件。
 
 ```bash
 # 例如运行一个 node.js 程序
 nohup node main.js
-nohup node main.js & # 可以在最后加 & ，表示后台模式，让出CLI以供其他使用。
 
 # 在当前目录会出现 nohup.out 文件，里面包含了 Hello World
 nohuo echo "Hello World"
@@ -868,68 +835,6 @@ reboot -i
 
 
 
-
-
-## ps
-查看当前系统进程状态。
-
-`ps` 命令非常复杂，且参数极多，由于 `ps` 历史问题，参数风格支持了三种 `UNIX`/`BSD`/``GNU` 这里不详细的介绍，感兴趣可以自行了解。
-
-
-- Unix 风格参数 - 前面加单破折线
-- BSD 风格的参数 - 前面不加破折线
-- GNU 风格长参数 - 前面加双破折线
-
-
-#### Unix 风格参数
-| 参数         | 描述              |
-| ----------- |------------------ |
-| -A          | 显示所有进程     |
-| -N          | 显示与指定参数不符的所有进程       |
-| -a          | 显示除控制进程和无终端进程外的所有进程     |
-| -d          | 显示除控制进程外的所有进程     |
-| -e          | 显示所有进程       |
-| -C cmdlist  | 显示包含在cmdlist列表中的进程       |
-| -G grplist  | 显示组ID在grplist列表中的进程       |
-| -U userlist | 显示属主的用户ID在userlist列表中的进程       |
-| -g grplist  | 显示会话或组ID在grplist列表中的进程       |
-| -p pidlist  | 显示PID在pidlist列表中的进程       |
-| -s sesslist | 显示会话ID在sesslist列表中的进程       |
-| -t ttylist  | 显示终端ID在ttylist列表中的进程       |
-| -u userlist | 显示有效用户ID在userlist列表中的进程       |
-| -F          | 显示更多额外输出（相对-f参数而言）       |
-| -O format   | 显示默认的输出列以及format列表指定的特定列       |
-| -M          | 显示进程的安全信息       |
-| -c          | 显示进程的额外条调度器信息       |
-| -l          | 显示长列表       |
-| -o format   | 仅显示由format指定的列表       |
-| -y          | 不要显示进程标记（process tag, 表明进程状态的标记）       |
-| -Z          | 显示安全标签（security context）信息       |
-| -H          | 用层级格式来显示进程（树状，用来显示父进程）       |
-| -n namelist | 定义了WCHAN列显示的值       |
-| -w          | 采用宽输出模式，不限宽显示       |
-| -L          | 显示进程中的线程       |
-| -V          | 显示PS命令的版本号       |
-
-
-
-
-```bash
-# 显示所有进程信息
-ps -A
-
-# 显示指定用户进程信息
-ps -u root
-
-# 显示所有进程信息包括命令行
-ps -ef  # -e 等价于 -A  , 即等价于 ps -Af
-
-# 这是 BSD 风格参数，列出所有正在内存中的进程
-ps aux
-
-# 配合 grep 查询指定进程
-ps -ef | grep nginx
-```
 
 
 
@@ -1049,52 +954,7 @@ whereis -m nginx # nginx: /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/ngi
 
 
 
-## kill
-结束程序，kill 命令只支持进程id杀死，不支持进程名称。
 
-
-#### 进程信号
-| 信号    | 名称              | 描述              |
-| ------ |------------------ | ----------- |
-| 1      | HUP     | 挂起     |
-| 2      | INT     | 中断     |
-| 3      | QUIT    | 结束运行     |
-| 9      | KILL    | 无条件终止     |
-| 11     | SEGV    | 段错误     |
-| 15     | TERM    | 尽可能终止     |
-| 17     | STOP    | 无条件停止运行，但不终止     |
-| 18     | TSTP    | 停止或暂停，但继续在后台运行     |
-| 19     | CONT    | 在STOP或TSTP之后恢复执行     |
-
-
-注：程序进程 id 可通过 `top` 等命令查看。
-
-```bash
-# 杀死 pid 为88 进程，不带参数默认等价 kill -15
-kill 88
-
-# 无条件终止进程，以下是等价，可以用进程名称信号
-kill -KILL 88
-kill -9 88
-
-# 显示信号
-kill -l
-
-# 杀死指定用户的所有进程
-kill -u nginx
-```
-
-
-
-
-
-## killall
-杀死进程，可以杀死多个进程，比 `kill` 要强大, 支持通过进程名称杀死, 还支持通配符。
-
-```bash
-# 杀死以tcp进程名称开头的所有进程
-killall tcp*
-```
 
 
 
@@ -1170,59 +1030,6 @@ lsof -p 6112
 
 
 
-
-
-
-## netstat
-查看网络系统状态信息
-
-**参数说明：**
-
-
-| 参数        | 描述              |
-| ---------- |------------------- |
-| a或--all                 | 显示所有连线中的Socket                |
-| A<网络类型>或--<网络类型>   | 列出该网络类型连线中的相关地址          |
-| c或--continuous          | 持续列出网络状态                      |
-| C或--cache               | 显示路由器配置的快取信息                |
-| e或--extend              | 显示网络其他相关信息                   |
-| F或--fib                 | 显示FIB                              |
-| g或--groups              | 显示多重广播功能群组组员名单             |
-| h或--help                | 在线帮助                              |
-| i或--interfaces          | 显示网络界面信息表单                    |
-| l或--listening           | 显示监控中的服务器的Socket              |
-| M或--masquerade          | 显示伪装的网络连线                      |
-| n或--numeric             | 直接使用IP地址，而不通过域名服务器        |
-| N或--netlink或--symbolic | 显示网络硬件外围设备的符号连接名称       |
-| o或--timers              | 显示计时器                            |
-| p或--programs            | 显示正在使用Socket的程序识别码和程序名称  |
-| r或--route               |  显示Routing Table                   |
-| s或--statistics          | 显示网络工作信息统计表                  |
-| t或--tcp                 | 显示TCP传输协议的连线状况               |
-| u或--udp                 | 显示UDP传输协议的连线状况               |
-| v或--verbose             | 显示指令执行过程                       |
-| V或--version             | 显示版本信息                          |
-| w或--raw                 | 显示RAW传输协议的连线状况               |
-| x或--unix                | 此参数的效果和指定"-A unix"参数相同     |
-| -ip或--inet              | 此参数的效果和指定"-A inet"参数相同     |
-
-
-```bash
-# 列出所有占用端口
-netstat -ntlp
-
-# 显示所有网络状况
-netstat -a
-
-# 显示所有tcp网络状况
-netstat -at
-
-# 显示所有udp网络状况
-netstat -au
-
-# 配合grep命令查看某个端口被占用情况
-netstat -ap | grep 8080
-```
 
 
 
@@ -1355,12 +1162,24 @@ free -s 10
 ## jobs
 显示当前运行在后台模式中的所有用户的进程（作业）
 
+
+| 参数         | 描述              |
+| ----------- |------------------ |
+| -l          | 打印进程的PID和作业号以及作业命令     |
+| -n          | 只列出上次shell发出的通知后改变了状态的作业     |
+| -p          | 只列出作业的PID（进程ID）     |
+| -r          | 只列出运行中的作业     |
+| -s          | 只列出已停止的作业     |
+
+
 ```bash
-# 先来启一个后台进程, 比如启一个sleep命令进程， & 符号表示后台运行
-sleep 3 &
-# 查看后台进程
+# 先来启一个后台作业进程, & 符号表示后台运行
+sleep 100 &
+# 查看后台作业
 jobs # 输出：[1]+  Running       sleep 3 &
 ```
+
+相关命令 [&](#&)
 
 
 
@@ -1420,13 +1239,334 @@ time curl https://github.com/xjh22222228/linux-manual
 
 
 
-## clear
-用于清除当前终端所有信息，本质上只是向后翻了一页，往上滚动还能看到之前的操作信息
+## &
+`&` 符号表示后台运行, 只要在命令后面加上 `&` 符号即可。
 
-注：笔者用得比较多的是 `command + K` 可以完全清除终端所有操作信息。
+如果一个命令运行的时间非常长，比如处理文件、HTTP请求时就可以在后台运行，这样就可以让出shell继续执行其他命令。
+
 ```bash
-clear
+# 模拟了休眠100秒并在后台运行
+sleep 100 &
 ```
+
+你可以通过 [jobs](#jobs) 命令来查看后台作业。
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+# 系统进程
+
+
+## ps
+查看当前系统进程状态。
+
+`ps` 命令非常复杂，且参数极多，由于 `ps` 历史问题，参数风格支持了三种 `UNIX`/`BSD`/``GNU` 这里不详细的介绍，感兴趣可以自行了解。
+
+
+- Unix 风格参数 - 前面加单破折线
+- BSD 风格的参数 - 前面不加破折线
+- GNU 风格长参数 - 前面加双破折线
+
+
+#### Unix 风格参数
+| 参数         | 描述              |
+| ----------- |------------------ |
+| -A          | 显示所有进程     |
+| -N          | 显示与指定参数不符的所有进程       |
+| -a          | 显示除控制进程和无终端进程外的所有进程     |
+| -d          | 显示除控制进程外的所有进程     |
+| -e          | 显示所有进程       |
+| -C cmdlist  | 显示包含在cmdlist列表中的进程       |
+| -G grplist  | 显示组ID在grplist列表中的进程       |
+| -U userlist | 显示属主的用户ID在userlist列表中的进程       |
+| -g grplist  | 显示会话或组ID在grplist列表中的进程       |
+| -p pidlist  | 显示PID在pidlist列表中的进程       |
+| -s sesslist | 显示会话ID在sesslist列表中的进程       |
+| -t ttylist  | 显示终端ID在ttylist列表中的进程       |
+| -u userlist | 显示有效用户ID在userlist列表中的进程       |
+| -F          | 显示更多额外输出（相对-f参数而言）       |
+| -O format   | 显示默认的输出列以及format列表指定的特定列       |
+| -M          | 显示进程的安全信息       |
+| -c          | 显示进程的额外条调度器信息       |
+| -l          | 显示长列表       |
+| -o format   | 仅显示由format指定的列表       |
+| -y          | 不要显示进程标记（process tag, 表明进程状态的标记）       |
+| -Z          | 显示安全标签（security context）信息       |
+| -H          | 用层级格式来显示进程（树状，用来显示父进程）       |
+| -n namelist | 定义了WCHAN列显示的值       |
+| -w          | 采用宽输出模式，不限宽显示       |
+| -L          | 显示进程中的线程       |
+| -V          | 显示PS命令的版本号       |
+
+
+```bash
+# 显示所有进程信息
+ps -A
+
+# 显示指定用户进程信息
+ps -u root
+
+# 显示所有进程信息包括命令行
+ps -ef  # -e 等价于 -A  , 即等价于 ps -Af
+
+# 这是 BSD 风格参数，列出所有正在内存中的进程
+ps aux
+
+# 配合 grep 查询指定进程
+ps -ef | grep nginx
+```
+
+
+
+
+
+
+## pstree
+pstree命令以树状图的方式展现进程之间的派生关系。
+
+
+#### 显示所有进程的所有详细信息
+```bash
+pstree -a
+# 输出信息：
+├─AliSecGuard
+  ├─assist_daemon
+  │   └─7*[{assist_daemon}]
+  ├─atd -f
+  ├─auditd -n
+  │   └─{auditd}
+  ├─crond -n
+  ├─dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+  ├─dhclient -H debug010000002015 -1 -q -lf /var/lib/dhclient/dhclient--eth0.lease -pf /var/run/dhclient-eth0.pid eth0
+  ├─frps -c ./frps.ini
+  │   └─2*[{frps}]
+  ├─nginx
+  │   └─nginx                   
+  ├─ntpd -u ntp:ntp -g
+  ├─polkitd --no-debug
+  │   └─5*[{polkitd}]
+  ├─rsyslogd -n
+  │   └─2*[{rsyslogd}]
+  ├─sshd -D
+  │   └─sshd    
+  │       └─bash
+  │           └─pstree -a
+  ├─systemd-journal
+  ├─systemd-logind
+  ├─systemd-udevd
+  └─tuned -Es /usr/sbin/tuned -l -P
+      └─4*[{tuned}]
+```
+
+
+#### 显示当前所有进程的进程号和进程id
+```bash
+pstree -p
+# 输出信息：
+systemd(1)─┬─AliSecGuard(9347)─┬─{AliSecGuard}(9348)
+           ├─agetty(474)
+           ├─agetty(475)
+           ├─assist_daemon(1356)─┬─{assist_daemon}(1370)
+           │                     ├─{assist_daemon}(1371)
+           │                     ├─{assist_daemon}(1372)
+           │                     ├─{assist_daemon}(1870)
+           │                     ├─{assist_daemon}(1871)
+           │                     ├─{assist_daemon}(1872)
+           │                     └─{assist_daemon}(1873)
+           ├─atd(459)
+           ├─auditd(368)───{auditd}(375)
+           ├─crond(455)
+           ├─dbus-daemon(440)
+           ├─dhclient(680)
+           ├─nginx(9605)───nginx(9608)
+           ├─ntpd(766)
+           ├─polkitd(448)─┬─{polkitd}(489)
+           │              ├─{polkitd}(490)
+           │              ├─{polkitd}(491)
+           │              ├─{polkitd}(492)
+           │              └─{polkitd}(493)
+           ├─rsyslogd(740)─┬─{rsyslogd}(769)
+           │               └─{rsyslogd}(770)
+           ├─sshd(4007)───sshd(21896)───bash(21898)───pstree(21921)
+           ├─systemd-journal(326)
+           ├─systemd-logind(445)
+           ├─systemd-udevd(350)
+           └─tuned(743)─┬─{tuned}(1004)
+                        ├─{tuned}(1006)
+                        ├─{tuned}(1009)
+                        └─{tuned}(1011)
+```
+
+
+
+
+
+
+
+
+
+## top
+实时查看系统执行中的程序, top 命令跟 `ps` 命令相似，但它是实时的。
+
+默认情况下 `top` 命令启动时会按照 `%CPU` 值对进程排序。
+
+| 名称       | 描述              |
+| --------- |------------------ |
+|  PID      |  进程的ID    |
+|  USER     | 进程的优先级     |
+|  PR       |  进程的优先级    |
+|  NI       |  进程的谦让度值    |
+|  VIRT     | 进程占用的虚拟内存总量     |
+|  RES      |  进程占用的物理内存总量    |
+|  SHR      |  进程和其他进程共享的内存总量    |
+|  S        |  进程的状态（D=可中断的休眠状态，R在运行状态，S休眠状态，T跟踪状态或停止状态，Z=僵化状态）    |
+|  %CPU     |  进程使用的CPU时间比例    |
+|  %MEM     | 进程使用的内存占可用内存的比例     |
+|  TIME+    |  自进程启动到目前为止的CPU时间总量    |
+|  COMMAND  |  进程所对应的命令行名称，也就是启动的程序名    |
+
+
+```bash
+# 实时监听进程变化
+#  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                               
+#    1 root      20   0  125124   3612   2428 S  0.0  0.2   0:04.88 systemd
+top
+
+# 显示2条
+top -n 2
+
+# 显示指定的进程信息
+top -pid <pid>
+
+# 查看进程所有的线程
+top -H -p <pid>
+```
+
+
+
+
+
+
+## netstat
+查看网络系统状态信息
+
+**参数说明：**
+
+
+| 参数        | 描述              |
+| ---------- |------------------- |
+| a或--all                 | 显示所有连线中的Socket                |
+| A<网络类型>或--<网络类型>   | 列出该网络类型连线中的相关地址          |
+| c或--continuous          | 持续列出网络状态                      |
+| C或--cache               | 显示路由器配置的快取信息                |
+| e或--extend              | 显示网络其他相关信息                   |
+| F或--fib                 | 显示FIB                              |
+| g或--groups              | 显示多重广播功能群组组员名单             |
+| h或--help                | 在线帮助                              |
+| i或--interfaces          | 显示网络界面信息表单                    |
+| l或--listening           | 显示监控中的服务器的Socket              |
+| M或--masquerade          | 显示伪装的网络连线                      |
+| n或--numeric             | 直接使用IP地址，而不通过域名服务器        |
+| N或--netlink或--symbolic | 显示网络硬件外围设备的符号连接名称       |
+| o或--timers              | 显示计时器                            |
+| p或--programs            | 显示正在使用Socket的程序识别码和程序名称  |
+| r或--route               |  显示Routing Table                   |
+| s或--statistics          | 显示网络工作信息统计表                  |
+| t或--tcp                 | 显示TCP传输协议的连线状况               |
+| u或--udp                 | 显示UDP传输协议的连线状况               |
+| v或--verbose             | 显示指令执行过程                       |
+| V或--version             | 显示版本信息                          |
+| w或--raw                 | 显示RAW传输协议的连线状况               |
+| x或--unix                | 此参数的效果和指定"-A unix"参数相同     |
+| -ip或--inet              | 此参数的效果和指定"-A inet"参数相同     |
+
+
+```bash
+# 列出所有占用端口
+netstat -ntlp
+
+# 显示所有网络状况
+netstat -a
+
+# 显示所有tcp网络状况
+netstat -at
+
+# 显示所有udp网络状况
+netstat -au
+
+# 配合grep命令查看某个端口被占用情况
+netstat -ap | grep 8080
+```
+
+
+
+
+
+
+## kill
+结束程序，kill 命令只支持进程id杀死，不支持进程名称。
+
+
+#### 进程信号
+| 信号    | 名称              | 描述              |
+| ------ |------------------ | ----------- |
+| 1      | HUP     | 挂起     |
+| 2      | INT     | 中断     |
+| 3      | QUIT    | 结束运行     |
+| 9      | KILL    | 无条件终止     |
+| 11     | SEGV    | 段错误     |
+| 15     | TERM    | 尽可能终止     |
+| 17     | STOP    | 无条件停止运行，但不终止     |
+| 18     | TSTP    | 停止或暂停，但继续在后台运行     |
+| 19     | CONT    | 在STOP或TSTP之后恢复执行     |
+
+
+注：程序进程 id 可通过 `top` 等命令查看。
+
+```bash
+# 杀死 pid 为88 进程，不带参数默认等价 kill -15
+kill 88
+
+# 无条件终止进程，以下是等价，可以用进程名称信号
+kill -KILL 88
+kill -9 88
+
+# 显示信号
+kill -l
+
+# 杀死指定用户的所有进程
+kill -u nginx
+```
+
+
+
+
+
+## killall
+杀死进程，可以杀死多个进程，比 `kill` 要强大, 支持通过进程名称杀死, 还支持通配符。
+
+```bash
+# 杀死以tcp进程名称开头的所有进程
+killall tcp*
+```
+
+
+
+
+
+
 
 
 
@@ -1577,6 +1717,8 @@ admin:youyouyou00..11
 
 ## chsh
 `chsh` 命令用于修改默认用户登录 shell。
+
+修改后重新启动Shell即可生效（exit/logout），或重新启动系统。
 
 ```bash
 # 必须使用完整路径，不能使用shell名
@@ -3022,6 +3164,17 @@ echo $var > date.txt
 
 
 
+## clear
+用于清除当前终端所有信息，本质上只是向后翻了一页，往上滚动还能看到之前的操作信息
+
+注：笔者用得比较多的是 `command + K` 可以完全清除终端所有操作信息。
+```bash
+clear
+```
+
+
+
+
 
 
 
@@ -3029,7 +3182,7 @@ echo $var > date.txt
 ---
 
 ## 致谢
-感谢 《Linux命令行与Shell脚本编程大全》 一书，以上部分命令从这本书进行整理出来， 如有错误，欢迎指正，谢谢！
+部分内容从《Linux命令行与Shell脚本编程大全》 进行整理出来， 如有错误，欢迎指正，谢谢！
 
 
 
