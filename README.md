@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 104</p>
+  <p align="center">日常运维的最佳拍档 x 105</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
@@ -86,6 +86,7 @@
   - [passwd](#passwd)
   - [chpasswd](#chpasswd)
   - [chsh](#chsh)
+  - [chfn](#chfn)
   - [users](#users)
   - [who](#who)
   - [w](#w)
@@ -1753,6 +1754,42 @@ cat /etc/shells
 # /bin/tcsh
 # /bin/zsh
 ```
+
+
+
+
+## chfn
+主要用于更改账号的个人信息。这些信息保存在 `/etc/passwd` 下。
+
+默认情况下如果不提供参数将进入问答式逐一设置。
+
+| 参数   | 描述              |
+| ----- |------------------ |
+| -f    | 真实姓名     |
+| -h    | 家中电话     |
+| -o    | 办公地址     |
+| -p    | 办公室电话   |
+
+
+```bash
+# 修改 root 账号信息
+chfn root
+# Changing finger information for root.
+# Name [xiejiahe]: 
+# Office [ZhuHai]: 
+# Office Phone [13xxxxxxxxx]: 
+# Home Phone [13xxxxxxxxx]: 
+```
+
+#### 修改真实姓名
+```bash
+chfn -f root
+```
+
+
+
+
+
 
 
 
