@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 105</p>
+  <p align="center">日常运维的最佳拍档 x 106</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
@@ -87,6 +87,7 @@
   - [chpasswd](#chpasswd)
   - [chsh](#chsh)
   - [chfn](#chfn)
+  - [usermod](#usermod)
   - [users](#users)
   - [who](#who)
   - [w](#w)
@@ -629,11 +630,37 @@ open -a /Applications/Google\ Chrome.app README.md
 ## source
 在当前Shell环境中从指定文件读取和执行命令， 通常用于重新执行环境。
 
-别名 `.` 点符号
+它有个别名 `.` 点操作符号。
+
 ```bash
 # 等价 . ~/.bash_profile
 source ~/.bash_profile
 ```
+
+实际上大部分开发者都没搞懂 `source` 命令。 可以把它理解为编程语言中的 `import`, `java/python/js` 都有这个，就是用来导入文件。
+
+
+下面演示 source 用于 shell 脚本中
+
+util.sh
+```bash
+#!/bin/bash
+getName() {
+  echo "Linux"
+}
+```
+
+main.sh
+```bash
+#!/bin/bash
+# 加载文件
+source ./util.sh
+
+# 这样就可以调用 util 文件中的函数了
+echo $(getName)
+```
+
+
 
 
 
@@ -1791,6 +1818,42 @@ chfn -f root
 
 
 
+## usermod
+`usermod` 命令是用于账号修改工具中最强大的一个，它能用来修改 `/etc/passwd` 文件中的大部分字段。
+
+注意：确保需要修改的用户已下线。
+
+| 参数   | 描述              |
+| ----- |------------------ |
+| -l    | 修改用户账号的登录名     |
+| -p    | 修改账号的密码     |
+| -L    | 锁定账号，使用户无法登录     |
+| -U    | 解除锁定，使用户能登录     |
+| -l    | 修改用户账号的登录名     |
+| -d    | 修改用户登录时的目录     |
+| -c    | 修改用户备注信息     |
+| -s    | 修改用户登录时默认shell     |
+| -u    | 修改用户的UID     |
+
+
+```bash
+# 将 root 登录名修改为 root123
+usermod -l root root123
+
+# 锁定 test 账号
+usermod -L test
+
+# 当用户登录时目录为 /etc 下
+usermod -d /etc root
+
+# 修改UID
+usermod -u 888 root
+```
+
+
+
+
+
 
 
 
@@ -2505,29 +2568,32 @@ du -c
 基于RPM的软件包管理器, 特点安装快捷，命令简洁好记。
 
 ```bash
-# 安装nginx
-yum install nginx
+# 安装
+yum install 包名
 
 # 指定 -y 安装时自动全部 yes
-yum -y install nginx
+yum -y install 包名
 
 # 查找包
-yum search nginx
+yum search 包名
 
 # 显示所有已安装的包
 yum list
 
 # 升级包
-yum -y update nginx
+yum update 包名
 
-# 移除包
-yum -y remove nginx
+# 只删除软件包而保留配置文件和数据文件
+yum remove 包名
+
+# 删除软件和它的所有配置文件
+yum erase 包名
 
 # 清除缓存
 yum clean all
 
 # 显示安装包信息
-yum info nginx
+yum info 包名
 
 # 检查可更新的包程序
 yum check-update
@@ -2536,7 +2602,7 @@ yum check-update
 
 
 ## apt-get
-**apt-get命令** 是Debian Linux发行版中的APT软件包管理工具。所有基于Debian的发行都使用这个包管理系统。
+`apt-get命令` 是Debian Linux发行版中的APT软件包管理工具。所有基于Debian的发行都使用这个包管理系统。
 
 ```bash
 # 安装一个docker软件
