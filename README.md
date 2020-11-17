@@ -709,14 +709,22 @@ tree -L 3
 - 硬链接只有在同一个文件系统中才能创建
 
 
+
+共同点：
+- 修改原文件内容创建的链接文件也会同步修改
+
+
+
 ```bash
-# 默认创建硬链接，修改 README.md 内容， a.md 也会同步修改, 修改a.md  README.md 也会同步修改
-ln README.md a.md
+# 默认创建硬链接
+ln 1.md 2.md
 
 # -s 创建软链接
-ln -s README.md a.md # 如果删除了 README.md  a.md 将失效
+# 删除 1.md 文件后 2.md 文件将失效
+# 但修改 2.md 文件 1.md 会复原
+ln -s 1.md 2.md
 
-# -f 强制执行
+# -f 强制执行创建
 ln -f README.md ./src/a.md
 ```
 
