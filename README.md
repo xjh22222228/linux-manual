@@ -2068,6 +2068,9 @@ zip -r -S temp.zip temp
 
 # 指定归档效率 1-9
 zip -r -9 temp.zip temp 
+
+# -j 消除文件夹, 这样解压后只有 README.md 文件而不是带有 src 文件夹
+zip -j temp.zip src/README.md
 ```
 
 
