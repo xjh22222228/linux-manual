@@ -2276,7 +2276,7 @@ tail -f wget-log   # 查看后台下载进度
 | -o, --output        | 将结果输出到文件中 |
 | -O, --remote-name   | 下载文件到本地，并将URL最后部分当做文件名 |
 | -L                  | HTTP请求跟随服务器重定向 |
-| -I, -head           | 显示HTTP响应报文 |
+| -I, --head          | 显示HTTP响应报文 |
 | -H                  | 设置请求头 |
 | -X                  | 指定HTTP请求方法 |
 | -d                  | HTTP请求实体内容 |
@@ -2285,6 +2285,8 @@ tail -f wget-log   # 查看后台下载进度
 | -F, --form          | 上传文件 |
 | -u                  | 指定用户名密码授权 |
 | --progress          | 显示进度条 |
+| -f, --fail          | 连接失败时不显示http错误 |
+| --retry             | 请求重试 |
 
 
 注意：参数不分前后
@@ -2325,7 +2327,7 @@ curl -L https://github.com/xjh22222228/linux-manual
 ```
 
 
-#### -I 或 -head 显示HTTP响应报文, 不打印响应内容
+#### -I 或 --head 显示HTTP响应报文, 不打印响应内容
 ```bash
 curl -I https://github.com/xjh22222228/linux-manual
 ```
@@ -2369,6 +2371,13 @@ curl https://example.com/upload -F "file=@/home/demo.png"
 curl -u root:password ftp://demo/README.md
 ```
 
+
+#### --retry 请求重试
+请求失败时设置重试次数
+
+```bash
+curl http://example.com --retry 3
+```
 
 
 
