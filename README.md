@@ -2780,6 +2780,10 @@ echo Hello World > 1.txt
 
 # -n 不换行, 默认情况下echo 是占一整行
 echo -n Hello; echo World
+
+# -e 解析字符, 比如让字体输出颜色
+echo -e "\033[1;32m绿色\033[0m"
+echo -e "\n换行\n" # 解析 \n 作为换行
 ```
 
 
