@@ -2,7 +2,8 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 106</p>
+  <p align="center">日常运维的最佳拍档 x 107</p>
+  <p align="center">从新手的角度出发，没有晦涩难度的例子</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
@@ -50,6 +51,7 @@
   - [tree](#tree)
   - [ln](#ln)
   - [file](#file)
+  - [uniq](#uniq)
 - [系统管理](#系统管理)
   - [nohup](#nohup)
   - [watch](#watch)
@@ -751,6 +753,48 @@ file README.md
 # index.html: HTML document, UTF-8 Unicode text, with very long lines, with no line terminators
 file index.html
 ```
+
+
+
+
+## uniq
+`uniq` 命令用于检查或删除文件中重复出现的行内容。
+
+```bash
+# 将 1.txt 文件重复内容过滤后输出到 2.txt 文件
+uniq 1.txt 2.txt
+
+# -c 在左边显示每行重复次数
+uniq -c 1.txt
+
+# -d 只显示重复行内容
+uniq -d 1.txt
+```
+
+`uniq` 命令有个问题，只能过滤相邻的内容，比如:
+```txt
+111
+111
+222
+333
+222
+```
+
+结果: 222 也重复但是不是相邻
+```txt
+111
+222
+333
+222
+```
+
+解决办法是配合使用 `sort` 命令, 原理是先排序为相邻再去重：
+
+```bash
+sort 1.txt | uniq > 2.txt
+```
+
+
 
 
 
