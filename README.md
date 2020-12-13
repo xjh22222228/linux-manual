@@ -4,6 +4,7 @@
   <b>Linux 常用命令参考手册</b>
   <p align="center">日常运维的最佳拍档 x 107</p>
   <p align="center">从新手的角度出发，没有晦涩难度的例子</p>
+  <p align="center">一张网页概括，马上出发吧！</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
@@ -3380,7 +3381,7 @@ clear
 ---
 
 ## 致谢
-部分内容从《Linux命令行与Shell脚本编程大全》 进行整理出来， 如有错误，欢迎指正，谢谢！
+部分内容从《Linux命令行与Shell脚本编程大全》和 互联网 进行整理出来， 如有错误，欢迎指正，谢谢！
 
 
 
