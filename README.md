@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 107</p>
+  <p align="center">日常运维的最佳拍档 x 108</p>
   <p align="center">从新手的角度出发，没有晦涩难度的例子</p>
   <p align="center">一张网页概括，马上出发吧！</p>
   <p align="center">
@@ -52,6 +52,7 @@
   - [tree](#tree)
   - [ln](#ln)
   - [file](#file)
+  - [sort](#sort)
   - [uniq](#uniq)
 - [系统管理](#系统管理)
   - [nohup](#nohup)
@@ -758,6 +759,37 @@ file index.html
 
 
 
+
+## sort
+将文本内容以行为单位进行排序。
+
+
+| 参数    | 描述              |
+| ------ |------------------ |
+| -c     | 检查文件是否已排序，若已经排序则什么都不输出     |
+| -r     | 以倒序来排序     |
+| -b     | 忽略每行开头的空格     |
+| -o     | 将排序结果输出到文件     |
+| -u     | 排序并去重，每行都是唯一的     |
+| -n     | 按照数值大小排序     |
+
+
+
+```bash
+# 排序并打印到终端
+sort README.md
+
+# 排序并去重将结果输出到 u.md 文件，可以用来替代 uniq 命令
+sort -u README.md -o u.md
+```
+
+
+
+
+
+
+
+
 ## uniq
 `uniq` 命令用于检查或删除文件中重复出现的行内容。
 
@@ -789,7 +821,7 @@ uniq -d 1.txt
 222
 ```
 
-解决办法是配合使用 `sort` 命令, 原理是先排序为相邻再去重：
+解决办法是配合使用 `sort` 命令, 原理是先排序为相邻再去重(实际上只用 sort 命令就能解决)：
 
 ```bash
 sort 1.txt | uniq > 2.txt
