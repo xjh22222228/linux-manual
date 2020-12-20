@@ -2,9 +2,8 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 108</p>
-  <p align="center">从新手的角度出发，没有晦涩难度的例子</p>
-  <p align="center">一张网页概括，马上出发吧！</p>
+  <p align="center">日常运维的最佳拍档 x 109</p>
+  <p align="center">一张网页概括，没有晦涩难度的例子！</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
@@ -54,6 +53,7 @@
   - [file](#file)
   - [sort](#sort)
   - [uniq](#uniq)
+  - [split](#split)
 - [系统管理](#系统管理)
   - [nohup](#nohup)
   - [watch](#watch)
@@ -831,6 +831,28 @@ sort 1.txt | uniq > 2.txt
 
 
 
+## split
+将一个文件切割成数个文件, 对于大文件来说非常实用。
+
+
+```bash
+# 将 README.md 文件每10行分割成一个文件
+split -10 README.md
+
+# -b 按字节分割
+split -b 100000 README.md
+
+# 指定分割后的文件名前缀为 READ ，分割后会自动在文件名后随机加上编号
+split -b 100000 README.md READ
+```
+
+
+
+
+
+
+
+
 
 ---
 
@@ -840,8 +862,6 @@ sort 1.txt | uniq > 2.txt
 
 
 # 系统管理
-
-
 
 
 
