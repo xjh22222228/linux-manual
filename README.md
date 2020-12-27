@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 110</p>
+  <p align="center">日常运维的最佳拍档 x 111</p>
   <p align="center">一张网页概括，没有晦涩难度的例子！</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
@@ -24,7 +24,7 @@
 
 
 # 目录
-- [文件操作](#文件操作)
+- [文件](#文件)
   - [查看文件内容](#查看文件内容)
     - [head](#head)
     - [tail](#tail)
@@ -48,6 +48,7 @@
   - [paste](#paste)
   - [stat](#stat)
   - [grep](#grep)
+  - [sed](#sed)
   - [cd](#cd)
   - [cp](#cp)
   - [mv](#mv)
@@ -156,12 +157,12 @@
 
 
 
-# 文件操作
+# 文件
 
 ## 查看文件内容
 
 ## head
-显示文件的头部内容，如果不指定参数默认显示10行
+显示文件的头部内容，默认前10行
 
 ```bash
 # 显示前10行内容
@@ -178,7 +179,7 @@ head -n 100 README.md
 
 
 ## tail
-显示文件的末尾部分
+显示文件的末尾部分，默认后10行
 
 ```bash
 # 默认显示末尾10行
@@ -203,17 +204,17 @@ tail -c README.md
 
 
 ## cat
-查看指定整个文件内容
+查看文件全部内容，如果文件太大，头部部分内容会被截掉。
 
 ```bash
-# 查看 README.md 文件所有内容
+# 查看 README.md 文件全部内容
 cat README.md
-cat README.md README2.md  # 或者一次性显示多个文件
+cat README.md README2.md  # 多个文件
 
 # -n 每一行显示行号包括空行
 cat -n README.md
 
-# -b 有内容的行显示行号
+# -b 只在有内容的行显示行号
 cat -b README.md
 ```
 
@@ -256,8 +257,8 @@ nl -b a README.md
 与 `cat` 命令不同，`cat` 只能一次显示全部内容，如果内容太多部分会被截取掉。
 
 快捷键：
-- `空格`或`PageUp` - 查看下一屏内容
-- `B`或`PageDown` - 查看上一屏内容
+- `空格` 或 `PageUp` - 查看下一屏内容
+- `B` 或 `PageDown` - 查看上一屏内容
 - `回车` - 查看下一行内容
 - `Q` - 退出
 
@@ -304,7 +305,7 @@ mkdir -m 777 temp
 ## mktemp
 创建临时目录或文件，Linux使用 `/tmp` 目录来存放不需要永久保留的文件，大多数Linux发行版配置了系统在启动时自动删除 `/tmp` 目录的所有文件。
 
-默认情况下， `mktemp` 会在本地目录中创建一个文件，只要指定一个文件名模板就行，模板可以包含任意文本文件名，在文件名末尾加上**6**个X就行了。
+默认情况下， `mktemp` 会在本地目录中创建一个文件，只要指定一个文件名模板就行，模板可以包含任意文本文件名，在文件名末尾加上 **6** 个X就行了。
 
 ```bash
 # 创建本地临时文件, 会在当前目录下创建一个叫 log.XXXXXX, XXXXXX是一个随机字符码，保证文件名在目录中是唯一的。
@@ -330,7 +331,7 @@ mktemp -d dir.XXXXXX
 
 注: 使用此命令需要非常小心, 一但删除无法恢复
 ```bash
-# 删除当前 1.txt 文件
+# 删除当前目录下的 1.txt 文件
 rm 1.txt
 
 # -i 删除前询问是否真的要删除，因为一旦删除无法恢复
@@ -373,6 +374,8 @@ rmdir -i temp
 ```bash
 # 在当前目录递归搜索文件名为 README.md 文件
 find . -name README.md
+# 也可以指定多个目录，比如 src1 src2目录
+find src1 src2 -name README.md
 
 # 通过通配符进行查找, 必须用引号括着, 这里查找所有后缀为 .md 文件
 find . -name "*.md"
@@ -614,6 +617,172 @@ egrep "[0-9]"
 
 
 
+
+
+## sed
+sed(stream editor) 是一种流编辑器，它一次处理一行内容。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”，接着用 sed 命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。
+
+`sed` 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。
+
+命令格式：`sed options script file...`
+
+
+**选项**
+| 参数         | 描述              |
+| ----------- |------------------ |
+| -e script   | 在处理输入时，将script中指定的命令添加到已有的命令中     |
+| -f file     | 在处理输入时，将file中指定的命令添加到已有的命令中     |
+| -n          | 不产生命令输入，使用print命令来完成输出     |
+| -i          | 直接编辑文件并保存     |
+| -i.bak      | 备份文件并编辑保存     |
+
+
+来个简单的例子：
+```bash
+$ cat test.txt
+i like apple
+i like apple
+i like apple
+i like apple
+
+$ sed 's/apple/banana/' test.txt
+i like banana
+i like banana
+i like banana
+i like banana
+```
+
+运行上面例子结果就会马上显示出来。
+
+命令解释: sed 's/要替换的内容/替换后的内容/' 文件名, s(substitute)替代
+
+
+#### 执行多个命令
+如果需要执行多个命令时只要指定 `-e` 选项就可以了:
+```bash
+# 多个命令使用分号分隔
+$ sed 's/apple/banana/; s/i/I/' test.txt
+I like banana
+I like banana
+I like banana
+I like banana
+```
+
+
+#### 从文件中读取编辑器命令
+当需要执行大量命令时使用 `-e` 选项就有点鸡助了, 这时候可以将命令存储在一个单独文件中，然后在执行时指定 `-f` 选项读取。
+
+```bash
+$ cat cmd.sed
+s/apple/banana/
+s/i/I/
+
+# 执行
+$ sed -f cmd.sed test.txt
+```
+
+
+
+#### 直接编辑
+在执行 `sed` 时指定 `-i` 选项可以直接编辑文件并保存。
+
+```bash
+$ sed -i 's/apple/banana/' test.txt
+```
+
+如果是在 `mac` 上运行会报错：
+
+那是因为 mac 强制要求备份
+```bash
+sed: 1: "test.txt": undefined label '.txt'
+```
+
+```bash
+# 指定备份后缀 .bak 执行后将生成一个 test.txt.bak 文件
+sed -i '.bak' 's/apple/banana/' test.txt
+# 或者指定 -i.bak 选项, 会默认保存备份文件, 不需要指定备份后缀
+sed -i.bak 's/apple/banana/' test.txt
+```
+
+
+
+#### 替换标记
+s命令最后有一个可选的 flags `s/pattern/replacement/flags`, 有4种可用的标记：
+- 数字(大于0)，表明新文本将替换第几处模式匹配的地方
+- g, 全局匹配, 表示会替换所有匹配的文本
+- p, 表明原先的内容要先打印出来
+- w file, 将替换的结果写入到文件中
+
+**1、数字**:
+
+表明只替换每行中第二次出现的匹配模式。
+```bash
+$ cat test.txt
+i like apple apple
+i like apple apple
+
+$ sed 's/apple/banana/2' test.txt
+i like banana apple
+i like banana apple
+```
+
+**2、g**:
+
+在替换时如果不带 `g` 标记只会替换每行中第一次出现匹配模式。
+```bash
+$ cat test.txt
+i like apple apple
+i like apple apple
+
+# 没有带 g 标记
+$ sed 's/apple/banana/' test.txt
+i like banana apple
+i like banana apple
+
+# 带 g 标记
+$ sed 's/apple/banana/g' test.txt
+i like banana banana
+i like banana banana
+```
+
+**3、p**:
+p 替换标记会打印与替换命令中指定的模式匹配的行，通常会与 `-n` 选项一起使用才能发挥更好的作用。
+
+-n 选项会禁止 `sed` 编辑器输出，但p替换标记会输出修改过的行，将两者配合使用的效果就是只输出被替换命令修改过的行。
+
+```bash
+$ cat test.txt
+i like apple apple
+i like apple apple
+
+$ sed -n 's/apple/banana/p' test.txt
+i like banana apple
+i like banana apple
+```
+
+
+**4、w**:
+
+将命令替换的结果写入到文件中
+```bash
+$ sed 's/apple/banana/w 1.txt' test.txt
+```
+
+
+#### 替换反斜杠
+当遇到需要匹配反斜杠 `/` 时就很麻烦了，需要做转义：
+
+```bash
+# 将 /bin/sh 替换为 /bin/bash
+$ sed 's/\/bin\/sh/\/bin\/bash/' test.txt
+```
+
+如果有大量这种反斜杠可读性就变差了， 还好 sed 提供了感叹号作为字符串分隔符：
+
+```bash
+# 感叹号是一个占位符, 代表的是 / 反斜杠
+$ sed 's!/bin/sh!/bin/bash!' test.txt
+```
 
 
 
@@ -1387,7 +1556,7 @@ chmod 777 README.md # 等价于 chmod a=rwx README.md
 
 
 ## lsof
-列出当前系统打开文件的工具
+全名list open files, 列出当前系统已经被打开的文件。
 
 ```bash
 ## 打印所有打开文件的的列表
@@ -3395,7 +3564,7 @@ timeout 60 npm run build
 
 
 ## exit
-退出当前登录Shell, 可以使用快捷键退出 `Ctrl + D`。
+退出当前登录Shell, 或使用快捷键 `Ctrl + D`。
 
 等价命令 `logout`
 
@@ -3453,7 +3622,7 @@ read -s -p "请输入您的密码：" data
 
 
 ## tee
-tee命令相当于管道的一个T型接头，它将从`STDIN标准输入`过来的数据同时发往两处，一处是`STDOUT`，另一处是tee命令指定的文件名。
+tee命令相当于管道的一个T型接头，它将从 `STDIN标准输入` 过来的数据同时发往两处，一处是 `STDOUT` ，另一处是tee命令指定的文件名。
 
 tee 命令通常用于 shell 脚本当中。
 
