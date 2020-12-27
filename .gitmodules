@@ -1,0 +1,4 @@
+[submodule "sub2"]
+	path = sub2
+	url = https://gitee.com/xiejiahe/sub.git
+	branch = main
