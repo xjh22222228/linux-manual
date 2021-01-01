@@ -4,7 +4,7 @@ function GitMergeDemo() {
   const [number, setNumber] = useState(0)
 
   useEffect(() => {
-    setNumber(1000)
+    setNumber(100)
   }, [])
 
   return (
