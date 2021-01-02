@@ -8,6 +8,7 @@
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
       <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
     </a>
+    <img alt="Linux" src="https://img.shields.io/static/v1.svg?label=&message=Linux&style=flat-square&color=efdf07">
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
   </p>
 </p>
@@ -505,31 +506,36 @@ wc -m README.md
 
 
 ## chattr
-用于修改文件属性
+用于修改文件属性, 这项指令可改变存放在ext2文件系统上的文件或目录属性。
 
-参数:
-- a：让文件或目录仅供附加用途
-- b：不更新文件或目录的最后存取时间
-- c：将文件或目录压缩后存放
-- d：将文件或目录排除在倾倒操作之外
-- i：不得任意更动文件或目录
-- s：保密性删除文件或目录
-- S：即时更新文件或目录
-- u：预防意外删除
+| 参数        | 描述              |
+| ----------- |------------------ |
+| a           | 让文件或目录仅供附加用途     |
+| b           | 不更新文件或目录的最后存取时间     |
+| c           | 将文件或目录压缩后存放     |
+| d           | 将文件或目录排除在倾倒操作之外     |
+| i           | 不得任意更动文件或目录     |
+| s           | 保密性删除文件或目录     |
+| S           | 即时更新文件或目录     |
+| u           | 预防意外删除     |
+| -R          | 递归处理，将指令目录下的所有文件及子目录一并处理     |
+| -v<版本编号> | 设置文件或目录版本     |
+| -V          | 显示指令执行过程     |
+| +<属性>     | 开启文件或目录的该项属性     |
+| -<属性>     | 关闭文件或目录的该项属性     |
+| =<属性>     | 指定文件或目录的该项属性     |
 
-- -R：递归处理，将指令目录下的所有文件及子目录一并处理
-- -v<版本编号>：设置文件或目录版本
-- -V：显示指令执行过程
-- +<属性>：开启文件或目录的该项属性
-- -<属性>：关闭文件或目录的该项属性
-- =<属性>：指定文件或目录的该项属性
 
 ```bash
 # 锁定该文件, 防止文件被修改或删除
-chattr +i README.md  # chattr -i README.md  解锁
+$ chattr +i README.md
+
+# -i 解锁文件
+$ chattr -i README.md
 
 # 可以使用 lsattr 查看赋予的属性
-lsattr README.md
+$ lsattr README.md
+----i--------e-- README.md
 ```
 
 
@@ -1309,12 +1315,14 @@ ping -i 5 xiejiahe.com
 ## which
 查找某个命令存储在哪个位置, 输出绝对路径, `which` 会在环境变量 `$PATH` 设置的目录里去查找。
 
-注: 可以通过 `echo $PATH` 查看设置的目录. 
+注: 可以通过 `echo $PATH` 查看设置的目录。
+
+只有内建命令才会正常打印，判断是否内建命令可以通过 [type](#type) 检查。
 
 ```bash
 which top  # /usr/bin/top
 
-# 查找pwd发现会找不到，因为 pwd 是bash的内置命令
+# 查找pwd发现会找不到，因为 pwd 是shell内置命令
 which pwd
 
 # 打印多个命令
@@ -2258,17 +2266,18 @@ admin:youyouyou00..11
 
 ```bash
 # 必须使用完整路径，不能使用shell名
-chsh -s /bin/sh
+chsh -s /bin/zsh
 ```
 
 查看当前 `Shell`
 ```bash
-echo $SHELL # /bin/bash
+echo $SHELL # /bin/zsh
 ```
 
 列出当前所有已安装的Shell
 ```bash
-cat /etc/shells
+$ cat /etc/shells
+
 # /bin/bash
 # /bin/csh
 # /bin/dash
@@ -2759,7 +2768,7 @@ tail -f wget-log   # 查看后台下载进度
 | -L                  | HTTP请求跟随服务器重定向 |
 | -I, --head          | 显示HTTP响应报文 |
 | -H                  | 设置请求头 |
-| -X                  | 指定HTTP请求方法 |
+| -X                  | 指定HTTP请求方法，大写字母 |
 | -d                  | HTTP请求实体内容 |
 | --cookie            | 指定发送cookie |
 | -v                  | 打印整个传输过程 |
@@ -3424,21 +3433,32 @@ curl https://www.xiejiahe.com/
 
 
 ## history
-列出当前系统使用过的命令，默认保存1000条, 通常保存在 `~/.bash_history` 文件中，注意的是只有在Shell退出时才写入到文件。
+列出当前系统使用过的命令，通常保存在 `~/.bash_history` 文件中，注意的是只有在Shell退出时才写入到文件。
 
+如果是在 `mac` 下运行会有差异。
 
 ```bash
 # 列出当前使用过的命令
 history
 
-# 指定要显示的条数
+# 指定要显示的条数, mac 下不支持
 history 50
 
-# 清空历史命令
-history -c
+# 清除历史命令
+history -c # 清空历史命令
+history -d 编号 # 清除指定编号
 
 # -a 强制写入到 ~/.bash_history 文件中而不用等shell退出才写入
 history -a
+```
+
+执行历史命令, 在 `mac` 下运行需要回车确认。
+```bash
+# 指定编号, 例如运行 1001 编号的命令
+$ !1001
+
+# 执行历史最后一条命令
+$ !!
 ```
 
 
