@@ -6,7 +6,7 @@
   <p align="center">一张网页概括，没有晦涩难度的例子！</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
-      <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars Badge"/>
+      <img src="https://img.shields.io/github/stars/xjh22222228/linux-manual" alt="Stars"/>
     </a>
     <img alt="Linux" src="https://img.shields.io/static/v1.svg?label=&message=Linux&style=flat-square&color=efdf07">
     <img src="https://img.shields.io/github/license/xjh22222228/linux-manual" />
@@ -374,32 +374,32 @@ rmdir -i temp
 
 ```bash
 # 在当前目录递归搜索文件名为 README.md 文件
-find . -name README.md
+$ find . -name README.md
 # 也可以指定多个目录，比如 src1 src2目录
-find src1 src2 -name README.md
+$ find src1 src2 -name README.md
 
 # 通过通配符进行查找, 必须用引号括着, 这里查找所有后缀为 .md 文件
-find . -name "*.md"
-find . -iname "*.md"  # 忽略文件大小写
+$ find . -name "*.md"
+$ find . -iname "*.md"  # 忽略文件大小写
 
 # 排除文件，只要加 ! , 排除掉所有 .md 后缀的文件
-find . ! -name "*.md"
+$ find . ! -name "*.md"
 
 # 根据类型进行过滤搜索
 # f 普通文件, l 符号连接
 # d 目录, c 字符设备
 # b 块设备, s 套接字, p Fifo
-find . -type f
+$ find . -type f
 
 # 限定目录递归深度
-find . -maxdepth 3  # 最大为3个目录
-find . -mindepth 3  # 最小为3个目录
+$ find . -maxdepth 3  # 最大为3个目录
+$ find . -mindepth 3  # 最小为3个目录
 
 # 查找文件大小大于 25k 文件 
-find /root -size +25k
+$ find /root -size +25k
 
 # 查找10天前文件 -mtime 修改时间、 -ctime 创建时间、 -atime 访问时间
-find /root -mtime +10
+$ find /root -mtime +10
 ```
 
 
@@ -440,28 +440,29 @@ locate -i README.md
 
 ```bash
 # 显示当前目录列表
-ls
+$ ls
 
 # 列出指定目录下的列表
-ls ./src
+$ ls ./src
 
 # 显示目录列表的详细信息
-ls -l
+$ ls -l
 
 # 显示目录列表详细信息和大小
-ls -lh
+$ ls -lh
 
 # 列出所有文件包括隐藏文件
-ls -a
+$ ls -a
 
 # -F 可以显示类型，用以区分是文件还是目录
-ls -F # 后缀为 ”/“ 代表是目录，”*“ 为可执行文件，没有则为文件
+# 后缀为 ”/“ 代表是目录，”*“ 为可执行文件，没有则为文件
+$ ls -F
 
 # 过滤文件列表, * 代表0个或多个字符， ? 代表一个字符
-ls javasc*
+$ ls javasc*
 
 # -i 查看inode编号, 每一个文件或目录都有一个唯一的编号，这个数字由内核分配给文件系统中的每一个对象
-ls -i
+$ ls -i
 ```
 
 
@@ -472,7 +473,7 @@ ls -i
 显示当前工作目录
 
 ```bash
-pwd
+$ pwd
 ```
 
 
@@ -481,16 +482,16 @@ pwd
 
 ```bash
 # 统计字节数
-wc -c README.md
+$ wc -c README.md
 
 # 统计行数
-wc -l README.md
+$ wc -l README.md
 
 # 统计字数
-wc -w README.md
+$ wc -w README.md
 
 # 统计字符数
-wc -m README.md
+$ wc -m README.md
 ```
 
 
@@ -550,10 +551,10 @@ $ lsattr README.md
 
 ```bash
 # 1.txt 和 2.txt 合并输出
-paste 1.txt 2.txt
+$ paste 1.txt 2.txt
 
 # 1.txt 2.txt 合并后保存为 3.txt
-paste 1.txt 2.txt > 3.txt
+$ paste 1.txt 2.txt > 3.txt
 ```
 
 
@@ -789,6 +790,131 @@ $ sed 's/\/bin\/sh/\/bin\/bash/' test.txt
 # 感叹号是一个占位符, 代表的是 / 反斜杠
 $ sed 's!/bin/sh!/bin/bash!' test.txt
 ```
+
+
+
+#### 使用地址
+默认情况下 `sed` 命令会作用于所有行，如果只想作用于某些行，比如第10行到100行，则必须用行寻址（Line Addressing）。
+
+有两种形式的行寻址：
+- 以数字形式表示行区间
+- 以文本模式来过滤出行
+
+**1、数字方式的行寻址：**
+
+以数字 2 表示只处理第2行
+```bash
+$ sed '2s/apple/banana/' test.txt
+i like apple
+i like banana
+i like apple
+i like apple
+i like apple
+```
+
+以区间来表示，第2行到3行
+```bash
+$ sed '2,3s/apple/banana/' test.txt
+i like apple
+i like banana
+i like banana
+i like apple
+i like apple
+```
+
+
+从某行开始的所有行, 用美元符号 `$` 表示末尾行
+```bash
+$ sed '2,$s/apple/banana/' test.txt
+i like apple
+i like banana
+i like banana
+i like banana
+i like banana
+```
+
+
+**2、以文本模式过滤出行**
+
+如果只想作用于 `B` 开头的行, 则可以使用文本模式过滤, 支持正则表达式。
+
+格式: `/pattern/command`
+```bash
+$ cat README.md
+A: Good
+B: Bad
+A: Good
+B: Bad
+```
+
+将所有 B 开头的 Bad 改成 Good!
+```bash
+$ sed '/B/s/Bad/Good!/' test.txt
+A: Good
+B: Good!
+A: Good
+B: Good!
+```
+
+**3、多个命令使用相同行寻址**
+
+要将多个命令使用相同行寻址可以使用分隔符：
+```bash
+$ sed '1,$s/Bad/Luck/;1,$s/Good/Nice!/' test.txt
+A: Nice!
+B: Luck
+A: Nice!
+B: Luck
+```
+
+这只是其中一种办法，更好的办法是使用花括号将多条命令组合在一起：
+
+```bash
+$ sed '1,${
+s/Bad/Luck/
+s/Good/Nice!/
+}' test.txt
+
+A: Nice!
+B: Luck
+A: Nice!
+B: Luck
+```
+只在多个命令使用相同寻址才使用花括号。
+
+
+
+#### 删除行
+删除行使用 `d` 命令来执行, 使用该命令需要小心，如果不指定行寻址会删除所有行。
+
+
+只指定 `d` 命令将删除所有行
+```bash
+$ sed 'd' test.txt
+```
+
+上面已经介绍过通过数字方式寻址行，同样适用删除：
+```bash
+# 只删除第一行
+$ sed '1d' test.txt
+```
+
+或者通过数字区间
+```bash
+# 删除1-3行
+$ sed '1,3d' test.txt
+
+# 删除第一行以及后面所有行
+sed '1,$d' test.txt
+```
+
+
+
+
+
+
+
+
 
 
 
