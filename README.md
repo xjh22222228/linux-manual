@@ -168,13 +168,13 @@
 
 ```bash
 # 显示前10行内容
-head README.md
+$ head README.md
 
 # 或者显示多个文件
-head README.md package.json
+$ head README.md package.json
 
 # -n 指定显示行数
-head -n 100 README.md
+$ head -n 100 README.md
 ```
 
 
@@ -185,19 +185,19 @@ head -n 100 README.md
 
 ```bash
 # 默认显示末尾10行
-tail README.md
+$ tail README.md
 
 # -n 指定显示末尾20行
-tail -n 20 README.md
+$ tail -n 20 README.md
 
 # 实时监听README.md文件变化
-tail -f README.md
+$ tail -f README.md
 
 # 根据文件名进行追踪, 如果删除后创建相同的文件名会继续追踪
-tail -F README.md
+$ tail -F README.md
 
 # 显示文件的最后10个字符
-tail -c README.md
+$ tail -c README.md
 ```
 
 
@@ -210,14 +210,14 @@ tail -c README.md
 
 ```bash
 # 查看 README.md 文件全部内容
-cat README.md
-cat README.md README2.md  # 多个文件
+$ cat README.md
+$ cat README.md README2.md  # 多个文件
 
 # -n 每一行显示行号包括空行
-cat -n README.md
+$ cat -n README.md
 
 # -b 只在有内容的行显示行号
-cat -b README.md
+$ cat -b README.md
 ```
 
 
@@ -238,10 +238,10 @@ cat -b README.md
 ```bash
 # 打印内容并输出行号, 除了空号
 # 等价于 cat -b README.md
-nl README.md
+$ nl README.md
 
 # 空行同样打印行号
-nl -b a README.md
+$ nl -b a README.md
 ```
 
 
@@ -265,13 +265,13 @@ nl -b a README.md
 - `Q` - 退出
 
 ```bash
-more README.md
+$ more README.md
 
 # 从第10行开始显示
-more +10 README.md
+$ more +10 README.md
 
 # 显示查看进度
-more -d README.md # --More--(17%)[Press space to continue, 'q' to quit.]
+$ more -d README.md # --More--(17%)[Press space to continue, 'q' to quit.]
 ```
 
 
@@ -284,7 +284,7 @@ more -d README.md # --More--(17%)[Press space to continue, 'q' to quit.]
 创建一个空文件, 如果文件存在只会修改文件的创建时间
 
 ```bash
-touch README.md
+$ touch README.md
 ```
 
 
@@ -293,13 +293,13 @@ make directory, 创建目录。
 
 ```bash
 # 在当前目录下创建 temp 目录
-mkdir temp
+$ mkdir temp
 
 # 创建多层目录
-mkdir -p temp/temp2/temp3
+$ mkdir -p temp/temp2/temp3
 
 # 基于权限创建
-mkdir -m 777 temp
+$ mkdir -m 777 temp
 ```
 
 
@@ -311,13 +311,13 @@ mkdir -m 777 temp
 
 ```bash
 # 创建本地临时文件, 会在当前目录下创建一个叫 log.XXXXXX, XXXXXX是一个随机字符码，保证文件名在目录中是唯一的。
-mktemp log.XXXXXX  # log.J3awfb
+$ mktemp log.XXXXXX  # log.J3awfb
 
 # -t, 在 /tmp 目录创建临时文件, 返回绝对路径地址
-mktemp -t log.XXXXXX # /tmp/log.G5g9dX
+$ mktemp -t log.XXXXXX # /tmp/log.G5g9dX
 
 # -d 创建临时目录, 这样就能用该目录进行任何需要的操作了，比如创建其他的临时文件
-mktemp -d dir.XXXXXX
+$ mktemp -d dir.XXXXXX
 ```
 
 
@@ -334,14 +334,14 @@ mktemp -d dir.XXXXXX
 注: 使用此命令需要非常小心, 一但删除无法恢复
 ```bash
 # 删除当前目录下的 1.txt 文件
-rm 1.txt
+$ rm 1.txt
 
 # -i 删除前询问是否真的要删除，因为一旦删除无法恢复
-rm -i README.md
+$ rm -i README.md
 
 # 这条命令比较常用, 强制删除目录或文件
 # -r 如果是目录递归删除, -f 强制删除 不发出任何警告
-rm -rf ./src
+$ rm -rf ./src
 ```
 
 
@@ -353,13 +353,13 @@ rm -rf ./src
 注：`rmdir` 实际上用得并不多，因为不是很灵活，基本上使用 `rm` 代替
 ```bash
 # 删除当前 temp 空目录, 如果不是空目录会发出警告
-rmdir temp
+$ rmdir temp
 
 # -p 参数可以删除多层空目录, 发现temp3是空目录删除掉，然后接着往父级找如果还是空目录继续删除...
-rmdir -p temp1/temp2/temp3
+$ rmdir -p temp1/temp2/temp3
 
 # -i 删除前询问确认删除
-rmdir -i temp
+$ rmdir -i temp
 ```
 
 
@@ -412,10 +412,10 @@ $ find /root -mtime +10
 
 ```bash
 # 搜索 README.md 相关文件
-locate README.md
+$ locate README.md
 
 # 忽略大小写
-locate -i README.md
+$ locate -i README.md
 ```
 
 
@@ -624,27 +624,27 @@ stat logs
 
 ```bash
 # 从 README.md 文件中搜索 linux 关键字
-grep "linux" README.md
-grep "linux" README.md README2.md # 多个文件搜索
+$ grep "linux" README.md
+$ grep "linux" README.md README2.md # 多个文件搜索
 
 # 高亮打印匹配文本
-grep "linux" README.md --color
+$ grep "linux" README.md --color
 
 # -o 只打印匹配到的内容
-grep -o "linux" README.md --color
+$ grep -o "linux" README.md --color
 
 # -n 打印匹配的行号
-grep -n "linux" README.md
+$ grep -n "linux" README.md
 
 # -c 只打印成功匹配的次数
-grep -c "linux" README.md
+$ grep -c "linux" README.md
 
 # -r 递归搜索目录文件
-grep -r "linux" ./src
+$ grep -r "linux" ./src
 
 # 使用 glob 风格表达式搜索
 # 等价于 grep -E "[0-9]" README.md
-egrep "[0-9]"
+$ egrep "[0-9]"
 ```
 
 
@@ -731,9 +731,9 @@ sed: 1: "test.txt": undefined label '.txt'
 
 ```bash
 # 指定备份后缀 .bak 执行后将生成一个 test.txt.bak 文件
-sed -i '.bak' 's/apple/banana/' test.txt
+$ sed -i '.bak' 's/apple/banana/' test.txt
 # 或者指定 -i.bak 选项, 会默认保存备份文件, 不需要指定备份后缀
-sed -i.bak 's/apple/banana/' test.txt
+$ sed -i.bak 's/apple/banana/' test.txt
 ```
 
 
@@ -916,6 +916,9 @@ B: Luck
 只指定 `d` 命令将删除所有行
 ```bash
 $ sed 'd' test.txt
+
+# 上面并不会删除所有行，你需要指定 -i 直接编辑
+$ sed -i 'd' test.txt
 ```
 
 上面已经介绍过通过数字方式寻址行，同样适用删除：
@@ -930,7 +933,7 @@ $ sed '1d' test.txt
 $ sed '1,3d' test.txt
 
 # 删除第一行以及后面所有行
-sed '1,$d' test.txt
+$ sed '1,$d' test.txt
 ```
 
 
@@ -951,25 +954,25 @@ sed '1,$d' test.txt
 
 ```bash
 # 进入当前 src 目录
-cd src
+$ cd src
 
 # 回到上一次目录
-cd -
+$ cd -
 
 # 返回上一级目录
-cd ..
-cd ../../..   # 返回多级
+$ cd ..
+$ cd ../../..   # 返回多级
 
 # 进入家目录
-cd ~
-cd  # 或者不带任何参数
+$ cd ~
+$ cd  # 或者不带任何参数
 
 # 将上一个命令的参数作为cd参数使用
-cd !$
+$ cd !$
 
 # 模糊匹配目录，有时目录名很长一个一个敲效率就很低
 # * 代表0个或多个字符， ? 代表一个字符
-cd javasc*
+$ cd javasc*
 ```
 
 
@@ -983,16 +986,16 @@ cd javasc*
 
 ```bash
 # 将当前 README.md 文件拷贝到上一层
-cp ./README.md ../README.md
+$ cp ./README.md ../README.md
 
 # -a 将原文件属性一同拷贝, 修改时间、创建时间等
-cp -a ./README.md ../README.md
+$ cp -a ./README.md ../README.md
 
 # -r 用于递归拷贝目录
-cp -r home ../home
+$ cp -r home ../home
 
 # -i 如果目标文件存在会询问用户是否需要覆盖
-cp -i README.md README.md
+$ cp -i README.md README.md
 ```
 
 
@@ -1013,13 +1016,16 @@ cp -i README.md README.md
 
 ```bash
 # 将 README.md 重命名为 README-2.md, 如果 README-2.md 存在会直接覆盖。
-mv README.md README-2.md
+$ mv README.md README-2.md
 
 # 将 README.md 移动到上一层目录
-mv README.md ../README.md
+$ mv README.md ../README.md
 
 # -i 交互式操作，如果目标文件存在则进行询问是否覆盖
-mv -i README.md ../README.md
+$ mv -i README.md ../README.md
+
+# -f 如果出现同名直接覆盖
+$ mv -f 1.txt 2.txt
 ```
 
 
@@ -1034,19 +1040,19 @@ mv -i README.md ../README.md
 
 ```bash
 # 在mac下用Finder打开当前目录
-open .
+$ open .
 
 # 用默认应用程序打开文件
-open README.md
+$ $open README.md
 
 # 用默认编辑器打开文件
-open -e README.md
+$ open -e README.md
 
 # 如果是一个URL用默认浏览器打开页面
-open https://github.com/xjh22222228/linux-manual.git
+$ open https://github.com/xjh22222228/linux-manual.git
 
 # 指定某个应用程序打开某个文件, 如果不指定文件默认直接打开程序
-open -a /Applications/Google\ Chrome.app README.md
+$ open -a /Applications/Google\ Chrome.app README.md
 ```
 
 
@@ -1097,7 +1103,7 @@ echo $(getName)
 
 ```bash
 # 递归当前目录下所有文件并生成目录树
-tree
+$ tree
 # .
 # ├── LICENSE
 # ├── README.md
@@ -1106,13 +1112,13 @@ tree
 
 
 # -I 忽略某些目录
-tree -I "node_modules|.git|.svn"
+$ tree -I "node_modules|.git|.svn"
 
 # 只显示目录
-tree -d
+$ tree -d
 
 # 指定要递归的目录层级
-tree -L 3
+$ tree -L 3
 ```
 
 
@@ -1142,13 +1148,13 @@ tree -L 3
 
 ```bash
 # 默认创建硬链接
-ln 1.md 2.md
+$ ln 1.md 2.md
 
 # -s 创建软链接, 2.md 就相当于副本
-ln -s 1.md 2.md
+$ ln -s 1.md 2.md
 
 # -f 强制执行创建
-ln -f README.md ./src/a.md
+$ ln -f README.md ./src/a.md
 ```
 
 
@@ -1160,10 +1166,10 @@ ln -f README.md ./src/a.md
 
 ```bash
 # 输出 README.md: ASCII text
-file README.md
+$ file README.md
 
 # index.html: HTML document, UTF-8 Unicode text, with very long lines, with no line terminators
-file index.html
+$ file index.html
 ```
 
 
@@ -1187,10 +1193,10 @@ file index.html
 
 ```bash
 # 排序并打印到终端
-sort README.md
+$ sort README.md
 
 # 排序并去重将结果输出到 u.md 文件，可以用来替代 uniq 命令
-sort -u README.md -o u.md
+$ sort -u README.md -o u.md
 ```
 
 
@@ -1205,13 +1211,13 @@ sort -u README.md -o u.md
 
 ```bash
 # 将 1.txt 文件重复内容过滤后输出到 2.txt 文件
-uniq 1.txt 2.txt
+$ uniq 1.txt 2.txt
 
 # -c 在左边显示每行重复次数
-uniq -c 1.txt
+$ uniq -c 1.txt
 
 # -d 只显示重复行内容
-uniq -d 1.txt
+$ uniq -d 1.txt
 ```
 
 `uniq` 命令有个问题，只能过滤相邻的内容，比如:
@@ -1234,7 +1240,7 @@ uniq -d 1.txt
 解决办法是配合使用 `sort` 命令, 原理是先排序为相邻再去重(实际上只用 sort 命令就能解决)：
 
 ```bash
-sort 1.txt | uniq > 2.txt
+$ sort 1.txt | uniq > 2.txt
 ```
 
 
@@ -1247,13 +1253,13 @@ sort 1.txt | uniq > 2.txt
 
 ```bash
 # 将 README.md 文件每10行分割成一个文件
-split -10 README.md
+$ split -10 README.md
 
 # -b 按字节分割
-split -b 100000 README.md
+$ split -b 100000 README.md
 
 # 指定分割后的文件名前缀为 READ ，分割后会自动在文件名后随机加上编号
-split -b 100000 README.md READ
+$ split -b 100000 README.md READ
 ```
 
 
@@ -1274,20 +1280,20 @@ vim 的快捷键指令非常多，只列出一些实用性便于记忆。
 
 ```bash
 # 最简单的打开文件方式, 如果文件不存在会开辟一段新的缓冲区域来编辑。
-vim README.md
+$ vim README.md
 
 # 打开文件并定位到最后一行
-vim + README.md
+$ vim + README.md
 
 # 打开文件并定位到某一行, +号后面指定行数
-vim +100 README.md
+$ vim +100 README.md
 
 # 打开多个文件
 # :bn 切换下一个文件
 # :bp 切换上一个文件
 # :ls 列出所有已经打开的文件
 # :b2 切换到第2个文件, 2是个任意数字
-vim 1.txt 2.txt
+$ vim 1.txt 2.txt
 ```
 
 
@@ -1420,10 +1426,10 @@ vim 1.txt 2.txt
 
 ```bash
 # 例如运行一个 node.js 程序
-nohup node main.js
+$ nohup node main.js
 
 # 在当前目录会出现 nohup.out 文件，里面包含了 Hello World
-nohuo echo "Hello World"
+$ nohuo echo "Hello World"
 ```
 
 
@@ -1434,10 +1440,10 @@ nohuo echo "Hello World"
 
 ```bash
 # 每5秒执行一次 tail 命令, 如果不指定-n 默认为2秒
-watch -n 5 "tail README.md"
+$ watch -n 5 "tail README.md"
 
 # -d 高亮显示变化内容
-watch -n 5 -d "tail README.md"
+$ watch -n 5 -d "tail README.md"
 ```
 
 
@@ -1449,13 +1455,13 @@ watch -n 5 -d "tail README.md"
 
 ```bash
 # 测试 github.com 连通性, 按 ctrl + C 停止 
-ping github.com
+$ ping github.com
 
 # ping 5次后断开
-ping -c 5 xiejiahe.com
+$ ping -c 5 xiejiahe.com
 
 # 每5秒ping 一次
-ping -i 5 xiejiahe.com
+$ ping -i 5 xiejiahe.com
 ```
 
 
@@ -1469,13 +1475,13 @@ ping -i 5 xiejiahe.com
 只有内建命令才会正常打印，判断是否内建命令可以通过 [type](#type) 检查。
 
 ```bash
-which top  # /usr/bin/top
+$ which top  # /usr/bin/top
 
 # 查找pwd发现会找不到，因为 pwd 是shell内置命令
-which pwd
+$ which pwd
 
 # 打印多个命令
-which ls vi
+ $which ls vi
 ```
 
 
@@ -1487,20 +1493,20 @@ which ls vi
 
 ```bash
 # 什么参数都不加，默认会在1分钟后关机
-shutdown
+$ shutdown
 
 # 在将系统的服务停掉之后就重新开机
-shutdown -r now
+$ shutdown -r now
 
 # 关闭系统并切断电源
-shutdown -h now # 立即关机, 实际上调用 init 0
+$ shutdown -h now # 立即关机, 实际上调用 init 0
 
 # 把前一个关机或重启取消掉
-shutdown -c
+$ shutdown -c
 
 # 设定一个时间关机,  "&" 符号表示后台模式，让出CLI
-shutdown -h 05:33 &
-shutdown +5 "5分钟后关机" # 5分钟后关机，同时送出警告信息给登入用户：
+$ shutdown -h 05:33 &
+$ shutdown +5 "5分钟后关机" # 5分钟后关机，同时送出警告信息给登入用户：
 ```
 
 
@@ -1512,16 +1518,16 @@ shutdown +5 "5分钟后关机" # 5分钟后关机，同时送出警告信息给�
 
 ```bash
 # 重启系统
-reboot
+$ reboot
 
 # -f 强制重启
-reboot -f
+$ reboot -f
 
 # 用于模拟重新启动系统，不会真实重启，数据会写入 /var/log/wtmp 
-reboot -w
+$ reboot -w
 
 # 在重新启动之前关闭所有网络界面
-reboot -i
+$ reboot -i
 ```
 
 
@@ -1672,24 +1678,32 @@ $ atrm 1
 ## uname
 打印系统信息
 
+| 参数  | 描述              |
+| ---- |------------------ |
+| -a   | 打印系统所有信息     |
+| -r   | 打印系统版本     |
+| -n   | 打印网络节点主机名称     |
+| -p   | 打印处理器名称     |
+| -m   | 打印主机的硬件架构名称     |
+
 ```bash
 # 不带任何参数打印当前操作系统内核名称
-uname # Linux , 等价于 uname -s
+$ uname # Linux , 等价于 uname -s
 
 # 打印系统所有信息
-uname -a
+$ uname -a
 
 # -r 打印系统版本 , 如果次版本号都是偶数，说明是一个稳定版
-uname -r # 3.10.0-514.26.2.el7.x86_64
+$ uname -r # 3.10.0-514.26.2.el7.x86_64
 
 # 打印网络节点主机名称
-uname -n # Yin.local
+$ uname -n # Yin.local
 
 # 打印处理器名称
-uname -p # i386
+$ uname -p # i386
 
 # 打印主机的硬件架构名称
-uname -m # x86_64
+$ uname -m # x86_64
 ```
 
 
@@ -1701,10 +1715,10 @@ uname -m # x86_64
 
 ```bash
 # 显示所有网络参数信息
-ifconfig
+$ ifconfig
 
 # 配置网卡IP地址
-ifconfig eth0 192.168.1.111
+$ ifconfig eth0 192.168.1.111
 ```
 
 
@@ -1773,15 +1787,15 @@ chmod [参数选项] [mode, 八进制或符号表示] files...
 
 ```bash
 # README.md 文件设为所有用户可读取
-chmod a+r README.md
+$ chmod a+r README.md
 
 # -R 递归目录下所有文件
-chmod a+r src/
+$ chmod a+r src/
 
 # 也可以用八进制符号表示
 # 3个数字分别为 x,y,z 表示User、Group、及Other的权限。
 # r=4, w=2, x=1
-chmod 777 README.md # 等价于 chmod a=rwx README.md
+$ chmod 777 README.md # 等价于 chmod a=rwx README.md
 ```
 
 
@@ -1971,11 +1985,17 @@ type ps
 # 列出所有已设置的别名
 alias
 
+# 设置别名
+alias ll='ls -l'
+```
+
+删除别名
+```bash
 # 删除所有别名
 unalias -a
 
-# 设置别名
-alias ll='ls -l'
+# 删除指定别名
+unalias ll
 ```
 
 
@@ -3701,6 +3721,14 @@ $ !1001
 # 执行历史最后一条命令
 $ !!
 ```
+
+永久清除历史记录, 执行 `hisotry -c` 只会清除当前Shell：
+```bash
+# 先把 .bash_history 文件所有内容删除，然后再次强制写入
+$ sed -i "d" ~/.bash_history && history -a
+```
+
+
 
 
 
