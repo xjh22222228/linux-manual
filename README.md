@@ -624,7 +624,7 @@ stat logs
 | -i     | 忽略大小写     |
 | -n     | 打印匹配行号     |
 | -c     | 打印匹配成功的次数     |
-| --color | 高亮打印匹配文本     |
+| --color| 高亮打印匹配文本     |
 | -o     | 只打印匹配到的内容     |
 | -v     | 反向查找     |
 | -E     | 正则查找     |
@@ -695,7 +695,7 @@ i like banana
 
 运行上面例子结果就会马上显示出来。
 
-命令解释: sed 's/要替换的内容/替换后的内容/' 文件名, s(substitute)替代
+命令解释: `sed 's/要替换的内容/替换后的内容/' 文件名`, s(substitute)替代
 
 
 #### 执行多个命令
@@ -909,6 +909,7 @@ s/Bad/Luck/
 s/Good/Nice!/
 }' test.txt
 
+# 打印:
 A: Nice!
 B: Luck
 A: Nice!
@@ -1086,7 +1087,7 @@ $ open -a /Applications/Google\ Chrome.app README.md
 
 ```bash
 # 等价 . ~/.bash_profile
-source ~/.bash_profile
+$ source ~/.bash_profile
 ```
 
 实际上大部分开发者都没搞懂 `source` 命令。 可以把它理解为编程语言中的 `import`, `java/python/js` 都有这个，就是用来导入文件。
@@ -1567,7 +1568,7 @@ $ reboot -i
 # up 750 days, 13:24  当前系统运行的天数，小时，分钟 （从上次开机起计算）
 # 1 user 当前系统登录用户数
 # load average: 0.08, 0.07, 0.06    一分钟、5分钟、15分钟平均负载, 这3个值不能大于CPU个数，如果大于了说明系统负载高，性能低。
-uptime # 21:51:53 up 750 days, 13:24,  1 user,  load average: 0.08, 0.07, 0.06
+$ uptime # 21:51:53 up 750 days, 13:24,  1 user,  load average: 0.08, 0.07, 0.06
 ```
 
 
@@ -1592,13 +1593,13 @@ uptime # 21:51:53 up 750 days, 13:24,  1 user,  load average: 0.08, 0.07, 0.06
 
 ```bash
 # 列出该用户设置
-crontab -l
+$ crontab -l
 
 # 编辑该用户设置
-crontab -e
+$ crontab -e
 
 # 删除该用户设置
-crontab -r
+$ crontab -r
 ```
 
 例子：
@@ -1659,7 +1660,7 @@ echo "ls" | at 11:11
 
 指定文件运行脚本
 ```bash
-at 11:11 -f /opt/script.sh
+$ at 11:11 -f /opt/script.sh
 ```
 
 
@@ -1751,13 +1752,13 @@ $ ifconfig eth0 192.168.1.111
 注意：`whereis` 是从数据库里查找的，因此特别快，默认情况下一星期更新一次数据，所以有时会查找删除的数据或者刚建立的数据无法找到问题。
 ```bash
 # 查找 nginx
-whereis nginx # nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/nginx.3pm.gz
+$ whereis nginx # nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/nginx.3pm.gz
 
 # -b 指定只查找二进制
-where -b nginx # nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx
+$ where -b nginx # nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx
 
 # -m 指定查找说明文件 man
-whereis -m nginx # nginx: /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/nginx.3pm.gz
+$ whereis -m nginx # nginx: /usr/share/man/man8/nginx.8.gz /usr/share/man/man3/nginx.3pm.gz
 ```
 
 
@@ -1829,13 +1830,13 @@ $ chmod 777 README.md # 等价于 chmod a=rwx README.md
 
 ```bash
 ## 打印所有打开文件的的列表
-lsof
+$ lsof
 
 # 查看指定端口被占用情况
-lsof -i:8080
+$ lsof -i:8080
 
 # -p 列出指定进程号所打开的文件
-lsof -p 6112
+$ lsof -p 6112
 ```
 
 
@@ -1852,13 +1853,13 @@ lsof -p 6112
 
 ```bash
 # 将 README.md 文件拥有者设为 byroot
-chown byroot README.md
+$ chown byroot README.md
 
 # 使用-R递归处理文件
-chown -R byroot src/
+$ chown -R byroot src/
 
 # 改变所属群组, 拥有者设为 byroot 群组设为 byrootgroup
-chown byroot:byrootgroup README.md
+$ chown byroot:byrootgroup README.md
 ```
 
 
@@ -1873,31 +1874,31 @@ chown byroot:byrootgroup README.md
 
 ```bash
 # 立即启动服务
-systemctl start nginx.service
+$ systemctl start nginx.service
 
 # 立即停止服务
-systemctl stop nginx.service
+$ systemctl stop nginx.service
 
 # 重启服务，stop 后 start
-systemctl restart nginx.service
+$ systemctl restart nginx.service
 
 # 重新载入服务, 一般情况下重新载入新的配置
-systemctl reload nginx.service
+$ systemctl reload nginx.service
 
 # 下次开机时默认启动服务
-systemctl enable nginx.service
+$ systemctl enable nginx.service
 
 # 下次开机时不会启动服务
-systemctl disable nginx.service
+$ systemctl disable nginx.service
 
 # 查看某个服务状态信息
-systemctl status nginx.service
+$ systemctl status nginx.service
 
 # 当前服务是否正在运行中
-systemctl is-active nginx.service
+$ systemctl is-active nginx.service
 
 # 查看服务开机有没有默认启动
-systemctl is-enable nginx.service
+$ systemctl is-enable nginx.service
 ```
 
 
@@ -1910,19 +1911,19 @@ systemctl is-enable nginx.service
 
 ```bash
 # 启动 docker 服务
-service docker start
+$ service docker start
 
 # 查看 docker 状态
-service docker status
+$ service docker status
 
 # 停止 docker 服务
-service docker stop
+$ service docker stop
 
 # 重新启动 docker 服务
-service docker restart
+$ service docker restart
 
 # 查看所有服务状态
-service --status-all
+$ service --status-all
 ```
 
 
@@ -1952,17 +1953,17 @@ service --status-all
 
 
 ```bash
-free
+$ free
 # 输出以下, 默认以字节为单位
               total        used        free      shared  buff/cache   available
 Mem:        1882192      485312      448424         704      948456     1204660
 Swap:             0           0           0
 
 # MB单位显示
-free - m
+$ free - m
 
 # 10秒执行一次查询
-free -s 10
+$ free -s 10
 ```
 
 
@@ -1986,10 +1987,10 @@ free -s 10
 
 ```bash
 # cd is a shell builtin  表示这是shell内建命令
-type cd
+$ type cd
 
 # ps is hashed (/usr/bin/ps)  表示这是一个外部命令
-type ps
+$ type ps
 ```
 
 
@@ -2004,19 +2005,19 @@ type ps
 
 ```bash
 # 列出所有已设置的别名
-alias
+$ alias
 
 # 设置别名
-alias ll='ls -l'
+$ alias ll='ls -l'
 ```
 
 删除别名
 ```bash
 # 删除所有别名
-unalias -a
+$ unalias -a
 
 # 删除指定别名
-unalias ll
+$ unalias ll
 ```
 
 
@@ -2029,7 +2030,7 @@ unalias ll
 ```bash
 # time 后面跟着要测试的命令
 # 输出:  0.02s user 0.01s system 0% cpu 6.233 total
-time curl https://github.com/xjh22222228/linux-manual
+$ time curl https://github.com/xjh22222228/linux-manual
 ```
 
 
@@ -2049,9 +2050,9 @@ time curl https://github.com/xjh22222228/linux-manual
 
 ```bash
 # 先来启一个后台作业进程, & 符号表示后台运行
-sleep 100 &
+$ sleep 100 &
 # 查看后台作业
-jobs # 输出：[1]+  Running       sleep 3 &
+$ jobs # 输出：[1]+  Running       sleep 3 &
 ```
 
 相关命令 [&](#&)
@@ -2066,7 +2067,7 @@ jobs # 输出：[1]+  Running       sleep 3 &
 
 ```bash
 # 模拟了休眠100秒并在后台运行
-sleep 100 &
+$ sleep 100 &
 ```
 
 你可以通过 [jobs](#jobs) 命令来查看后台作业。
@@ -2129,19 +2130,19 @@ sleep 100 &
 
 ```bash
 # 显示所有进程信息
-ps -A
+$ ps -A
 
 # 显示指定用户进程信息
-ps -u root
+$ ps -u root
 
 # 显示所有进程信息包括命令行
-ps -ef  # -e 等价于 -A  , 即等价于 ps -Af
+$ ps -ef  # -e 等价于 -A  , 即等价于 ps -Af
 
 # 这是 BSD 风格参数，列出所有正在内存中的进程
-ps aux
+$ ps aux
 
 # 配合 grep 查询指定进程
-ps -ef | grep nginx
+$ ps -ef | grep nginx
 ```
 
 
@@ -2155,7 +2156,7 @@ pstree命令以树状图的方式展现进程之间的派生关系。
 
 #### 显示所有进程的所有详细信息
 ```bash
-pstree -a
+$ pstree -a
 # 输出信息：
 ├─AliSecGuard
   ├─assist_daemon
@@ -2189,7 +2190,7 @@ pstree -a
 
 #### 显示当前所有进程的进程号和进程id
 ```bash
-pstree -p
+$ pstree -p
 # 输出信息：
 systemd(1)─┬─AliSecGuard(9347)─┬─{AliSecGuard}(9348)
            ├─agetty(474)
@@ -2258,16 +2259,16 @@ systemd(1)─┬─AliSecGuard(9347)─┬─{AliSecGuard}(9348)
 # 实时监听进程变化
 #  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                               
 #    1 root      20   0  125124   3612   2428 S  0.0  0.2   0:04.88 systemd
-top
+$ top
 
 # 显示2条
-top -n 2
+$ top -n 2
 
 # 显示指定的进程信息
-top -pid <pid>
+$ top -pid <pid>
 
 # 查看进程所有的线程
-top -H -p <pid>
+$ top -H -p <pid>
 ```
 
 
@@ -2311,19 +2312,19 @@ top -H -p <pid>
 
 ```bash
 # 列出所有占用端口
-netstat -ntlp
+$ netstat -ntlp
 
 # 显示所有网络状况
-netstat -a
+$ netstat -a
 
 # 显示所有tcp网络状况
-netstat -at
+$ netstat -at
 
 # 显示所有udp网络状况
-netstat -au
+$ netstat -au
 
 # 配合grep命令查看某个端口被占用情况
-netstat -ap | grep 8080
+$ netstat -ap | grep 8080
 ```
 
 
@@ -2353,17 +2354,17 @@ netstat -ap | grep 8080
 
 ```bash
 # 杀死 pid 为88 进程，不带参数默认等价 kill -15
-kill 88
+$ kill 88
 
 # 无条件终止进程，以下是等价，可以用进程名称信号
-kill -KILL 88
-kill -9 88
+$ kill -KILL 88
+$ kill -9 88
 
 # 显示信号
-kill -l
+$ kill -l
 
 # 杀死指定用户的所有进程
-kill -u nginx
+$ kill -u nginx
 ```
 
 
@@ -2375,7 +2376,7 @@ kill -u nginx
 
 ```bash
 # 杀死以tcp进程名称开头的所有进程
-killall tcp*
+$ killall tcp*
 ```
 
 
@@ -2439,7 +2440,7 @@ killall tcp*
 
 ```bash
 # -D, 查看默认值
-useradd -D
+$ useradd -D
 # 输出：
 GROUP=100                # 新用户会被添加到GID为100的公共组
 HOME=/home               # 新用户的HOME目录将位于 /home/loginname
@@ -2451,11 +2452,11 @@ CREATE_MAIL_SPOOL=yes    # 系统为该用户账户在mail目录下创建一个�
 
 
 # 创建一个 test 用户, -m 创建 /home/test 目录
-useradd -m test
+$ useradd -m test
 
 # 创建一个用户并设置密码
-useradd -m test # 不指定-p，因为需要加密那样很麻烦
-passwd test # 通过passwd修改指定用户密码
+$ useradd -m test # 不指定-p，因为需要加密那样很麻烦
+$ passwd test # 通过passwd修改指定用户密码
 ```
 
 添加新用户后可以执行 `cat /etc/passwd` 查看用户列表。
@@ -2471,10 +2472,10 @@ passwd test # 通过passwd修改指定用户密码
 
 ```bash
 # 删除用户，默认会从 /etc/passwd 文件中删除用户信息，而不会删除系统中属于该账户的任何文件
-userdel 用户名
+$ userdel 用户名
 
 # -r 用来删除用户目录， 之前创建的 /home/用户名 就不存在了, 使用-r参数需要小心，要检查是否有重要文件。
-userdel -r 用户名
+$ userdel -r 用户名
 ```
 
 
@@ -2489,10 +2490,10 @@ userdel -r 用户名
 
 ```bash
 # 如果不指定用户名，修改的是自己当前用户密码， 回车后输入新密码
-passwd
+$ passwd
 
 # 修改指定用户密码，比如test用户
-passwd test
+$ passwd test
 ```
 
 
@@ -2507,10 +2508,10 @@ passwd test
 
 ```bash
 # 利用输入重定向从文本中读取
-chpasswd < users.txt
+$ chpasswd < users.txt
 
 # 从标准输入读取
-echo 'test:fff33300..a' | chpasswd
+$ echo 'test:fff33300..a' | chpasswd
 ```
 
 user.txt 内容：
@@ -2533,12 +2534,12 @@ admin:youyouyou00..11
 
 ```bash
 # 必须使用完整路径，不能使用shell名
-chsh -s /bin/zsh
+$ chsh -s /bin/zsh
 ```
 
 查看当前 `Shell`
 ```bash
-echo $SHELL # /bin/zsh
+$ echo $SHELL # /bin/zsh
 ```
 
 列出当前所有已安装的Shell
@@ -2572,7 +2573,7 @@ $ cat /etc/shells
 
 ```bash
 # 修改 root 账号信息
-chfn root
+$ chfn root
 # Changing finger information for root.
 # Name [xiejiahe]: 
 # Office [ZhuHai]: 
@@ -2582,7 +2583,7 @@ chfn root
 
 #### 修改真实姓名
 ```bash
-chfn -f root
+$ chfn -f root
 ```
 
 
@@ -2610,16 +2611,16 @@ chfn -f root
 
 ```bash
 # 将 root 登录名修改为 root123
-usermod -l root root123
+$ usermod -l root root123
 
 # 锁定 test 账号
-usermod -L test
+$ usermod -L test
 
 # 当用户登录时目录为 /etc 下
-usermod -d /etc root
+$ usermod -d /etc root
 
 # 修改UID
-usermod -u 888 root
+$ usermod -u 888 root
 ```
 
 
@@ -2635,7 +2636,7 @@ usermod -u 888 root
 显示当前登录系统的所有用户的用户列表
 
 ```bash
-users
+$ users
 # xiejiahe
 # root
 # admin
@@ -2651,7 +2652,7 @@ users
 
 ```bash
 # 显示当前登录系统的用户
-who
+$ who
 xiejiahe console  Jun 15 21:38
 xiejiahe ttys001  Jun 15 21:44
 xiejiahe ttys002  Jun 15 21:44
@@ -2660,10 +2661,10 @@ xiejiahe ttys004  Jun 15 21:44
 xiejiahe ttys005  Jun 15 21:44
 
 # 显示登录账号名和总人数
-who -q
+$ who -q
 
 # 显示上次系统启动时间
-who -b  # reboot   ~        Jun 15 21:38
+$ who -b  # reboot   ~        Jun 15 21:38
 ```
 
 
@@ -2676,7 +2677,7 @@ who -b  # reboot   ~        Jun 15 21:38
 此命令与 `who` 相似，默认情况下比 `who` 命令输出内容更详细。
 
 ```bash
-w
+$ w
 # 输出
  22:44:33 up 748 days, 14:16,  1 user,  load average: 0.04, 0.03, 0.05
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
@@ -2690,10 +2691,10 @@ root     pts/0    183.11.111.11    22:40    1.00s  0.03s  0.00s w
 显示用户最近登录信息
 
 ```bash
-last # root     pts/0        183.58.247.64    Sun Jan  5 13:57 - 14:28  (00:30)
+$ last # root     pts/0        183.58.247.64    Sun Jan  5 13:57 - 14:28  (00:30)
 
 # 指定显示条目数
-last -n 1
+$ last -n 1
 ```
 
 
@@ -2704,18 +2705,18 @@ last -n 1
 
 ```bash
 # 切换到 root 身份
-su -
+$ su -
 
 # 切换到 admin 身份
-su admin
+$ su admin
 
 # -c 执行完指令后切换回原身份
-su -c ls admin
+$ su -c ls admin
 ```
 
 可以通过以下指令查找当前系统用户列表
 ```bash
-cat /etc/passwd
+$ cat /etc/passwd
 ```
 
 
@@ -2748,10 +2749,10 @@ $ whoami
 
 ```bash
 # 列出所有全局环境变量
-printenv
+$ printenv
 
 # 也可以显示指定全局环境变量的值, 等价于 echo $HOME
-printenv HOME # /root
+$ printenv HOME # /root
 ```
 
 
@@ -2765,7 +2766,7 @@ printenv HOME # /root
 注意：所有系统全局变量都是大写，用户定义的环境变量全部采用小写，这是标准规范。
 
 ```bash
-set
+$ set
 # OPTIND=1
 # OSTYPE=linux-gnu
 # PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
@@ -2783,9 +2784,9 @@ set
 注意：export 只有在当前Shell有效，退出后将失效
 ```bash
 # 先声明一个局部环境变量
-my_var='Hello'
+$ my_var='Hello'
 # 然后将其导出全局环境变量
-export my_var
+$ export my_var
 ```
 
 
@@ -2798,7 +2799,7 @@ export my_var
 
 ```bash
 # 删除 HOME 环境变量，前面不需要带 $ 符号
-unset HOME
+$ unset HOME
 ```
 
 
@@ -2819,19 +2820,19 @@ unset HOME
 
 ```bash
 # 归档文件
-zip README.zip README.md
+$ zip README.zip README.md
 
 # 归档目录需要 -r 递归处理
-zip -r temp.zip temp
+$ zip -r temp.zip temp
 
 # -S 包含系统隐藏文件
-zip -r -S temp.zip temp
+$ zip -r -S temp.zip temp
 
 # 指定归档效率 1-9
-zip -r -9 temp.zip temp 
+$ zip -r -9 temp.zip temp 
 
 # -j 消除文件夹, 这样解压后只有 README.md 文件而不是带有 src 文件夹
-zip -j temp.zip src/README.md
+$ zip -j temp.zip src/README.md
 ```
 
 
@@ -2843,13 +2844,13 @@ zip -j temp.zip src/README.md
 
 ```bash
 # 将 demo.zip 提取到当前目录下
-unzip demo.zip
+$ unzip demo.zip
 
 # 列表 demo.zip 文件内容，但不提取
-unzip -v demo.zip
+$ unzip -v demo.zip
 
 # -d 指定将文件提取到 src 目录下
-unzip demo.zip -d src
+$ unzip demo.zip -d src
 ```
 
 
@@ -2863,20 +2864,20 @@ GNU 压缩/解压工具，用 Lempel-Ziv编码，格式为 `.gz`, 压缩后原�
 
 ```bash
 # 压缩 README.md 文件, 压缩完成后 README.md 文件会被删除
-gzip README.md # README.md.gz
+$ gzip README.md # README.md.gz
 
 # 递归压缩目录下的所有文件, 每个文件都会被压缩为 .gz 然后删除
-gzip -r ./logs
+$ gzip -r ./logs
 
 # 加 -v 显示压缩执行过程
-gzip -rv ./logs
+$ gzip -rv ./logs
 
 # 压缩 .tar 后缀文件
-gzip -r src.tar  # 压缩后为 src.tar.gz
+$ gzip -r src.tar  # 压缩后为 src.tar.gz
 
 # -d 解压gzip压缩后的文件，解压后 .gz 文件会被删除
-gzip -d README.md.gz
-gzip -dr ./logs # 或者递归解压目录下所有 .gz
+$ gzip -d README.md.gz
+$ gzip -dr ./logs # 或者递归解压目录下所有 .gz
 ```
 
 
@@ -2885,14 +2886,14 @@ gzip -dr ./logs # 或者递归解压目录下所有 .gz
 
 ```bash
 # 压缩 README.md 文件
-bzip2 README.md     # 不保留源文件 README.md.bz2
-bzip2 -k README.md  # -k 保留源文件
+$ bzip2 README.md     # 不保留源文件 README.md.bz2
+$ bzip2 -k README.md  # -k 保留源文件
 
 
 # 解压
-bzip2 -d README.md.bz2  # 源文件将被删除
-bzip2 -dk README.md.bz2  # -k 保留源文件
-bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个解压过程
+$ bzip2 -d README.md.bz2  # 源文件将被删除
+$ bzip2 -dk README.md.bz2  # -k 保留源文件
+$ bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个解压过程
 ```
 
 
@@ -2915,11 +2916,11 @@ bzip -dt README.md.bz2 # -t --test 测试解压, 实际不解压，模拟整个�
 
 ```bash
 # -c 创建一个归档文件
-tar -cvf demo.tar src/
+$ tar -cvf demo.tar src/
 
 # -x 提取归档文件内容
-tar -xvf demo.tar
-tar -xvf demo.tar.gz # tar命令是可以提取 gzip 压缩后的文件
+$ tar -xvf demo.tar
+$ tar -xvf demo.tar.gz # tar命令是可以提取 gzip 压缩后的文件
 ```
 
 
@@ -2939,11 +2940,11 @@ tar -xvf demo.tar.gz # tar命令是可以提取 gzip 压缩后的文件
 
 ```bash
 # 计算文件md5
-mmd5sum README.md # d41d8cd98f00b204e9800998ecf8427e  README.md
+$ mmd5sum README.md # d41d8cd98f00b204e9800998ecf8427e  README.md
 
 # 校验文件, 查看文件是否被篡改过
-md5sum README.md > README.md5 # 计算文件md5并保存在 README.md5 , 保存的文件名和后缀可以随意命名
-md5sum -c README.md5 # -c 从指定的文件读取md5并校验, 会从当前目录寻找 README.md
+$ md5sum README.md > README.md5 # 计算文件md5并保存在 README.md5 , 保存的文件名和后缀可以随意命名
+$ md5sum -c README.md5 # -c 从指定的文件读取md5并校验, 会从当前目录寻找 README.md
 ```
 
 
@@ -2955,16 +2956,16 @@ base64 编码/解码文件或标准输入输出
 
 ```bash
 # 编码字符串
-printf "hello world"|base64 # aGVsbG8gd29ybGQ=
+$ printf "hello world"|base64 # aGVsbG8gd29ybGQ=
 
 # 解码字符串
-printf aGVsbG8gd29ybGQ=|base64 -d # hello world
+$ printf aGVsbG8gd29ybGQ=|base64 -d # hello world
 
 # 编码文件, 将结果保存在 decode.txt
-base64 README.md > decode.txt
+$ base64 README.md > decode.txt
 
 # 从标准输入中读取已经进行base64编码的内容进行解码
-base64 -d decode.txt
+$ base64 -d decode.txt
 ```
 
 
@@ -2986,16 +2987,16 @@ base64 -d decode.txt
 
 ```bash
 # 最简单的连接方式
-ssh root@192.168.0.0
+$ ssh root@192.168.0.0
 
 # 指定端口号连接
-ssh -p 23 root@192.168.0.0
+$ ssh -p 23 root@192.168.0.0
 
 # 执行远程服务器命令, 比如创建目录
-ssh root@192.168.0.0 "mkdir -p /home/test"
+$ ssh root@192.168.0.0 "mkdir -p /home/test"
 
 # 在远程服务器执行本地脚本
-ssh root@192.168.0.0 < shell.sh
+$ ssh root@192.168.0.0 < shell.sh
 ```
 
 
@@ -3011,17 +3012,17 @@ ssh root@192.168.0.0 < shell.sh
 
 ```bash
 # 下载某个文件
-wget https://www.xiejiahe.com/robots.txt
+$ wget https://www.xiejiahe.com/robots.txt
 
 # 指定下载后文件名
-wget -O ro.txt https://www.xiejiahe.com/robots.txt
+$ wget -O ro.txt https://www.xiejiahe.com/robots.txt
 
 # 断开续传，一般用于大文件，防止重新下载
-wget -c https://www.xiejiahe.com/robots.txt
+$ wget -c https://www.xiejiahe.com/robots.txt
 
 # 使用后台下载, 对于大文件非常有用
-wget -b https://www.xiejiahe.com/robots.txt
-tail -f wget-log   # 查看后台下载进度
+$ wget -b https://www.xiejiahe.com/robots.txt
+$ tail -f wget-log   # 查看后台下载进度
 ```
 
 
@@ -3055,82 +3056,82 @@ tail -f wget-log   # 查看后台下载进度
 
 #### 不传递任何参数只打印HTTP响应内容
 ```bash
-curl https://github.com/xjh22222228/linux-manual
+$ curl https://github.com/xjh22222228/linux-manual
 ```
 
 #### -s 不输出错误和进度信息, 只显示正常结果
 ```bash
-curl -s https://github.com/xjh22222228/linux-manual
+$ curl -s https://github.com/xjh22222228/linux-manual
 ```
 
 
 #### -o 指定文件名下载到本地，等价于 wget
 ```bash
 # 将响应内容保存到 1.txt 文件
-curl https://github.com/xjh22222228/linux-manual -o 1.txt
+$ curl https://github.com/xjh22222228/linux-manual -o 1.txt
 ```
 
 
 #### -O 下载文件到本地, 并将URL最后部分当做文件名
 ```bash
 # 文件名为 linux-manual
-curl https://github.com/xjh22222228/linux-manual -O
+$ curl https://github.com/xjh22222228/linux-manual -O
 ```
 
 #### --progress 显示进度条
 ```bash
-curl https://github.com/xjh22222228/linux-manual --progress
+$ curl https://github.com/xjh22222228/linux-manual --progress
 ```
 
 
 #### -L HTTP请求跟随服务器重定向
 ```bash
-curl -L https://github.com/xjh22222228/linux-manual
+$ curl -L https://github.com/xjh22222228/linux-manual
 ```
 
 
 #### -I 或 --head 显示HTTP响应报文, 不打印响应内容
 ```bash
-curl -I https://github.com/xjh22222228/linux-manual
+$ curl -I https://github.com/xjh22222228/linux-manual
 ```
 
 
 #### -H 设置请求头
 ```bash
-curl -H 'Content-Type: application/json' -H 'Content-Type: application/json' https://github.com/xjh22222228/linux-manual
+$ curl -H 'Content-Type: application/json' -H 'Content-Type: application/json' https://github.com/xjh22222228/linux-manual
 ```
 
 #### -X 指明HTTP请求方法
 ```bash
-curl -X POST https://github.com/xjh22222228/linux-manual
+$ curl -X POST https://github.com/xjh22222228/linux-manual
 ```
 
 #### -d 要发送的实体内容
 ```bash
-curl -X POST -d '{"key":"value"}' https://github.com/xjh22222228/linux-manual
+$ curl -X POST -d '{"key":"value"}' https://github.com/xjh22222228/linux-manual
 ```
 
 #### --cookie HTTP请求时携带的cookie信息
 ```bash
-curl --cookie "age=18;name=xjh" https://github.com/xjh22222228/linux-manual
+$ curl --cookie "age=18;name=xjh" https://github.com/xjh22222228/linux-manual
 ```
 
 
 #### -v 打印整个传输过程
 ```bash
-curl -v https://github.com/xjh22222228/linux-manual
+$ curl -v https://github.com/xjh22222228/linux-manual
 ```
 
 
 #### -F 上传文件，默认以POST方法请求
 ```bash
 # file 是字段名, =@ 必须存在
-curl https://example.com/upload -F "file=@/home/demo.png"
+$ curl https://example.com/upload -F "file=@/home/demo.png"
 ```
 
 #### -u 请求授权
 ```bash
-curl -u root:password ftp://demo/README.md
+$ curl -u root:password ftp://demo/README.md
 ```
 
 
@@ -3138,7 +3139,7 @@ curl -u root:password ftp://demo/README.md
 请求失败时设置重试次数
 
 ```bash
-curl http://example.com --retry 3
+$ curl http://example.com --retry 3
 ```
 
 
@@ -3156,16 +3157,16 @@ curl http://example.com --retry 3
 
 ```bash
 # 从远程主机下载文件到本地
-scp root@192.168.0.100:/root/file.zip /home/file.zip
+$ scp root@192.168.0.100:/root/file.zip /home/file.zip
 
 # 从远程主机下载目录到本地，需要 -r 递归
-scp -r root@192.168.0.100:/root/dir  /home/dir
+$ scp -r root@192.168.0.100:/root/dir  /home/dir
 
 # 从本地主机上传文件到远程主机
-scp /home/file.zip root@192.168.0.100:/root/file.zip
+$ scp /home/file.zip root@192.168.0.100:/root/file.zip
 
 # # 从本地主机上传目录到远程主机，需要 -r 递归
-scp -r /home/dir root@192.168.0.100:/root/dir
+$ scp -r /home/dir root@192.168.0.100:/root/dir
 ```
 
 
@@ -3199,33 +3200,33 @@ source 有没有斜杠影响同步结果：
 
 ```bash
 # 无斜杠, dst 目录下只有 source目录
-rsync -r source dst
+$ rsync -r source dst
 
 # 有斜杠, dst 目录下包含 source 所有文件，没有source目录
-rsync -r source/ dst
+$ rsync -r source/ dst
 ```
 
 
 #### 本地同步文件
 ```bash
 # -r 表示递归拷贝子目录，将 source 拷贝到 dst 目录下
-rsync -r source dst # dst 目录下就有 source
+$ rsync -r source dst # dst 目录下就有 source
 
 # 可以将多个source 拷贝到指定目录下
-rsync -r source1 source2 dst
+$ rsync -r source1 source2 dst
 
 # -a替代-r, 同步元数据信息，比如修改时间，创建时间，权限等
-rsync -a source dst
+$ rsync -a source dst
 ```
 
 
 #### 远程同步文件
 ```bash
 # 本地同步到远程, 本地 docs 目录同步到远程 home/docs 下
-rsync -rv ~/docs root@192.168.0.0:/home/docs
+$ rsync -rv ~/docs root@192.168.0.0:/home/docs
 
 # 远程同步到本地, 将远程 /home/docs 目录同步到本地 ~/docs 下
-rsync -rv root@192.168.0.0:/home/docs ~/docs
+$ rsync -rv root@192.168.0.0:/home/docs ~/docs
 ```
 
 
@@ -3236,7 +3237,7 @@ rsync -rv root@192.168.0.0:/home/docs ~/docs
 
 ```bash
 # --link-dest 后面跟着基准目录，然后会跟 source 进行一一比较，找出变动的文件进行同步
-rsync -a --link-dest compare source dest
+$ rsync -a --link-dest compare source dest
 ```
 
 
@@ -3245,15 +3246,15 @@ rsync -a --link-dest compare source dest
 #### 其他用法
 ```bash
 # 排除文件
-rsync -r --exclude=".git" source dst
+$ rsync -r --exclude=".git" source dst
 # 大括号指定多个排除模式
-rsync -r --exclude={".git", ".svn"} source dst
+$ rsync -r --exclude={".git", ".svn"} source dst
 
 
 # 包含文件
-rsync -r --include="src/" source dst
+$ rsync -r --include="src/" source dst
 # 大括号指定多个包含模式
-rsync -r --include={"src/", "tests/"} source dst
+$ rsync -r --include={"src/", "tests/"} source dst
 ```
 
 
@@ -3295,13 +3296,13 @@ rsync -r --include={"src/", "tests/"} source dst
 # 显示每个有数据的已挂载文件系统
 # Filesystem     1K-blocks    Used Available Use% Mounted on
 # /dev/vda1       41151808 1853208  37185168   5% /
-df
+$ df
 
 # 格式化大小，以kb以上进行显示
-df -h
+$ df -h
 
 # 查看全部文件系统信息
-df -a
+$ df -a
 ```
 
 
@@ -3361,34 +3362,34 @@ $ du -c
 
 ```bash
 # 安装
-yum install 包名
+$ yum install 包名
 
 # 指定 -y 安装时自动全部 yes
-yum -y install 包名
+$ yum -y install 包名
 
 # 查找包
-yum search 包名
+$ yum search 包名
 
 # 显示所有已安装的包
-yum list
+$ yum list
 
 # 升级包
-yum update 包名
+$ yum update 包名
 
 # 只删除软件包而保留配置文件和数据文件
-yum remove 包名
+$ yum remove 包名
 
 # 删除软件和它的所有配置文件
-yum erase 包名
+$ yum erase 包名
 
 # 清除缓存
-yum clean all
+$ yum clean all
 
 # 显示安装包信息
-yum info 包名
+$ yum info 包名
 
 # 检查可更新的包程序
-yum check-update
+$ yum check-update
 ```
 
 
@@ -3398,19 +3399,19 @@ yum check-update
 
 ```bash
 # 安装一个docker软件
-apt-get install docker
+$ apt-get install docker
 
 # 卸载软件，保留配置文件
-apt-get remove docker
+$ apt-get remove docker
 
 # 卸载软件并删除配置文件
-apt-get –purge remove docker
+$ apt-get –purge remove docker
 
 # 更新所有已安装的软件包
-apt-get upgrade
+$ apt-get upgrade
 
 # 删除软件备份，主要用来释放空间
-apt-get clean
+$ apt-get clean
 ```
 
 
@@ -3463,19 +3464,19 @@ apt-get clean
 下面展示了几个例子
 ```bash
 # 例子一：
-echo "Hello World" > log.txt
+$ echo "Hello World" > log.txt
 
 # 例子二：
-ps -ef > ps.txt
+$ ps -ef > ps.txt
 
 # 例子三：
-history > a.txt
+$ history > a.txt
 ```
 
 有时不想覆盖文件而是追加内容，比如日志，可以使用 `>>` 2个大于号。
 
 ```bash
-echo "H" >> log.txt
+$ echo "H" >> log.txt
 ```
 
 
@@ -3485,14 +3486,14 @@ echo "H" >> log.txt
 
 ```bash
 # 统计input.txt文本行数
-wc -l < input.txt # 等价于 wc -l input.txt
+$ wc -l < input.txt # 等价于 wc -l input.txt
 ```
 
 还有一种叫内联重定向，比较少见，但也挺有用。 使用2个 `<<` 小于号。然后跟着一个开头标记和结尾标记。
 
 ```bash
 # 统计行数，输出2
-wc -l << EOF
+$ wc -l << EOF
 第一行
 第二行
 EOF
@@ -3503,7 +3504,7 @@ EOF
 下面这个也是可以的。
 ```bash
 # 输出2
-wc -l << Hello
+$ wc -l << Hello
 第一行
 第二行
 Hello
@@ -3519,10 +3520,10 @@ Hello
 
 ```bash
 # 将 ls 输出内容作为 wc 输入
-ls | wc
+$ ls | wc
 
 # 执行一个脚本，这没有什么意义，只是一个例子
-echo "./bash.sh" | bash
+$ echo "./bash.sh" | bash
 ```
 
 
@@ -3533,26 +3534,31 @@ echo "./bash.sh" | bash
 ## echo
 输出字符串或者变量
 
+| 参数    | 描述              |
+| ------ |------------------ |
+| -n     | 打印时不加换行符     |
+| -e     | 解析字符     |
+
 注: 一般情况下字符串不必加双引号, 如果包含转义字符就必须要加
 
 ```bash
 # 在终端输出 Hello World
-echo "Hello World"
-echo Hello World    # 也可以不加双引号
-echo "Hello\nWorld" # 必须加双引号, 否则无法转义
+$ echo "Hello World"
+$ echo Hello World    # 也可以不加双引号
+$ echo "Hello\nWorld" # 必须加双引号, 否则无法转义
 
 # 打印系统环境变量，如果变量不存在输出为空
-echo $PATH
+$ echo $PATH
 
 # > 输出重定向，将内容输出到文件中
-echo Hello World > 1.txt
+$ echo Hello World > 1.txt
 
-# -n 不换行, 默认情况下echo 是占一整行
-echo -n Hello; echo World
+# -n 不换行, 默认情况下会换行
+$ echo -n Hello; echo World
 
 # -e 解析字符, 比如让字体输出颜色
-echo -e "\033[1;32m绿色\033[0m"
-echo -e "\n换行\n" # 解析 \n 作为换行
+$ echo -e "\033[1;32m绿色\033[0m"
+$ echo -e "\n换行\n" # 解析 \n 作为换行
 ```
 
 
@@ -3622,14 +3628,14 @@ echo -e "\n换行\n" # 解析 \n 作为换行
 
 ```bash
 # 显示当前时间
-date
+$ date
 
 # 格式化当前时间
-date +"%Y-%m-%d %H:%M.%S" # 2020-07-01 00:00.00
+$ date +"%Y-%m-%d %H:%M.%S" # 2020-07-01 00:00.00
 
 # 设置系统时间
-date -s  # 设置当前时间, 须root
-date -s "2020-07-01 00:00:00" # 设置指定时间
+$ date -s  # 设置当前时间, 须root
+$ date -s "2020-07-01 00:00:00" # 设置指定时间
 ```
 
 
@@ -3668,16 +3674,16 @@ date -s "2020-07-01 00:00:00" # 设置指定时间
 
 ```bash
 # 查看 ls 指令帮助手册
-man ls
+$ man ls
 
 # 可以通过数字来阅读某一部分内容, 比如阅读第一部分
-man 1 ls
+$ man 1 ls
 
 # -a 在所有手册中查找
-man -a ls
+$ man -a ls
 
 # -k, 搜索关键字, 如果忘记了完整的命令可以通过关键字搜索出来，比如 nginx
-man -k ngi
+$ man -k ngi
 ```
 
 
@@ -3697,7 +3703,7 @@ man -k ngi
 
 ```bash
 # 5秒后输出 Hello
-sleep 5s; echo Hello
+$ sleep 5s; echo Hello
 ```
 
 下面是一段 Shell 脚本， 延迟10秒后再去请求
@@ -3721,17 +3727,17 @@ curl https://www.xiejiahe.com/
 
 ```bash
 # 列出当前使用过的命令
-history
+$ history
 
 # 指定要显示的条数, mac 下不支持
-history 50
+$ history 50
 
 # 清除历史命令
-history -c # 清空历史命令
-history -d 编号 # 清除指定编号
+$ history -c # 清空历史命令
+$ history -d 编号 # 清除指定编号
 
 # -a 强制写入到 ~/.bash_history 文件中而不用等shell退出才写入
-history -a
+$ history -a
 ```
 
 执行历史命令, 在 `mac` 下运行需要回车确认。
@@ -3743,7 +3749,7 @@ $ !1001
 $ !!
 ```
 
-永久清除历史记录, 执行 `hisotry -c` 只会清除当前Shell：
+永久清除历史记录, 默认情况下只执行 `hisotry -c` 只会清除当前Shell：
 ```bash
 # 先把 .bash_history 文件所有内容删除，然后再次强制写入
 $ sed -i "d" ~/.bash_history && history -a
@@ -3762,10 +3768,10 @@ $ sed -i "d" ~/.bash_history && history -a
 
 ```bash
 # 统计代码
-find -name "*.js" | xargs wc -l # 等价于 wc -l a.js b.js c.js ...
+$ find -name "*.js" | xargs wc -l # 等价于 wc -l a.js b.js c.js ...
 
 # 批量下载文件
-cat download.txt | xargs wget
+$ cat download.txt | xargs wget
 ```
 
 
@@ -3778,7 +3784,7 @@ cat download.txt | xargs wget
 显示当前日历
 
 ```bash
-cal
+$ cal
 # 输出
      June 2020        
 Su Mo Tu We Th Fr Sa  
@@ -3789,21 +3795,21 @@ Su Mo Tu We Th Fr Sa
 28 29 30
 
 # 显示临近3个月, -3 是固定不能更改数字
-cal -3
+$ cal -3
 
 # 打印今天是今年的第几天
-cal -j
+$ cal -j
 # 输出：今天日期会高亮显示
        October 2020          
  Su  Mo  Tu  We  Th  Fr  Sa  
                 275 276 277  
 278 279 280 281 282 283 284  
-285 286 287 288 289 290 291  
+285 286 287 288 289 `290` 291  
 292 293 294 295 296 297 298  
 299 300 301 302 303 304 305
 
 # 打印今年1月-12月份日历
-cal -y
+$ cal -y
 ```
 
 
@@ -3822,11 +3828,11 @@ expr 后面每个表达式都要有一个空格，否则是不合法。
 
 ```bash
 # 3
-expr 1 + 2
-expr 1+2 # 这样是不行的
+$ expr 1 + 2
+$ expr 1+2 # 这样是不行的
 
 # 在浮点数计算时会丢失小数， 这里等于 2
-expr 5 / 2
+$ expr 5 / 2
 ```
 
 
@@ -3842,7 +3848,7 @@ bash计算器实际上是一种编程语言，它允许在命令行中输入浮�
 
 ```bash
 # 敲 bc 然后回车进入交互式， 输入 quit 退出
-bc
+$ bc
 
 scale=2  # 保留几位小数，默认是0
 5 / 2
@@ -3863,10 +3869,10 @@ scale=2  # 保留几位小数，默认是0
 
 ```bash
 # 模拟超过3秒, 因为sleep阻塞5秒所以在3秒内无法完成，则停止进程
-timeout 3 sleep 5
+$ timeout 3 sleep 5
 
 # 比如打包, 1分钟内要打包完成，否则停止进程
-timeout 60 npm run build
+$ timeout 60 npm run build
 ```
 
 
@@ -3879,7 +3885,7 @@ timeout 60 npm run build
 等价命令 `logout`
 
 ```bash
-exit
+$ exit
 ```
 
 
@@ -3895,10 +3901,10 @@ exit
 
 ```bash
 # 输出：index.html
-basename /www/index.html
+$ basename /www/index.html
 
 # 输出：www
-basename /www/
+$ basename /www/
 ```
 
 
@@ -3913,16 +3919,16 @@ basename /www/
 
 ```bash
 # 最简单用法, data 是自定义变量名，用户输入内容并回车后结束
-read data # echo $data  会打印用户输入的内容
+$ read data # echo $data  会打印用户输入的内容
 
 # -p 指定提示符
-read -p 确认要删除吗？ data
+$ read -p 确认要删除吗？ data
 
 # -t 指定超时（秒）
-read -t 5 -p 确认要删除吗？ data
+$ read -t 5 -p 确认要删除吗？ data
 
 # —s 隐藏用户输入，比如密码，实际上是将文本颜色设置成背景颜色一样
-read -s -p "请输入您的密码：" data
+$ read -s -p "请输入您的密码：" data
 ```
 
 
@@ -3938,21 +3944,21 @@ tee 命令通常用于 shell 脚本当中。
 
 ```bash
 # date内容打印到屏幕上并且重定向输出到 date.txt 文件中
-date | tee date.txt
+$ date | tee date.txt
 
 # -a 以追加方式，默认情况下会覆盖输出文件内容
-date | tee -a date.txt
+$ date | tee -a date.txt
 ```
 
 `tee` 命令只是一个语法糖，如果不用 `tee` 可以这样做：
 
 ```bash
 # 1、将date结果保存到 var 变量中
-var=$(date)
+$ var=$(date)
 # 2、将结果打印到屏幕上 STDOUT
-echo $var
+$ echo $var
 # 3、将结果重定向到文件
-echo $var > date.txt
+$ echo $var > date.txt
 ```
 
 
@@ -3963,7 +3969,7 @@ echo $var > date.txt
 
 注：笔者用得比较多的是 `command + K` 可以完全清除终端所有操作信息。
 ```bash
-clear
+$ clear
 ```
 
 
