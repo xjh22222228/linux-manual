@@ -1451,7 +1451,7 @@ $ vim 1.txt 2.txt
 $ nohup node main.js
 
 # 在当前目录会出现 nohup.out 文件，里面包含了 Hello World
-$ nohuo echo "Hello World"
+$ nohup echo "Hello World"
 ```
 
 
