@@ -2,7 +2,7 @@
   <img src="media/poster.jpg" width="210" />
   <br />
   <b>Linux 常用命令参考手册</b>
-  <p align="center">日常运维的最佳拍档 x 111</p>
+  <p align="center">日常运维的最佳拍档 x 112</p>
   <p align="center">一张网页概括，没有晦涩难度的例子！</p>
   <p align="center">
     <a href="https://github.com/xjh22222228/linux-manual/stargazers">
@@ -86,6 +86,7 @@
   - [time](#time)
   - [jobs](#jobs)
   - [&](#&)
+  - [screen](#screen)
 - [系统进程](#系统进程)
   - [ps](#ps)
   - [pstree](#pstree)
@@ -2074,6 +2075,78 @@ $ sleep 100 &
 
 
 
+
+
+## screen
+screen 命令可以在当前窗口创建多个窗口。
+
+场景：比如我们在当前Shell窗口中运行 `python main.py` 后就不能操作其他了，除非使用 `nohup` 等命令挂载到后台。 screen 命令则可以解决此问题。
+
+
+`screen` 命令有些发行版Linux会自带，有些则没有，安装：
+```bash
+$ yum install screen -y
+```
+
+
+
+| 参数         | 描述              |
+| ----------- |------------------ |
+| -ls         | 列表当前所有session窗口     |
+| -S          | 新建窗口时指定名字     |
+| -r          | 回到指定名字Session窗口     |
+
+
+最简单的创建一个新窗口就是直接敲 `screen`
+```bash
+$ screen
+```
+
+最好的方式是指定 -S 给一个Session名字，以便知道这个窗口是干什么的:
+```bash
+$ screen -S python
+```
+
+列表所有Session窗口
+```bash
+$ screen -ls
+
+There is a screen on:
+        18772.python    (Attached)
+1 Socket in /var/run/screen/S-root.
+```
+
+杀死Session窗口, `18722` 是Session Id, 通过 `screen -ls` 可以找到
+
+```bash
+$ screen -S 18722 -X quit
+```
+
+回到指定名字的Session窗口
+```bash
+$ screen -r python
+
+# 只有一个session情况下允许不指定名字
+$ screen -r
+```
+
+
+退出并杀死当前窗口，也可以按 `Ctrl+D`
+```bash
+$ exit
+```
+
+
+#### 快捷键
+只有在 screen session 窗口中使用
+
+| 参数         | 描述              |
+| ----------- |------------------ |
+| Ctrl+a x    | 锁定当前窗口，需要密码才能解开     |
+| Ctrl+a d   | 暂时离开当前窗口     |
+
+
+操作：按住 Ctrl+a 然后放, 再按 x。
 
 
 
