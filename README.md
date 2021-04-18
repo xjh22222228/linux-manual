@@ -1066,7 +1066,7 @@ $ mv -f 1.txt 2.txt
 $ open .
 
 # 用默认应用程序打开文件
-$ $open README.md
+$ open README.md
 
 # 用默认编辑器打开文件
 $ open -e README.md
