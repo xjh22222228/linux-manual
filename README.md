@@ -1953,7 +1953,7 @@ $ service --status-all
 - free 空闲内存
 - shared 当前已废弃内存
 - buff/cache 缓存内存数
-- 1204660 可用内存数
+- available 可用内存数
 
 
 ```bash
