@@ -3061,6 +3061,11 @@ $ base64 -d decode.txt
 
 命令：`ssh [-p port]  [user@]hostname [command]`
 
+| 参数  | 描述              |
+| ---- |------------------ |
+| -p   | 指定端口号     |
+| -t   | 强制分配为终端     |
+
 ```bash
 # 最简单的连接方式
 $ ssh root@192.168.0.0
