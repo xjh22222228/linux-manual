@@ -3890,7 +3890,7 @@ $ cat download.txt | xargs wget
 
 
 ## cal
-显示当前日历
+显示当前日历, 别名 `ncal` 以纵向显示。
 
 ```bash
 $ cal
